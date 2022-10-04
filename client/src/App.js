@@ -1,8 +1,9 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './pages/Home';
+import YourChores from './pages/YourChores';
 // import Login from './pages/Login';
 
 import './App.css';
@@ -28,6 +29,10 @@ export default function App() {
                     <Routes>
                         {/* <Route path="/" element={<Login />} /> */}
                         <Route path="/home" element={<Home />} />
+                        <Route path="/chores">
+                            <Route path=":username" element={<YourChores />} />
+                            <Route path="" element={<YourChores />} />
+                        </Route>
                         {/* <Route path="/login" element={<Login />} /> */}
                         {/* <Route path="/signup" element={<Signup />} /> */}
                     </Routes>
@@ -36,4 +41,4 @@ export default function App() {
             </div>
         </Router>
     );
-};
+}
