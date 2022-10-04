@@ -15,7 +15,7 @@ const Header = () => {
                     {/* add Auth.login() ? () */}
                     <>
                         <Link to="/home">Home</Link>
-                        {/* <Link to="/yourChores">Your Chores</Link> */}
+                        <Link to="/chores">Your Chores</Link>
                         {/* <Link to="/login">Login</Link>
                         <Link to="/signup">Signup</Link> */}
                     </>
