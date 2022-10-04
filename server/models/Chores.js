@@ -17,7 +17,7 @@ const choreSchema = new Schema({
         default: Date.now,
         get: (timeStamp) => dateFormat(timeStamp),
     },
-    createdBy: {
+    username: {
         type: String,
         required: true,
     },
