@@ -1,4 +1,4 @@
-import { Schema } from 'mongoose';
+import { Schema, model } from 'mongoose';
 import dateFormat from '../utils/dateFormat';
 
 const choreSchema = new Schema({
@@ -34,6 +34,6 @@ const choreSchema = new Schema({
     },
 });
 
-const Chores = model('Chores', choreSchema);
+const Chore = model('Chores', choreSchema);
 
-module.exports = Chores;
+module.exports = Chore;
