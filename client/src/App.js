@@ -6,6 +6,9 @@ import Home from './pages/Home';
 import YourChores from './pages/YourChores';
 // import Login from './pages/Login';
 
+// import `ChakraProvider` component
+import { ChakraProvider } from '@chakra-ui/react';
+
 import './App.css';
 
 // Import apollo from @apollo/client
@@ -21,24 +24,29 @@ import './App.css';
 
 export default function App() {
     return (
-        // wrap all in ApolloProvider
-        <Router>
-            <div>
-                <Header />
+        <ChakraProvider>
+            {/* // wrap all in ApolloProvider */}
+            <Router>
                 <div>
-                    <Routes>
-                        {/* <Route path="/" element={<Login />} /> */}
-                        <Route path="/home" element={<Home />} />
-                        <Route path="/chores">
-                            <Route path=":username" element={<YourChores />} />
-                            <Route path="" element={<YourChores />} />
-                        </Route>
-                        {/* <Route path="/login" element={<Login />} /> */}
-                        {/* <Route path="/signup" element={<Signup />} /> */}
-                    </Routes>
+                    <Header />
+                    <div>
+                        <Routes>
+                            {/* <Route path="/" element={<Login />} /> */}
+                            <Route path="/home" element={<Home />} />
+                            <Route path="/chores">
+                                <Route
+                                    path=":username"
+                                    element={<YourChores />}
+                                />
+                                <Route path="" element={<YourChores />} />
+                            </Route>
+                            {/* <Route path="/login" element={<Login />} /> */}
+                            {/* <Route path="/signup" element={<Signup />} /> */}
+                        </Routes>
+                    </div>
+                    <Footer />
                 </div>
-                <Footer />
-            </div>
-        </Router>
+            </Router>
+        </ChakraProvider>
     );
 }
