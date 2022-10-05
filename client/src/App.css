@@ -47,6 +47,19 @@
     background-size: cover;
 }
 
+.login-container-mobile {
+    display: flex;
+    flex-direction: column-reverse;
+    text-align: center;
+    font-size: 24px;
+    background-image: url(./assets/yellow-gloves.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 90vh;
+    width: 100vw;
+}
+
 .login-form {
     display: flex;
     flex-direction: column;
@@ -78,4 +91,26 @@
 
 .button:hover {
     color: white;
+}
+
+.toggle {
+    width: 100vw;
+    height: 50px;
+    background-color: #48bb78;
+    margin-bottom: 5px;
+}
+
+.login-mobile {
+    position: absolute;
+    width: 280px;
+    margin-left: auto;
+    margin-right: auto;
+    top: 100px;
+    left: 50%;
+    margin-left: -150px;
+    display: flex;
+    flex-direction: column;
+    color: #48bb78;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+        1px 1px 0 #000;
 }
