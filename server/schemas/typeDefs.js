@@ -43,6 +43,10 @@ const typeDefs = gql`
         addUserToGroup(username: String!): Group
         removeUserToGroup(username: String!): Group
     }
+
+    type Mutation{
+        addChore(choreName:String!, choreBody: String): Group
+    }
 `;
 
 module.exports = typeDefs;
