@@ -13,7 +13,8 @@ const typeDefs = gql`
     }
 
     type Query {
-        chore: Chore
+        chore(_id: ID!): Chore
+        chores(group: ID, groupName: String): [Chore]
     }
 `;
 

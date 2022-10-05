@@ -1,6 +1,6 @@
 const resolvers = {
     Query: {
-        chores: async () => {
+        chores: async (parent, { group, groupName }) => {
             return Chore.find().sort({ dueDate: -1 });
         },
         chore: async (parent, { _id }) => {
