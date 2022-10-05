@@ -1,6 +1,7 @@
 import React from 'react';
 // import GroupFrom from "../components/GroupFrom";
 // import GroupList from "../components/GroupList";
+import ChoreForm from '../../components/ChoreForm';
 
 const Home = () => {
     // query requests
@@ -12,8 +13,8 @@ const Home = () => {
             <div>
                 <h2>Group Form</h2>
                 <h2>Group List</h2>
-                {/* <ChoreForm />
-                <ChoreList 
+                <ChoreForm />
+                {/* <ChoreList 
                 pass chores={chores}
                 groups={groups} /> */}
             </div>
