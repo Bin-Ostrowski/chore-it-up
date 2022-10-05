@@ -11,7 +11,7 @@ const resolvers = {
                     username: context.user.username,
                 });
 
-                await HTMLOptGroupElement.findByIdAndUpdate(
+                await Group.findByIdAndUpdate(
                     { _id: context.group._id },
                     { $push: { chores: chore._id } },
                     { new: true }

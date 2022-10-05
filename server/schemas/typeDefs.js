@@ -27,11 +27,11 @@ const typeDefs = gql`
         chores: [Chore]
     }
 
-    # type Query {
-    # }
+    type Query {
+    }
 
-    type Mutation {
-        addChore(choreName: String!, choreBody: String): Group
+    type Mutation{
+        addChore(choreName:String!, choreBody: String): Group
     }
 `;
 
