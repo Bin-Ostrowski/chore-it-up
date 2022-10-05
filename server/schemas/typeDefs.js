@@ -3,10 +3,10 @@ import { gql } from 'apollo-server-express';
 const typeDefs = gql`
     type Chore {
         _id: ID
-        choreName: String!
+        choreName: String
         choreBody: String
-        createdAt: String!
-        username: String!
+        createdAt: String
+        username: String
         assignedTo: String
         status: String
         dueDate: String
