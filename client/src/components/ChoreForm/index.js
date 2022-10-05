@@ -14,34 +14,41 @@ import './choreForm.css';
 const ChoreForm = () => {
     return (
         <FormControl isRequired>
-            <div className="form-input">
-                <FormLabel>Chore Name:</FormLabel>
-                <Input placeholder="Chore Name" />
+            <div className="form-container">
+                <div className="input-container">
+                    <div className="form-input">
+                        <FormLabel>Chore Name:</FormLabel>
+                        <Input placeholder="Chore Name" />
+                    </div>
+                    <div className="form-input">
+                        <FormLabel>Finish By Date:</FormLabel>
+                        <Input
+                            placeholder="Select Date"
+                            size="md"
+                            type="datetime-local"
+                        />
+                    </div>
+                    <div className="form-input">
+                        <FormLabel optionalIndicator>Assigned To:</FormLabel>
+                        <Select placeholder="Select Username">
+                            {/* Map over users in group */}
+                            <option>Luffy</option>
+                            <option>Nami</option>
+                            <option>Chopper</option>
+                            <option>Zoro</option>
+                            <option>None</option>
+                        </Select>
+                    </div>
+                    <div className="form-input">
+                        <FormLabel optionalIndicator>Chore Notes:</FormLabel>
+                        <Input placeholder="Describe Chore" />
+                    </div>
+                </div>
+                <div className="form-btn">
+
+                <Button colorScheme="blue">Add Chore</Button>
+                </div>
             </div>
-            <div className="form-input">
-                <FormLabel>Finish By Date:</FormLabel>
-                <Input
-                    placeholder="Select Date"
-                    size="md"
-                    type="datetime-local"
-                />
-            </div>
-            <div className="form-input">
-                <FormLabel optionalIndicator>Assigned To:</FormLabel>
-                <Select placeholder="Select Username">
-                    {/* Map over users in group */}
-                    <option>Luffy</option>
-                    <option>Nami</option>
-                    <option>Chopper</option>
-                    <option>Zoro</option>
-                    <option>None</option>
-                </Select>
-            </div>
-            <div className="form-input">
-                <FormLabel optionalIndicator>Chore Notes:</FormLabel>
-                <Input placeholder="Describe Chore" />
-            </div>
-            <Button colorScheme='blue'>Add Chore</Button>
         </FormControl>
     );
 };
