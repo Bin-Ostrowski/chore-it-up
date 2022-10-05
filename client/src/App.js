@@ -1,25 +1,52 @@
-import logo from './logo.svg';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import Home from './pages/Home';
+import YourChores from './pages/YourChores';
+// import Login from './pages/Login';
+
+// import `ChakraProvider` component
+import { ChakraProvider } from '@chakra-ui/react';
+
 import './App.css';
 
-function App() {
+// Import apollo from @apollo/client
+
+// set token context
+// import { setContext } from "@apollo/client/link/context";
+
+// establish new link to GraphQL
+
+// define authLink
+
+// define client and initiate a new cashe object using new InMemoryCache()
+
+export default function App() {
     return (
-        <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <p>
-                    Edit <code>src/App.js</code> and save to reload.
-                </p>
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn React
-                </a>
-            </header>
-        </div>
+        <ChakraProvider>
+            {/* // wrap all in ApolloProvider */}
+            <Router>
+                <div>
+                    <Header />
+                    <div>
+                        <Routes>
+                            {/* <Route path="/" element={<Login />} /> */}
+                            <Route path="/home" element={<Home />} />
+                            <Route path="/chores">
+                                <Route
+                                    path=":username"
+                                    element={<YourChores />}
+                                />
+                                <Route path="" element={<YourChores />} />
+                            </Route>
+                            {/* <Route path="/login" element={<Login />} /> */}
+                            {/* <Route path="/signup" element={<Signup />} /> */}
+                        </Routes>
+                    </div>
+                    <Footer />
+                </div>
+            </Router>
+        </ChakraProvider>
     );
 }
-
-export default App;
