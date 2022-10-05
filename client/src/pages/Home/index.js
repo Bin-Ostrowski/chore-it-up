@@ -2,6 +2,8 @@ import React from 'react';
 // import GroupFrom from "../components/GroupFrom";
 // import GroupList from "../components/GroupList";
 import ChoreForm from '../../components/ChoreForm';
+import ChoreList from '../../components/ChoreList';
+import './home.css';
 
 const Home = () => {
     // query requests
@@ -10,13 +12,23 @@ const Home = () => {
 
     return (
         <main>
-            <div>
-                <h2>Group Form</h2>
-                <h2>Group List</h2>
-                <ChoreForm />
-                {/* <ChoreList 
-                pass chores={chores}
+            <h2>Group Form</h2>
+            <div className="groups-display">
+                {/* //map over group id */}
+                <div className="group-container">
+                    <h2>Group One</h2>
+                    <ChoreForm />
+                    <ChoreList />
+                    {/* pass chores={chores}
                 groups={groups} /> */}
+                </div>
+                <div className="group-container">
+                    <h2>Group Two</h2>
+                    <ChoreForm />
+                    <ChoreList />
+                    {/* pass chores={chores}
+                groups={groups} /> */}
+                </div>
             </div>
         </main>
     );
