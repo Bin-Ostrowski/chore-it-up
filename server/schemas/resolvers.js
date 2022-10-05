@@ -1,5 +1,5 @@
-import { Chore } from '../models';
-import { AuthenticationError } from 'apollo-server-express';
+const { Chore } = require('../models');
+const { AuthenticationError } = require('apollo-server-express');
 
 const resolvers = {
     Query: {},
@@ -23,4 +23,4 @@ const resolvers = {
     },
 };
 
-export default resolvers;
+module.export = resolvers;
