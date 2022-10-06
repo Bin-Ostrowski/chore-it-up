@@ -13,6 +13,7 @@ import {
     FormLabel,
     Input,
     Select,
+    FormErrorMessage
 } from '@chakra-ui/react';
 
 const UpdateChoreModal = () => {
@@ -24,6 +25,9 @@ const UpdateChoreModal = () => {
     const [dueDate, setDueDate] = useState('');
     const [assignedTo, setAssignedTo] = useState('');
     const [choreBody, setChoreBody] = useState('');
+    const [isError, setIsError] = useState(false);
+
+    // will need to grap username someone so addChore will be created by that user.
 
     // input onChange hangler
     const handleChange = (event) => {
@@ -45,17 +49,20 @@ const UpdateChoreModal = () => {
 
     // form submit handler -
     const handleFormSubmit = async (event) => {
-        console.log('clicked');
         event.preventDefault();
+        if (choreName === '') {
+            setIsError(true);
+        } else {
+            console.log(choreName, dueDate, assignedTo, choreBody);
+            setIsError(false);
 
-        console.log(choreName, dueDate, assignedTo, choreBody);
+            // update mutation
 
-        // update mutation
-
-        //     setChoreName('');
-        //     setDueDate('');
-        //     setAssignedTo('');
-        //     setChoreBody('');
+            //     setChoreName('');
+            //     setDueDate('');
+            //     setAssignedTo('');
+            //     setChoreBody('');
+        }
     };
 
     return (
@@ -71,37 +78,59 @@ const UpdateChoreModal = () => {
                     <ModalCloseButton />
                     <ModalBody>
                         <div className="form-container">
-                            <FormControl isRequired>
+                            <FormControl
+                                className="flex-row"
+                                isInvalid={isError}
+                                isRequired
+                            >
                                 <div className="input-container">
                                     <div className="form-input">
-                                        <FormLabel>Chore Name:</FormLabel>
+                                        <FormLabel className="form-lable">
+                                            Chore Name:
+                                        </FormLabel>
                                         <Input
+                                            focusBorderColor="lime"
                                             placeholder="Chore Name"
                                             value={choreName}
                                             name="choreName"
+                                            size="sm"
                                             onChange={handleChange}
                                         />
+                                        {isError && (
+                                            <FormErrorMessage className="error">
+                                                Chore name is required.
+                                            </FormErrorMessage>
+                                        )}
                                     </div>
                                     <div className="form-input">
-                                        <FormLabel>Finish By Date:</FormLabel>
+                                        <FormLabel requiredIndicator>
+                                            Finish By Date:
+                                        </FormLabel>
                                         <Input
+                                            focusBorderColor="lime"
                                             placeholder="Select Date"
-                                            size="md"
+                                            size="sm"
                                             type="datetime-local"
                                             value={dueDate}
                                             name="dueDate"
                                             onChange={handleChange}
+                                            isInvalid
+                                            errorBorderColor="null"
                                         />
                                     </div>
                                     <div className="form-input">
-                                        <FormLabel optionalIndicator>
+                                        <FormLabel requiredIndicator>
                                             Assigned To:
                                         </FormLabel>
                                         <Select
+                                            focusBorderColor="lime"
                                             placeholder="Select Username"
                                             value={assignedTo}
                                             name="assignedTo"
+                                            size="sm"
                                             onChange={handleChange}
+                                            isInvalid
+                                            errorBorderColor="null"
                                         >
                                             {/* Map over users in group */}
                                             <option>Luffy</option>
@@ -112,14 +141,18 @@ const UpdateChoreModal = () => {
                                         </Select>
                                     </div>
                                     <div className="form-input">
-                                        <FormLabel optionalIndicator>
+                                        <FormLabel requiredIndicator>
                                             Chore Notes:
                                         </FormLabel>
                                         <Input
+                                            focusBorderColor="lime"
                                             placeholder="Describe Chore"
                                             value={choreBody}
                                             name="choreBody"
+                                            size="sm"
                                             onChange={handleChange}
+                                            isInvalid
+                                            errorBorderColor="null"
                                         />
                                     </div>
                                 </div>
