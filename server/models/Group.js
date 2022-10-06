@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 const User = require('./User');
-const Chore = require('./Chores');
+const Chore = require('./Chore');
 
 const groupSchema = new Schema({
     groupName: {
