@@ -1,0 +1,86 @@
+.login-container {
+    display: flex;
+    justify-content: space-around;
+    background-image: url(../../assets/annie-spratt-nK4GVqwCNMM-unsplash.jpg);
+    height: 90vh;
+    width: 100vw;
+    background-position: center;
+    background-size: cover;
+}
+
+.login-container-mobile {
+    display: flex;
+    flex-direction: column-reverse;
+    text-align: center;
+    font-size: 24px;
+    background-image: url(../../assets/yellow-gloves.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 90vh;
+    width: 100vw;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 100px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: #48bb78;
+    width: 33vw;
+    height: 425px;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+        1px 1px 0 #000;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 25px;
+}
+
+.login-form input {
+    border: 1px solid #48bb78;
+}
+
+.form-header {
+    font-size: 36px;
+    text-align: center;
+    border-bottom: 1px solid #48bb78;
+    margin-bottom: 20px;
+    padding-bottom: 5px;
+    width: 50%;
+    margin-left: 70px;
+}
+
+.button {
+    margin-top: 20px;
+}
+
+.button:hover {
+    color: white;
+}
+
+.toggle {
+    width: 100vw;
+    height: 50px;
+    background-color: #48bb78;
+    margin-bottom: 5px;
+}
+
+.login-mobile {
+    position: absolute;
+    width: 280px;
+    height: 350px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    top: 100px;
+    left: 50%;
+    margin-left: -150px;
+    display: flex;
+    flex-direction: column;
+    color: #48bb78;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+        1px 1px 0 #000;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 25px;
+}
