@@ -50,12 +50,13 @@ const ChoreForm = () => {
         } else {
             console.log(choreName, dueDate, assignedTo, choreBody);
             setIsError(false);
+            
             // addChore mutation
 
-            //     setChoreName('');
-            //     setDueDate('');
-            //     setAssignedTo('');
-            //     setChoreBody('');
+                setChoreName('');
+                setDueDate('');
+                setAssignedTo('');
+                setChoreBody('');
         }
     };
 

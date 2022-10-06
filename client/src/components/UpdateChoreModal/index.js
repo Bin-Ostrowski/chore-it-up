@@ -21,11 +21,11 @@ const UpdateChoreModal = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
 
     // set State for inputs - start with original chore info
-    const [choreName, setChoreName] = useState();
+    const [choreName, setChoreName] = useState('');
     const [dueDate, setDueDate] = useState('');
     const [assignedTo, setAssignedTo] = useState('');
     const [choreBody, setChoreBody] = useState('');
-    const [isError, setIsError] = useState(false);
+    const [isError, setisError] = useState(false);
 
     // will need to grap username someone so addChore will be created by that user.
 
@@ -51,12 +51,17 @@ const UpdateChoreModal = () => {
     const handleFormSubmit = async (event) => {
         event.preventDefault();
         if (choreName === '') {
-            setIsError(true);
+            setisError(true);
         } else {
             console.log(choreName, dueDate, assignedTo, choreBody);
-            setIsError(false);
+            setisError(false);
 
             // update mutation
+            
+                setChoreName('');
+                setDueDate('');
+                setAssignedTo('');
+                setChoreBody('');
         }
     };
 
