@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import YourChores from './pages/YourChores';
 import Login from './pages/Login';
 
+
 // import `ChakraProvider` component
 import { ChakraProvider } from '@chakra-ui/react';
 

@@ -24,12 +24,16 @@
 .login-form {
     display: flex;
     flex-direction: column;
-    padding-top: 100px;
-    padding-left: 70px;
+    margin-top: 100px;
+    padding-left: 10px;
+    padding-right: 10px;
     color: #48bb78;
     width: 33vw;
+    height: 425px;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
         1px 1px 0 #000;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 25px;
 }
 
 .login-form input {
@@ -64,8 +68,11 @@
 .login-mobile {
     position: absolute;
     width: 280px;
+    height: 350px;
     margin-left: auto;
     margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
     top: 100px;
     left: 50%;
     margin-left: -150px;
@@ -74,4 +81,6 @@
     color: #48bb78;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
         1px 1px 0 #000;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 25px;
 }

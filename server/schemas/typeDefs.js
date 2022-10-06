@@ -11,8 +11,37 @@ const typeDefs = gql`
         status: String
         dueDate: String
     }
+    type Group {
+        _id: ID
+        groupName: String
+        users: [User]
+        chores: [Chore]
+    }
+
+    type User {
+        _id: ID
+        username: String
+        email: String
+        password: String
+        groups: [Group]
+        chores: [Chore]
+    }
 
     type Query {
+        me: User
+        users: [User]
+        user(username: String!): User
+        groups(groupName: String!): [Group]
+        group(_id: ID!): Group
+    }
+
+    type Mutation {
+        login(email: String!, password: String!): Auth
+        addUser(username: String!, email: String!, password: String!): Auth
+        addGroup(groupName: String!): Group
+        removeGroup(_id: ID): Group
+        addUserToGroup(username: String!): Group
+        removeUserToGroup(username: String!): Group
     }
 `;
 
