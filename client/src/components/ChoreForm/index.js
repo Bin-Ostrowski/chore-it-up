@@ -25,16 +25,16 @@ const ChoreForm = () => {
     const handleChange = (event) => {
         switch (event.target.name) {
             case 'choreName':
-                setChoreName(event.target.value)
+                setChoreName(event.target.value);
                 break;
             case 'dueDate':
-                setDueDate(event.target.value)
+                setDueDate(event.target.value);
                 break;
             case 'assignedTo':
-                setAssignedTo(event.target.value)
+                setAssignedTo(event.target.value);
                 break;
             case 'choreBody':
-                setChoreBody(event.target.value)
+                setChoreBody(event.target.value);
                 break;
         }
     };
@@ -48,10 +48,10 @@ const ChoreForm = () => {
 
         // addChore mutation
 
-    //     setChoreName('');
-    //     setDueDate('');
-    //     setAssignedTo('');
-    //     setChoreBody('');
+        //     setChoreName('');
+        //     setDueDate('');
+        //     setAssignedTo('');
+        //     setChoreBody('');
     };
 
     return (
@@ -64,7 +64,7 @@ const ChoreForm = () => {
                             <Input
                                 placeholder="Chore Name"
                                 value={choreName}
-                                name='choreName'
+                                name="choreName"
                                 onChange={handleChange}
                             />
                         </div>
@@ -75,7 +75,7 @@ const ChoreForm = () => {
                                 size="md"
                                 type="datetime-local"
                                 value={dueDate}
-                                name='dueDate'
+                                name="dueDate"
                                 onChange={handleChange}
                             />
                         </div>
@@ -86,7 +86,7 @@ const ChoreForm = () => {
                             <Select
                                 placeholder="Select Username"
                                 value={assignedTo}
-                                name='assignedTo'
+                                name="assignedTo"
                                 onChange={handleChange}
                             >
                                 {/* Map over users in group */}
@@ -104,14 +104,17 @@ const ChoreForm = () => {
                             <Input
                                 placeholder="Describe Chore"
                                 value={choreBody}
-                                name='choreBody'
+                                name="choreBody"
                                 onChange={handleChange}
                             />
                         </div>
                     </div>
                     <div className="form-btn">
-                        <Button colorScheme="blue" type="click"
-                        onClick={handleFormSubmit}>
+                        <Button
+                            colorScheme="blue"
+                            type="click"
+                            onClick={handleFormSubmit}
+                        >
                             Add This Chore
                         </Button>
                     </div>
