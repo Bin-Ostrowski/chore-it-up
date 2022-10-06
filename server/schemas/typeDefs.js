@@ -11,7 +11,6 @@ const typeDefs = gql`
         status: String
         dueDate: String
     }
-
     type Group {
         _id: ID
         groupName: String
