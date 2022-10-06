@@ -1,7 +1,7 @@
 import { Schema, model } from 'mongoose';
 import { Users, Chores } from '../models';
 
-const groupsModel = new Schema({
+const groupModel = new Schema({
     groupName: {
         type: String,
         required: true,
@@ -11,6 +11,6 @@ const groupsModel = new Schema({
     Chores: [{ ref: Chores }],
 });
 
-const Groups = model('Groups', groupsModel);
+const Group = model('Group', groupModel);
 
-module.exports = Groups;
+module.exports = Group;
