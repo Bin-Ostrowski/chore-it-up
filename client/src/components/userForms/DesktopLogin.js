@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { FormControl, FormLabel, Input, Button } from '@chakra-ui/react';
+import { FormControl, FormLabel, Input, Button, Text } from '@chakra-ui/react';
 
 import './Forms.css';
 
@@ -12,9 +12,9 @@ const DesktopLogin = () => {
                     <h2>Login</h2>
                 </div>
                 <FormControl>
-                    <FormLabel>Username</FormLabel>
+                    <FormLabel fontSize="2xl">Username</FormLabel>
                     <Input type="username" />
-                    <FormLabel>Password</FormLabel>
+                    <FormLabel fontSize="2xl">Password</FormLabel>
                     <Input type="password" />
                     <Button
                         className="button"
@@ -31,11 +31,11 @@ const DesktopLogin = () => {
                     <h2>Sign Up</h2>
                 </div>
                 <FormControl>
-                    <FormLabel>Username</FormLabel>
+                    <FormLabel fontSize="2xl">Username</FormLabel>
                     <Input type="username" />
-                    <FormLabel>Email address</FormLabel>
+                    <FormLabel fontSize="2xl">Email address</FormLabel>
                     <Input type="email" />
-                    <FormLabel>Password</FormLabel>
+                    <FormLabel fontSize="2xl">Password</FormLabel>
                     <Input type="password" />
                     <Button
                         className="button"
