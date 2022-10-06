@@ -1,4 +1,5 @@
 import { Schema, model } from 'mongoose';
+import { Users, Chores } from '../models';
 
 const groupsModel = new Schema({
     groupName: {
