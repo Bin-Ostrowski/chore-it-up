@@ -10,6 +10,7 @@ const typeDefs = gql`
         assignedTo: String
         status: String
         dueDate: String
+        group: Group
     }
     type Group {
         _id: ID
