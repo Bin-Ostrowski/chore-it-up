@@ -4,7 +4,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import YourChores from './pages/YourChores';
-// import Login from './pages/Login';
+import Login from './pages/Login';
 
 // import `ChakraProvider` component
 import { ChakraProvider } from '@chakra-ui/react';
@@ -31,7 +31,7 @@ export default function App() {
                     <Header />
                     <div>
                         <Routes>
-                            {/* <Route path="/" element={<Login />} /> */}
+                            <Route path="/" element={<Login />} />
                             <Route path="/home" element={<Home />} />
                             <Route path="/chores">
                                 <Route
