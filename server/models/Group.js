@@ -1,5 +1,6 @@
-import { Schema, model } from 'mongoose';
-import { User, Chores } from '../models';
+const { Schema, model } = require('mongoose');
+const User = require('./User');
+const Chore = require('./Chore');
 
 const groupSchema = new Schema({
     groupName: {
@@ -8,18 +9,18 @@ const groupSchema = new Schema({
         unique: true,
     },
     users: [
-        { 
+        {
             type: Schema.Types.ObjectId,
-            ref: "User",
+            ref: 'User',
             required: true,
-        }
+        },
     ],
     chores: [
-        { 
-            type: Schema.Types.ObjectId, 
-            ref: "Chore",
-            required: true
-        }
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Chore',
+            required: true,
+        },
     ],
 });
 
