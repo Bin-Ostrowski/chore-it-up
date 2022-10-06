@@ -1,6 +1,6 @@
 
 const mongoose = require ('mongoose');
-const {Schema, model} = mongoose;
+const {Schema} = mongoose;
 const bcrypt = require ('bcrypt');
 //testcomment
 const userSchema = new Schema ({
@@ -23,7 +23,7 @@ const userSchema = new Schema ({
     chores:[
         {
             type: Schema.Types.ObjectId,
-            ref: 'Chores'
+            ref: 'Chore'
         }
     ],
     groups:[
