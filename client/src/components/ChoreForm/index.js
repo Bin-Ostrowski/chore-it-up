@@ -18,8 +18,11 @@ const ChoreForm = () => {
     const [dueDate, setDueDate] = useState('');
     const [assignedTo, setAssignedTo] = useState('');
     const [choreBody, setChoreBody] = useState('');
+    const [isError, setIsError] = useState(false);
 
     // declare addChore() and error variable for mutation
+
+    // will need to grap username someone so addChore will be created by that user.
 
     // input onChange hangler
     const handleChange = (event) => {
@@ -41,83 +44,99 @@ const ChoreForm = () => {
 
     // form submit handler -
     const handleFormSubmit = async (event) => {
-        console.log('clicked');
         event.preventDefault();
+        if (choreName === '') {
+            setIsError(true);
+        } else {
+            console.log(choreName, dueDate, assignedTo, choreBody);
+            setIsError(false);
+            // addChore mutation
 
-        console.log(choreName, dueDate, assignedTo, choreBody);
-
-        // addChore mutation
-
-        //     setChoreName('');
-        //     setDueDate('');
-        //     setAssignedTo('');
-        //     setChoreBody('');
+            //     setChoreName('');
+            //     setDueDate('');
+            //     setAssignedTo('');
+            //     setChoreBody('');
+        }
     };
 
     return (
         <div className="form-container">
-            <FormControl isRequired>
-                <div className="flex-row">
-                    <div className="input-container">
-                        <div className="form-input">
-                            <FormLabel>Chore Name:</FormLabel>
-                            <Input
-                                placeholder="Chore Name"
-                                value={choreName}
-                                name="choreName"
-                                onChange={handleChange}
-                            />
-                        </div>
-                        <div className="form-input">
-                            <FormLabel>Finish By Date:</FormLabel>
-                            <Input
-                                placeholder="Select Date"
-                                size="md"
-                                type="datetime-local"
-                                value={dueDate}
-                                name="dueDate"
-                                onChange={handleChange}
-                            />
-                        </div>
-                        <div className="form-input">
-                            <FormLabel optionalIndicator>
-                                Assigned To:
-                            </FormLabel>
-                            <Select
-                                placeholder="Select Username"
-                                value={assignedTo}
-                                name="assignedTo"
-                                onChange={handleChange}
-                            >
-                                {/* Map over users in group */}
-                                <option>Luffy</option>
-                                <option>Nami</option>
-                                <option>Chopper</option>
-                                <option>Zoro</option>
-                                <option>None</option>
-                            </Select>
-                        </div>
-                        <div className="form-input">
-                            <FormLabel optionalIndicator>
-                                Chore Notes:
-                            </FormLabel>
-                            <Input
-                                placeholder="Describe Chore"
-                                value={choreBody}
-                                name="choreBody"
-                                onChange={handleChange}
-                            />
-                        </div>
+            <FormControl className="flex-row" isInvalid={isError} isRequired>
+                <div className="input-container">
+                    <div className="form-input">
+                        <FormLabel className="form-lable">
+                            Chore Name:
+                        </FormLabel>
+                        <Input
+                            focusBorderColor="lime"
+                            placeholder="Chore Name"
+                            value={choreName}
+                            name="choreName"
+                            size="sm"
+                            onChange={handleChange}
+                        />
+                        {isError && (
+                            <FormErrorMessage className="error">
+                                Chore name is required.
+                            </FormErrorMessage>
+                        )}
                     </div>
-                    <div className="form-btn">
-                        <Button
-                            colorScheme="blue"
-                            type="click"
-                            onClick={handleFormSubmit}
+                    <div className="form-input">
+                        <FormLabel requiredIndicator>Finish By Date:</FormLabel>
+                        <Input
+                            focusBorderColor="lime"
+                            placeholder="Select Date"
+                            size="sm"
+                            type="datetime-local"
+                            value={dueDate}
+                            name="dueDate"
+                            onChange={handleChange}
+                            isInvalid
+                            errorBorderColor="null"
+                        />
+                    </div>
+                    <div className="form-input">
+                        <FormLabel requiredIndicator>Assigned To:</FormLabel>
+                        <Select
+                            focusBorderColor="lime"
+                            placeholder="Select Username"
+                            value={assignedTo}
+                            name="assignedTo"
+                            size="sm"
+                            onChange={handleChange}
+                            isInvalid
+                            errorBorderColor="null"
                         >
-                            Add This Chore
-                        </Button>
+                            {/* Map over users in group */}
+                            <option>Luffy</option>
+                            <option>Nami</option>
+                            <option>Chopper</option>
+                            <option>Zoro</option>
+                            <option>None</option>
+                        </Select>
                     </div>
+                    <div className="form-input">
+                        <FormLabel requiredIndicator>Chore Notes:</FormLabel>
+                        <Input
+                            focusBorderColor="lime"
+                            placeholder="Describe Chore"
+                            value={choreBody}
+                            name="choreBody"
+                            size="sm"
+                            onChange={handleChange}
+                            isInvalid
+                            errorBorderColor="null"
+                        />
+                    </div>
+                </div>
+                <div className="form-btn">
+                    <Button
+                        colorScheme="blue"
+                        type="click"
+                        onClick={handleFormSubmit}
+                    >
+                        Add This Chore
+                    </Button>
                 </div>
             </FormControl>
         </div>
