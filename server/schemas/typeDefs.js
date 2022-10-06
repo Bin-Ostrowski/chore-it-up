@@ -31,7 +31,7 @@ const typeDefs = gql`
     type Query {
         me: User
         users: [User]
-        user(username: String!): Thought
+        user(username: String!): User
         groups(groupName: String!): [Group]
         group(_id: ID!): Group
     }
@@ -41,6 +41,8 @@ const typeDefs = gql`
         addUser(username: String!, email: String!, password: String!): Auth
         addGroup(groupName: String!): Group
         removeGroup(_id: ID): Group
+        addUserToGroup(username: String!): Group
+        removeUserToGroup(username: String!): Group
     }
 `;
 
