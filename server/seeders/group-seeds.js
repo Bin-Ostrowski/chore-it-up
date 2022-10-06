@@ -1,4 +1,4 @@
-//import { Group, Users, Chore } from '../models';
+const { Group, Users, Chore } = require('../models');
 
 const groupData = [
     {
@@ -76,4 +76,4 @@ const groupData = [
 
 const seedGroup = () => groupData.bulkCreate(groupData);
 
-export default seedGroup;
+module.exports = seedGroup;
