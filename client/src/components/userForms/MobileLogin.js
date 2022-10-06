@@ -33,19 +33,27 @@ const MobileLogin = () => {
         <div className="login-container-mobile">
             {!isLoginHidden && (
                 <div className="login-mobile">
-                    <div className="form-header">
+                    <div
+                        className="form-header"
+                        style={{
+                            width: '70%',
+                            'margin-left': 'auto',
+                            'margin-right': 'auto',
+                        }}
+                    >
                         <h2>Login</h2>
                     </div>
                     <FormControl>
-                        <FormLabel>Username</FormLabel>
+                        <FormLabel fontSize="2xl">Username</FormLabel>
                         <Input type="username" />
-                        <FormLabel>Password</FormLabel>
+                        <FormLabel fontSize="2xl">Password</FormLabel>
                         <Input type="password" />
                         <Button
                             className="button"
                             colorScheme="green.400"
-                            variant="outline"
+                            variant="solid"
                             size="lg"
+                            style={{ 'background-color': '#48bb78' }}
                         >
                             Login
                         </Button>
@@ -54,22 +62,30 @@ const MobileLogin = () => {
             )}
 
             {!isSignUpHidden && (
-                <div className="login-mobile">
-                    <div className="form-header">
+                <div className="login-mobile" style={{ height: '500px' }}>
+                    <div
+                        className="form-header"
+                        style={{
+                            width: '70%',
+                            'margin-left': 'auto',
+                            'margin-right': 'auto',
+                        }}
+                    >
                         <h2>Sign Up</h2>
                     </div>
                     <FormControl>
-                        <FormLabel>Username</FormLabel>
+                        <FormLabel fontSize="2xl">Username</FormLabel>
                         <Input type="username" />
-                        <FormLabel>Email address</FormLabel>
+                        <FormLabel fontSize="2xl">Email address</FormLabel>
                         <Input type="email" />
-                        <FormLabel>Password</FormLabel>
+                        <FormLabel fontSize="2xl">Password</FormLabel>
                         <Input type="password" />
                         <Button
                             className="button"
                             colorScheme="green.400"
-                            variant="outline"
+                            variant="solid"
                             size="lg"
+                            style={{ 'background-color': '#48bb78' }}
                         >
                             Sign Up
                         </Button>
