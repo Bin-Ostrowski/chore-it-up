@@ -1,8 +1,7 @@
-
 const mongoose = require ('mongoose');
-const {Schema} = mongoose;
+const {Schema, model} = mongoose;
 const bcrypt = require ('bcrypt');
-//testcomment
+
 const userSchema = new Schema ({
     username:{
         type: String,
@@ -23,7 +22,7 @@ const userSchema = new Schema ({
     chores:[
         {
             type: Schema.Types.ObjectId,
-            ref: 'Chore'
+            ref: 'Chores'
         }
     ],
     groups:[
@@ -46,4 +45,5 @@ const userSchema = new Schema ({
   }
   const User=mongoose.model('User', userSchema)
   module.exports= User
+
 
