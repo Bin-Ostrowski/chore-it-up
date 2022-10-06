@@ -1,16 +1,28 @@
 import { Schema, model } from 'mongoose';
-import { Users, Chores } from '../models';
+import { User, Chores } from '../models';
 
-const groupModel = new Schema({
+const groupSchema = new Schema({
     groupName: {
         type: String,
         required: true,
         unique: true,
     },
-    Members: [{ ref: Users }],
-    Chores: [{ ref: Chores }],
+    users: [
+        { 
+            type: Schema.Types.ObjectId,
+            ref: "User",
+            required: true,
+        }
+    ],
+    chores: [
+        { 
+            type: Schema.Types.ObjectId, 
+            ref: "Chore",
+            required: true
+        }
+    ],
 });
 
-const Group = model('Group', groupModel);
+const Group = model('Group', groupSchema);
 
 module.exports = Group;
