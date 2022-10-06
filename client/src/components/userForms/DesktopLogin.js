@@ -2,6 +2,8 @@ import React from 'react';
 
 import { FormControl, FormLabel, Input, Button } from '@chakra-ui/react';
 
+import './Forms.css';
+
 const DesktopLogin = () => {
     return (
         <div className="login-container">
