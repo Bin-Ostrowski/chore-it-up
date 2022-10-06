@@ -7,8 +7,20 @@ const groupModel = new Schema({
         required: true,
         unique: true,
     },
-    Members: [{ ref: Users }],
-    Chores: [{ ref: Chores }],
+    Users: [
+        { 
+            type: Schema.Types.ObjectId,
+            username: String,
+            required: true,
+            ref: Users,
+        }
+    ],
+    Chores: [
+        { 
+            type: Schema.Types.ObjectId, 
+            ref: Chores 
+        }
+    ],
 });
 
 const Group = model('Group', groupModel);
