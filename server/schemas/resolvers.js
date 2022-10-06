@@ -2,14 +2,7 @@ const { User, Group, Chore } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
 
 const resolvers = {
-    Query: {
-        users: async () => {
-            return User.find();
-        },
-        groups: async () => {
-            return Group.find().populate('users');
-        },
-    },
+    Query: {},
     Mutation: {
         addChore: async (parent, args, context) => {
             if (context.user) {

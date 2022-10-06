@@ -34,6 +34,7 @@ const typeDefs = gql`
         user(username: String!): User
         groups: [Group]
         group(_id: ID!): Group
+        chores: [Chore]
     }
 
     type Mutation {
