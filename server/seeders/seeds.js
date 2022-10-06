@@ -2,45 +2,6 @@ const { User, Group, Chore } = require('../models');
 const db = require('../config/connection');
 
 db.once('open', async () => {
-    await Group.deleteMany();
-
-    const group = await Group.insertMany([
-        {
-            groupName: 'Eeveelutions',
-            Members: [
-                {
-                    username: 'Espeon',
-                },
-                {
-                    username: 'Umbreon',
-                },
-                {
-                    username: 'Flareon',
-                },
-                {
-                    username: 'Vaporeon',
-                },
-            ],
-            Chores: [],
-        },
-        {
-            groupName: 'Ralts',
-            Members: [
-                {
-                    username: 'Kirlia',
-                },
-                {
-                    username: 'Gardevoir',
-                },
-                {
-                    username: 'Gallade',
-                },
-            ],
-            Chores: [],
-        },
-    ]);
-
-    console.log('groups seeded');
     await User.deleteMany();
 
     const user = await User.insertMany([
@@ -124,6 +85,46 @@ db.once('open', async () => {
     ]);
 
     console.log('users seeded');
+
+    await Group.deleteMany();
+
+    const group = await Group.insertMany([
+        {
+            groupName: 'Eeveelutions',
+            Members: [
+                {
+                    username: 'Espeon',
+                },
+                {
+                    username: 'Umbreon',
+                },
+                {
+                    username: 'Flareon',
+                },
+                {
+                    username: 'Vaporeon',
+                },
+            ],
+            Chores: [],
+        },
+        {
+            groupName: 'Ralts',
+            Members: [
+                {
+                    username: 'Kirlia',
+                },
+                {
+                    username: 'Gardevoir',
+                },
+                {
+                    username: 'Gallade',
+                },
+            ],
+            Chores: [],
+        },
+    ]);
+
+    console.log('groups seeded');
 
     process.exit();
 });
