@@ -6,16 +6,17 @@ import './choreList.css';
 // import { Link } from "react-router-dom";
 
 // pass in props for chores array, group array for that user
+// pass chores so can pass to modal
 const ChoreList = () => {
     // conditionaly render chores
 
     // remove Chore
     const removeChore = (chore) => {
-        // add mutation to updatechore to running tally.
         console.log('chore removed');
+        // add mutation to updatechore to running tally.
     };
 
-    // else return map of list of thoughts
+    // else return map of list of chores
     return (
         <ul>
             {/* // map thought chores */}
@@ -27,7 +28,9 @@ const ChoreList = () => {
                     </div>
                 </div>
                 <div className="list-btns">
+                    {/* pass in chores to modal to render in fields */}
                     <UpdateChoreModal />
+
                     <button className="btn" onClick={removeChore}>
                         finish chore
                     </button>

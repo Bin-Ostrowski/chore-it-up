@@ -13,15 +13,15 @@ import {
     FormLabel,
     Input,
     Select,
-    FormErrorMessage
+    FormErrorMessage,
 } from '@chakra-ui/react';
 
 const UpdateChoreModal = () => {
     // set useDisclosure for updateChore modal
     const { isOpen, onOpen, onClose } = useDisclosure();
 
-    // set State for inputs
-    const [choreName, setChoreName] = useState('');
+    // set State for inputs - start with original chore info
+    const [choreName, setChoreName] = useState();
     const [dueDate, setDueDate] = useState('');
     const [assignedTo, setAssignedTo] = useState('');
     const [choreBody, setChoreBody] = useState('');
@@ -57,18 +57,13 @@ const UpdateChoreModal = () => {
             setIsError(false);
 
             // update mutation
-
-            //     setChoreName('');
-            //     setDueDate('');
-            //     setAssignedTo('');
-            //     setChoreBody('');
         }
     };
 
     return (
         <div>
             <button onClick={onOpen} className="btn">
-                update chore
+                Update Chore
             </button>
 
             <Modal isOpen={isOpen} onClose={onClose}>
