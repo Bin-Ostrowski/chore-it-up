@@ -21,7 +21,7 @@ const UpdateChoreModal = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
 
     // set State for inputs - start with original chore info
-    const [choreName, setChoreName] = useState();
+    const [choreName, setChoreName] = useState('');
     const [dueDate, setDueDate] = useState('');
     const [assignedTo, setAssignedTo] = useState('');
     const [choreBody, setChoreBody] = useState('');
@@ -57,6 +57,11 @@ const UpdateChoreModal = () => {
             setIsError(false);
 
             // update mutation
+
+            setChoreName('');
+            setDueDate('');
+            setAssignedTo('');
+            setChoreBody('');
         }
     };
 

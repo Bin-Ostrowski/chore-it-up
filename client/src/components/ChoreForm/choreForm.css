@@ -18,13 +18,16 @@
 
 .form-input {
     display: flex;
-    justify-content: space-between;
+    flex-direction: row;
 }
 
+.error {
+    margin-left: 10px;
+}
 
 .form-btn {
     display:flex; 
     justify-content: center;
     align-items: center;
-    padding: 15px;
+    padding: 5px;
 }
