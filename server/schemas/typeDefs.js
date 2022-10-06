@@ -36,12 +36,14 @@ const typeDefs = gql`
     }
 
     type Mutation {
-        login(email: String!, password: String!): Auth
-        addUser(username: String!, email: String!, password: String!): Auth
+        #    Need Auth page
+        # login(email: String!, password: String!): Auth
+        # addUser(username: String!, email: String!, password: String!): Auth
         addGroup(groupName: String!): Group
         removeGroup(_id: ID): Group
         addUserToGroup(username: String!): Group
         removeUserToGroup(username: String!): Group
+        addChore(choreName: String!, choreBody: String): Group
     }
 `;
 

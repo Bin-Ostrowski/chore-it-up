@@ -1,4 +1,4 @@
-const { Chore } = require('../models');
+const { User, Group, Chore } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
 
 const resolvers = {
