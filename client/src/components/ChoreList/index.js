@@ -1,4 +1,5 @@
 import React from 'react';
+import './choreList.css';
 
 // do we ant to link the group to view SingleGroup page?
 // import { Link } from "react-router-dom";
@@ -9,15 +10,31 @@ const ChoreList = () => {
 
     // else return map of list of thoughts
     return (
-        <div>
+        <ul>
             {/* // map thought chores */}
-
-            <div>choreName dueDate</div>
-            <div>choreBody</div>
-            <button>update chore</button>
-            <button>finish chore</button>
-            <button>add to google calendar</button>
-        </div>
+            <li className="list">
+                <div className="list-text">
+                    <div>Take Out The Trash dueDate</div>
+                    <div>Place at end of the driveway every wednesday night</div>
+                </div>
+                <div className="list-btns">
+                    <button className="btn">update chore</button>
+                    <button className="btn">finish chore</button>
+                    <button className="btn">add to google calendar</button>
+                </div>
+            </li>
+            <li className="list">
+                <div className="list-text">
+                    <div>Take Out The Trash dueDate</div>
+                    <div>Place at end of the driveway every wednesday night</div>
+                </div>
+                <div className="list-btns">
+                    <button className="btn">update chore</button>
+                    <button className="btn">finish chore</button>
+                    <button className="btn">add to google calendar</button>
+                </div>
+            </li>
+        </ul>
     );
 };
 

@@ -1,5 +1,7 @@
 import React from 'react';
-import ChoreList from '../components/ChoreList';
+import ChoreList from '../../components/ChoreList';
+
+import './youChores.css'
 // import ChoreForm from '../components/ChoreForm';
 
 // import Auth from "../utils/auth";
@@ -16,12 +18,16 @@ const YourChores = () => {
 
     // loading variable used to briefly show a loading <div> element
     return (
-        <div>
-            <h2>UserName's Chores</h2>
-            <ChoreList
-            // pass groups={groups}
-            // chores={chores}
-            />
+        <div className="your-chores-container">
+            <div className="title-container">
+                <h2 className="title">UserName's Chores</h2>
+            </div>
+            <div className="list-container">
+                <ChoreList
+                // pass groups={groups}
+                // chores={chores}
+                />
+            </div>
         </div>
     );
 };

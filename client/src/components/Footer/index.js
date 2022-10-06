@@ -1,9 +1,11 @@
 import React from 'react';
 import { Box } from '@chakra-ui/react';
 
+import './footer.css'
+
 const Footer = () => {
     return (
-        <footer>
+        <footer className="footer">
             <Box
                 display="flex"
                 alignItems="center"
@@ -11,7 +13,6 @@ const Footer = () => {
                 w="100%"
                 h="50px"
                 bgColor="green.400"
-                bottom="0px"
             >
                 <div>&copy;2022 by Chore It Up</div>
             </Box>
