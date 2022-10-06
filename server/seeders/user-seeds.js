@@ -1,4 +1,4 @@
-const { Group, Users, Chore } = require('../models');
+const { Group, User, Chore } = require('../models');
 
 const userData = [
     {
@@ -80,6 +80,6 @@ const userData = [
     },
 ];
 
-const seedUser = () => User.bulkCreate(userData);
+const seedUser = () => User.collection.insertMany(userData);
 
 module.exports = seedUser;

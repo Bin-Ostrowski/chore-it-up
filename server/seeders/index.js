@@ -1,5 +1,5 @@
-import user from './user-seeds';
-import group from './group-seeds';
+const user = require('./user-seeds');
+const group = require('./group-seeds');
 
 const seedAll = async () => {
     await user();

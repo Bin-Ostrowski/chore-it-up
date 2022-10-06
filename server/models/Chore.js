@@ -1,5 +1,5 @@
-import { Schema, model } from 'mongoose';
-import dateFormat from '../utils/dateFormat';
+const { Schema, model } = require('mongoose');
+const dateFormat = require('../utils/dateFormat');
 
 const choreSchema = new Schema({
     choreName: {
