@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 const secret = process.env.SECRET;
-const expirtation = '1h';
+const expirtation = process.env.EXPIRATION;
 
 module.exports = {
     authMiddleware: function ({ req }) {
