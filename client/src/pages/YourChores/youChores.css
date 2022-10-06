@@ -1,0 +1,24 @@
+.your-chores-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    position: relative;
+    background-color: #ffff;
+    padding: 20px 0 20px 0;
+}
+
+.title-container {
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+}
+
+.title {
+ color: #3c1642;
+ font-size: x-large;
+}
+
+.list-container {
+    background-color: lightgray;
+    padding: 50px;
+}
