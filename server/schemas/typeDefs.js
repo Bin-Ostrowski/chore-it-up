@@ -33,7 +33,7 @@ const typeDefs = gql`
         users: [User]
         user(username: String!): User
         groups: [Group]
-        group(_id: ID!): Group
+        group(groupName: String!): Group
         chores: [Chore]
     }
 

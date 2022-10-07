@@ -11,15 +11,25 @@ const resolvers = {
         user: async (parent, { username }) => {
             return User.findOne({ username });
         },
+        groups: async() => {
+            return Group.find();
+        },
+        group: async(parent, { groupName }) => {
+            return Group.findOne({ groupName });
+        },
+        chores: async() => {
+            return Chore.find();
+        }
+        // add single chore later
     },
     Mutation: {
-        addUser: async (parent, args) => {
-            const user = User.create(args);
+        // addUser: async (parent, args) => {
+        //     const user = User.create(args);
             //const token = signToken(user);
 
-            // add token to return
-            return { user };
-        },
+            // // add token to return
+            // return { user };
+        // },
         // login: async (parent, { email, password }) => {
         //     const user = await User.findOne({ email });
 
