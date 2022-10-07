@@ -37,10 +37,15 @@ const typeDefs = gql`
         chores: [Chore]
     }
 
+    type Auth {
+        token: ID!
+        user: User
+    }
+
     type Mutation {
         # waiting for Auth page
-        # login(email: String!, password: String!): Auth
-        # addUser(username: String!, email: String!, password: String!): Auth
+        login(email: String!, password: String!): Auth
+        addUser(username: String!, email: String!, password: String!): Auth
         addGroup(groupName: String!): Group
         removeGroup(_id: ID): Group
         addUserToGroup(username: String!): Group
