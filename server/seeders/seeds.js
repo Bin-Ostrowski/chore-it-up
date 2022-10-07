@@ -9,78 +9,50 @@ db.once('open', async () => {
             username: 'Espeon',
             email: 'espeon@test.com',
             password: 'test123',
-            Groups: [
-                {
-                    groupName: 'Eeveelutions',
-                },
-            ],
-            Chores: [],
+            groups: [],
+            chores: [],
         },
         {
             username: 'Umbreon',
             email: 'umbreon@test.com',
             password: 'test234',
-            Groups: [
-                {
-                    groupName: 'Eeveelutions',
-                },
-            ],
-            Chores: [],
+            groups: [],
+            chores: [],
         },
         {
             username: 'Flareon',
             email: 'flareon@test.com',
             password: 'test345',
-            Groups: [
-                {
-                    groupName: 'Eeveelutions',
-                },
-            ],
-            Chores: [],
+            groups: [],
+            chores: [],
         },
         {
             username: 'Vaporeon',
             email: 'vaporeon@test.com',
             password: 'test456',
-            Groups: [
-                {
-                    groupName: 'Eeveelutions',
-                },
-            ],
-            Chores: [],
+            groups: [],
+            chores: [],
         },
         {
             username: 'Kirlia',
             email: 'kirlia@test.com',
             password: 'test567',
-            Groups: [
-                {
-                    groupName: 'Ralts',
-                },
-            ],
-            Chores: [],
+            groups: [],
+            chores: [],
         },
         {
             username: 'Gardevoir',
             email: 'gardevoir@test.com',
             password: 'test678',
-            Groups: [
-                {
-                    groupName: 'Ralts',
-                },
-            ],
-            Chores: [],
+            groups: [],
+            chores: [],
         },
         {
             username: 'Gallade',
             email: 'gallade@test.com',
             password: 'test789',
-            Groups: [
-                {
-                    groupName: 'Ralts',
-                },
-            ],
-            Chores: [],
+            groups: [],
+            chores: [],
         },
     ]);
 
@@ -91,7 +63,7 @@ db.once('open', async () => {
     const group = await Group.insertMany([
         {
             groupName: 'Eeveelutions',
-            Members: [
+            users: [
                 {
                     username: 'Espeon',
                 },
@@ -105,11 +77,11 @@ db.once('open', async () => {
                     username: 'Vaporeon',
                 },
             ],
-            Chores: [],
+            chores: [],
         },
         {
             groupName: 'Ralts',
-            Members: [
+            users: [
                 {
                     username: 'Kirlia',
                 },
@@ -120,7 +92,7 @@ db.once('open', async () => {
                     username: 'Gallade',
                 },
             ],
-            Chores: [],
+            chores: [],
         },
     ]);
 
