@@ -79,6 +79,24 @@ const resolvers = {
 
             throw new AuthenticationError('You need to be logged in!');
         },
+        addUserToGroup: async (parent, { userId, groupId }, context) => {
+            if (context.user) {
+                const updateGroup = await Group.findByIdAndUpdate(
+                    { _id: groupId },
+                    { $push: { users: userId } },
+                    { new: true }
+                );
+                const updateUser = await User.findByIdAndUpdate(
+                    { _id: userId },
+                    { group: groupId },
+                    { new: true }
+                );
+
+                return { updateGroup, updateUser };
+            }
+
+            throw new AuthenticationError('You need to be logged in');
+        },
         addChore: async (parent, args, context) => {
             if (context.user) {
                 const chore = await Chore.create({
