@@ -68,7 +68,13 @@ const resolvers = {
                     { new: true }
                 );
 
-                return group;
+                const hostUser = await Group.findByIdAndUpdate(
+                    { _id: group._id },
+                    { $push: { users: context.user._id } },
+                    { new: true }
+                );
+
+                return { group, hostUser };
             }
 
             throw new AuthenticationError('You need to be logged in!');
