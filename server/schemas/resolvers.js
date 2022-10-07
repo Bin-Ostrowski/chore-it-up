@@ -1,6 +1,11 @@
 const { User, Group, Chore } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
+<<<<<<< HEAD
 const { signToken } = require('../utils/auth');
+=======
+const { countDocuments } = require('../models/User');
+// const { signToken } = require('../utils/auth);
+>>>>>>> 6fa978b (added a removeChore mutation to typeDef and resolvers)
 
 const resolvers = {
     Query: {
@@ -121,6 +126,16 @@ const resolvers = {
                 return chore;
             }
             throw new AuthenticationError('You need to be logged in!');
+        },
+        removeChore: async (parent, { _id }, context) => {
+            if (context.user) {
+                console.log({ user: context.user });
+                return Group.findByIdAndUpdate(
+                    { _id: context.group._id },
+                    { $pull: { Chore } },
+                    { new: true }
+                );
+            }
         },
     },
 };
