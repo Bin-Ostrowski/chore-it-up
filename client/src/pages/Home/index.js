@@ -2,7 +2,7 @@ import React from 'react';
 // import GroupFrom from "../components/GroupFrom";
 // import GroupList from "../components/GroupList";
 import ChoreForm from '../../components/ChoreForm';
-import ChoreList from '../../components/ChoreList';
+// import ChoreList from '../../components/ChoreList';
 import './home.css';
 
 const Home = () => {
@@ -18,14 +18,12 @@ const Home = () => {
                 <div className="group-container">
                     <h2>Group One</h2>
                     <ChoreForm />
-                    <ChoreList />
-                    {/* pass chores={chores}
-                groups={groups} /> */}
+                    
                 </div>
                 <div className="group-container">
                     <h2>Group Two</h2>
                     <ChoreForm />
-                    <ChoreList />
+                    {/* <ChoreList />
                     {/* pass chores={chores}
                 groups={groups} /> */}
                 </div>

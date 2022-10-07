@@ -16,16 +16,22 @@ import {
     FormErrorMessage,
 } from '@chakra-ui/react';
 
-const UpdateChoreModal = () => {
+const UpdateChoreModal = ({chore}) => {
+    console.log('choreModal', chore)
+    
     // set useDisclosure for updateChore modal
     const { isOpen, onOpen, onClose } = useDisclosure();
 
     // set State for inputs - start with original chore info
-    const [choreName, setChoreName] = useState('');
-    const [dueDate, setDueDate] = useState('');
-    const [assignedTo, setAssignedTo] = useState('');
-    const [choreBody, setChoreBody] = useState('');
+    const [choreName, setChoreName] = useState(chore.choreName);
+    const [dueDate, setDueDate] = useState(chore.dueDate);
+    const [assignedTo, setAssignedTo] = useState(chore.assignedTo);
+    const [choreBody, setChoreBody] = useState(chore.choreBody);
     const [isError, setIsError] = useState(false);
+
+    // testing state to update chore
+    const [choreData, setChoreData] = useState({choreName, dueDate, assignedTo, choreBody});
+    console.log("updated chore", choreData);
 
     // will need to grap username someone so addChore will be created by that user.
 
@@ -55,13 +61,16 @@ const UpdateChoreModal = () => {
         } else {
             console.log(choreName, dueDate, assignedTo, choreBody);
             setIsError(false);
+            setChoreData({choreName, dueDate, assignedTo, choreBody});
 
             // update mutation
 
-            setChoreName('');
-            setDueDate('');
-            setAssignedTo('');
-            setChoreBody('');
+            // setChoreName('');
+            // setDueDate('');
+            // setAssignedTo('');
+            // setChoreBody('');
+
+            onClose();
         }
     };
 

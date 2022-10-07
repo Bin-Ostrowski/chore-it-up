@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ChoreList from '../ChoreList';
 
 import {
     FormControl,
@@ -15,14 +16,14 @@ import './choreForm.css';
 const ChoreForm = () => {
     // set State for inputs
     const [choreName, setChoreName] = useState('test');
-    const [dueDate, setDueDate] = useState('test');
-    const [assignedTo, setAssignedTo] = useState('test');
+    const [dueDate, setDueDate] = useState('2022-10-11T23:11');
+    const [assignedTo, setAssignedTo] = useState('Nami');
     const [choreBody, setChoreBody] = useState('test');
     const [isError, setIsError] = useState(false);
 
     // testing state to render new chore
     const [choreData, setChoreData] = useState({choreName, dueDate, assignedTo, choreBody});
-    console.log("choreData", choreData);
+    console.log("choreForm", choreData);
 
     // declare addChore() and error variable for mutation
 
@@ -66,7 +67,10 @@ const ChoreForm = () => {
     };
 
     return (
-        <div className="form-container">
+        <div>
+
+        <div className="form-container"
+        choreData={choreData}>
             <FormControl className="flex-row" isInvalid={isError} isRequired>
                 <div className="input-container">
                     <div className="form-input">
@@ -145,6 +149,11 @@ const ChoreForm = () => {
                     </Button>
                 </div>
             </FormControl>
+        </div>
+            <ChoreList 
+            chore={choreData}/>
+                    {/* pass chores={chores}
+                groups={groups} /> */}
         </div>
     );
 };

@@ -8,10 +8,10 @@ import './choreList.css';
 
 // pass in props for chores array, group array for that user
 // pass chores so can pass to modal
-const ChoreList = ({choreData}) => {
-console.log('choreList', choreData)
-     // deconstruct choreData
-    // const {choreName, dueDate, assignedTo, choreBody} = choreData
+const ChoreList = ({chore}) => {
+console.log('choreList', chore)
+     // deconstruct chore
+    const {choreName, dueDate, assignedTo, choreBody} = chore
 
     // conditionaly render chores
 
@@ -23,19 +23,21 @@ console.log('choreList', choreData)
 
     // else return map of list of chores
     return (
-        <ul>
-            
-            {/* // map thought chores */}
+        <ul
+        >
+            {/* //should be chores && chores.map when DB is set up */}
+            {/* {chore && chore.map((chore, i) => ( */}
+            {/* add key when map is up */}
             <li className="list">
                 <div className="list-text">
-                    <div>Chore Name:</div>
+                    <div>Chore Name: {choreName} Finish By: {dueDate} Assinged To: {assignedTo}</div>
                     <div>
-                        Place at end of the driveway every wednesday night
+                        Chore Description: {choreBody}
                     </div>
                 </div>
                 <div className="list-btns">
                     {/* pass in chores to modal to render in fields */}
-                    <UpdateChoreModal />
+                    <UpdateChoreModal chore={chore}/>
 
                     <button className="btn" onClick={removeChore}>
                         finish chore
@@ -43,6 +45,9 @@ console.log('choreList', choreData)
                     <button className="btn">add to google calendar</button>
                 </div>
             </li>
+
+            {/* ))} */}
+            {/* // map thought chores */}
             <li className="list">
                 <div className="list-text">
                     <div>Take Out The Trash dueDate</div>
