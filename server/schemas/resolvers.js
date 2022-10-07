@@ -64,9 +64,10 @@ const resolvers = {
 
                 await User.findByIdAndUpdate(
                     { _id: context.user._id },
-                    { $push: { group: group._id } },
+                    { group: group._id },
                     { new: true }
                 );
+
                 return group;
             }
 
