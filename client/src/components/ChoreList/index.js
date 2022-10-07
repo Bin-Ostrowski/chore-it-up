@@ -1,5 +1,6 @@
 import React from 'react';
 import UpdateChoreModal from '../UpdateChoreModal';
+import ChoreForm from '../ChoreForm';
 import './choreList.css';
 
 // do we ant to link the group to view SingleGroup page?
@@ -7,7 +8,11 @@ import './choreList.css';
 
 // pass in props for chores array, group array for that user
 // pass chores so can pass to modal
-const ChoreList = () => {
+const ChoreList = ({choreData}) => {
+console.log('choreList', choreData)
+     // deconstruct choreData
+    // const {choreName, dueDate, assignedTo, choreBody} = choreData
+
     // conditionaly render chores
 
     // remove Chore
@@ -19,10 +24,11 @@ const ChoreList = () => {
     // else return map of list of chores
     return (
         <ul>
+            
             {/* // map thought chores */}
             <li className="list">
                 <div className="list-text">
-                    <div>Take Out The Trash dueDate</div>
+                    <div>Chore Name:</div>
                     <div>
                         Place at end of the driveway every wednesday night
                     </div>

@@ -14,11 +14,15 @@ import './choreForm.css';
 
 const ChoreForm = () => {
     // set State for inputs
-    const [choreName, setChoreName] = useState('');
-    const [dueDate, setDueDate] = useState('');
-    const [assignedTo, setAssignedTo] = useState('');
-    const [choreBody, setChoreBody] = useState('');
+    const [choreName, setChoreName] = useState('test');
+    const [dueDate, setDueDate] = useState('test');
+    const [assignedTo, setAssignedTo] = useState('test');
+    const [choreBody, setChoreBody] = useState('test');
     const [isError, setIsError] = useState(false);
+
+    // testing state to render new chore
+    const [choreData, setChoreData] = useState({choreName, dueDate, assignedTo, choreBody});
+    console.log("choreData", choreData);
 
     // declare addChore() and error variable for mutation
 
@@ -50,13 +54,14 @@ const ChoreForm = () => {
         } else {
             console.log(choreName, dueDate, assignedTo, choreBody);
             setIsError(false);
+            setChoreData({choreName, dueDate, assignedTo, choreBody});
 
             // addChore mutation
 
-            setChoreName('');
-            setDueDate('');
-            setAssignedTo('');
-            setChoreBody('');
+            // setChoreName('');
+            // setDueDate('');
+            // setAssignedTo('');
+            // setChoreBody('');
         }
     };
 
