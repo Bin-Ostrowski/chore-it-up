@@ -58,7 +58,7 @@ db.once('open', async () => {
 
     console.log('users seeded');
 
-    // await Group.deleteMany();
+    await Group.deleteMany();
 
     // const group = await Group.insertMany([
     //     {

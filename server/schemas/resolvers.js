@@ -8,7 +8,9 @@ const resolvers = {
             if (context.user) {
                 const userData = await User.findOne({
                     _id: context.user._id,
-                }).select('-_v -password');
+                })
+                    .select('-_v -password')
+                    .populate('groups');
 
                 return userData;
             }
@@ -21,10 +23,10 @@ const resolvers = {
             return User.findOne({ username });
         },
         groups: async () => {
-            return Group.find();
+            return Group.find().populate('users');
         },
         group: async (parent, { groupName }) => {
-            return Group.findOne({ groupName });
+            return Group.findOne({ groupName }).populate('users');
         },
         chores: async () => {
             return Chore.find();
