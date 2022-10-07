@@ -4,7 +4,6 @@ require('dotenv').config();
 const secret = process.env.SECRET;
 const expirtation = process.env.EXPIRATION;
 
-
 module.exports = {
     authMiddleware: function ({ req }) {
         let token =
