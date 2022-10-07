@@ -26,12 +26,10 @@ const userSchema = new Schema(
                 ref: 'Chore',
             },
         ],
-        groups: [
-            {
-                type: Schema.Types.ObjectId,
-                ref: 'Group',
-            },
-        ],
+        group: {
+            type: Schema.Types.ObjectId,
+            ref: 'Group',
+        },
     },
     {
         toJSON: {

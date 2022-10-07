@@ -10,17 +10,17 @@ const resolvers = {
                     _id: context.user._id,
                 })
                     .select('-_v -password')
-                    .populate('groups');
+                    .populate('group');
 
                 return userData;
             }
             throw new AuthenticationError('Not logged in');
         },
         users: async () => {
-            return User.find();
+            return User.find().populate('group');
         },
         user: async (parent, { username }) => {
-            return User.findOne({ username });
+            return User.findOne({ username }).populate('group');
         },
         groups: async () => {
             return Group.find().populate('users');

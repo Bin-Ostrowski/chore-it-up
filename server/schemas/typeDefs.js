@@ -24,7 +24,7 @@ const typeDefs = gql`
         username: String
         email: String
         password: String
-        groups: [Group]
+        group: Group
         chores: [Chore]
     }
 
