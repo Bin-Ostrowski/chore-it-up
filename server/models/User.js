@@ -23,13 +23,13 @@ const userSchema = new Schema(
         chores: [
             {
                 type: Schema.Types.ObjectId,
-                ref: 'Chores',
+                ref: 'Chore',
             },
         ],
         groups: [
             {
                 type: Schema.Types.ObjectId,
-                ref: 'Groups',
+                ref: 'Group',
             },
         ],
     },
