@@ -58,45 +58,45 @@ db.once('open', async () => {
 
     console.log('users seeded');
 
-    await Group.deleteMany();
+    // await Group.deleteMany();
 
-    const group = await Group.insertMany([
-        {
-            groupName: 'Eeveelutions',
-            users: [
-                {
-                    username: 'Espeon',
-                },
-                {
-                    username: 'Umbreon',
-                },
-                {
-                    username: 'Flareon',
-                },
-                {
-                    username: 'Vaporeon',
-                },
-            ],
-            chores: [],
-        },
-        {
-            groupName: 'Ralts',
-            users: [
-                {
-                    username: 'Kirlia',
-                },
-                {
-                    username: 'Gardevoir',
-                },
-                {
-                    username: 'Gallade',
-                },
-            ],
-            chores: [],
-        },
-    ]);
+    // const group = await Group.insertMany([
+    //     {
+    //         groupName: 'Eeveelutions',
+    //         users: [
+    //             {
+    //                 username: 'Espeon',
+    //             },
+    //             {
+    //                 username: 'Umbreon',
+    //             },
+    //             {
+    //                 username: 'Flareon',
+    //             },
+    //             {
+    //                 username: 'Vaporeon',
+    //             },
+    //         ],
+    //         chores: [],
+    //     },
+    //     {
+    //         groupName: 'Ralts',
+    //         users: [
+    //             {
+    //                 username: 'Kirlia',
+    //             },
+    //             {
+    //                 username: 'Gardevoir',
+    //             },
+    //             {
+    //                 username: 'Gallade',
+    //             },
+    //         ],
+    //         chores: [],
+    //     },
+    // ]);
 
-    console.log('groups seeded');
+    // console.log('groups seeded');
 
     process.exit();
 });
