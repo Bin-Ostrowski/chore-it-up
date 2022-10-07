@@ -4,12 +4,12 @@ const { AuthenticationError } = require('apollo-server-express');
 const resolvers = {
     Query: {
         //gets username hopefully...
-        getUserName: async (parent, { username }) => {
-            return User.findOne({ username })
-              .populate('chores')
-              .populate('groups');
-          },
-          
+        users: async () => {
+            return User.find();
+        },
+        user: async (parent, { username }) => {
+            return User.findOne({ username });
+        },
     },
     Mutation: {
         addChore: async (parent, args, context) => {
