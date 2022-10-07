@@ -43,7 +43,6 @@ const typeDefs = gql`
     }
 
     type Mutation {
-        # waiting for Auth page
         login(email: String!, password: String!): Auth
         addUser(username: String!, email: String!, password: String!): Auth
         addGroup(groupName: String!): Group
