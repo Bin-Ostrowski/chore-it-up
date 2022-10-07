@@ -10,6 +10,7 @@ const typeDefs = gql`
         assignedTo: String
         status: String
         dueDate: String
+        group: Group
     }
     type Group {
         _id: ID
@@ -31,8 +32,9 @@ const typeDefs = gql`
         me: User
         users: [User]
         user(username: String!): User
-        groups(groupName: String!): [Group]
+        groups: [Group]
         group(_id: ID!): Group
+        chores: [Chore]
     }
 
     type Mutation {
