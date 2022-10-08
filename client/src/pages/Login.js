@@ -3,7 +3,7 @@ import { useMutation } from '@apollo/client';
 import { LOGIN_USER, ADD_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
 
-import { DesktopLogin, MobileLogin } from '../components/userForms';
+import { DesktopContainer, MobileLogin } from '../components/userForms';
 
 const Login = () => {
     function getWindowSize() {
@@ -30,7 +30,7 @@ const Login = () => {
     });
 
     if (windowDimensions.width > 768) {
-        return <DesktopLogin />;
+        return <DesktopContainer />;
     }
 
     return <MobileLogin />;

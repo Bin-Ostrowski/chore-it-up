@@ -4,9 +4,10 @@ import { FormControl, FormLabel, Input, Button } from '@chakra-ui/react';
 
 import './Forms.css';
 
-const DesktopLogin = () => {
-    const [formState, setFormState] = useState({
+const DesktopSignup = () => {
+    const [formsState, setFormState] = useState({
         username: '',
+        email: '',
         password: '',
     });
 
@@ -14,17 +15,16 @@ const DesktopLogin = () => {
         const { name, value } = event.target;
 
         setFormState({
-            ...formState,
+            ...formsState,
             [name]: value,
         });
 
-        console.log(formState);
+        console.log(formsState);
     };
-
     return (
         <div className="login-form">
             <div className="form-header">
-                <h2>Login</h2>
+                <h2>Sign Up</h2>
             </div>
             <FormControl>
                 <FormLabel fontSize="2xl">Username</FormLabel>
@@ -33,6 +33,13 @@ const DesktopLogin = () => {
                     id="username"
                     onChange={handleChange}
                     type="username"
+                />
+                <FormLabel fontSize="2xl">Email address</FormLabel>
+                <Input
+                    name="email"
+                    id="email"
+                    onChange={handleChange}
+                    type="email"
                 />
                 <FormLabel fontSize="2xl">Password</FormLabel>
                 <Input
@@ -47,11 +54,11 @@ const DesktopLogin = () => {
                     variant="outline"
                     size="lg"
                 >
-                    Login
+                    Sign Up
                 </Button>
             </FormControl>
         </div>
     );
 };
 
-export default DesktopLogin;
+export default DesktopSignup;
