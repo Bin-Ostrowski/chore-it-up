@@ -23,10 +23,7 @@ const resolvers = {
             return User.findOne({ username }).populate('group');
         },
         groups: async () => {
-            return Group.find()
-                .populate('users')
-                .populate('chores')
-                .populate('chores');
+            return Group.find().populate('users').populate('chores');
         },
         group: async (parent, { groupName }) => {
             return Group.findOne({ groupName })
@@ -119,6 +116,22 @@ const resolvers = {
 
                 console.log(chore);
                 return chore;
+            }
+            throw new AuthenticationError('You need to be logged in!');
+        },
+        removeChore: async (parent, { choreId, groupId }, context) => {
+            if (context.user) {
+                const updateGroup = await Group.findByIdAndUpdate(
+                    { _id: groupId },
+                    { $pull: { chores: choreId } },
+                    { new: true }
+                );
+
+                const updateChore = await Chore.findByIdAndRemove({
+                    _id: choreId,
+                });
+
+                return { updateGroup, updateChore };
             }
             throw new AuthenticationError('You need to be logged in!');
         },
