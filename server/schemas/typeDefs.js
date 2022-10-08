@@ -24,7 +24,7 @@ const typeDefs = gql`
         username: String
         email: String
         password: String
-        groups: [Group]
+        group: Group
         chores: [Chore]
     }
 
@@ -33,17 +33,21 @@ const typeDefs = gql`
         users: [User]
         user(username: String!): User
         groups: [Group]
-        group(_id: ID!): Group
+        group(groupName: String!): Group
         chores: [Chore]
     }
 
+    type Auth {
+        token: ID!
+        user: User
+    }
+
     type Mutation {
-        #    Need Auth page
-        # login(email: String!, password: String!): Auth
-        # addUser(username: String!, email: String!, password: String!): Auth
+        login(email: String!, password: String!): Auth
+        addUser(username: String!, email: String!, password: String!): Auth
         addGroup(groupName: String!): Group
         removeGroup(_id: ID): Group
-        addUserToGroup(username: String!): Group
+        addUserToGroup(userId: ID!, groupId: ID!): Group
         removeUserToGroup(username: String!): Group
         addChore(choreName: String!, choreBody: String): Group
     }

@@ -9,78 +9,50 @@ db.once('open', async () => {
             username: 'Espeon',
             email: 'espeon@test.com',
             password: 'test123',
-            Groups: [
-                {
-                    groupName: 'Eeveelutions',
-                },
-            ],
-            Chores: [],
+            groups: [],
+            chores: [],
         },
         {
             username: 'Umbreon',
             email: 'umbreon@test.com',
             password: 'test234',
-            Groups: [
-                {
-                    groupName: 'Eeveelutions',
-                },
-            ],
-            Chores: [],
+            groups: [],
+            chores: [],
         },
         {
             username: 'Flareon',
             email: 'flareon@test.com',
             password: 'test345',
-            Groups: [
-                {
-                    groupName: 'Eeveelutions',
-                },
-            ],
-            Chores: [],
+            groups: [],
+            chores: [],
         },
         {
             username: 'Vaporeon',
             email: 'vaporeon@test.com',
             password: 'test456',
-            Groups: [
-                {
-                    groupName: 'Eeveelutions',
-                },
-            ],
-            Chores: [],
+            groups: [],
+            chores: [],
         },
         {
             username: 'Kirlia',
             email: 'kirlia@test.com',
             password: 'test567',
-            Groups: [
-                {
-                    groupName: 'Ralts',
-                },
-            ],
-            Chores: [],
+            groups: [],
+            chores: [],
         },
         {
             username: 'Gardevoir',
             email: 'gardevoir@test.com',
             password: 'test678',
-            Groups: [
-                {
-                    groupName: 'Ralts',
-                },
-            ],
-            Chores: [],
+            groups: [],
+            chores: [],
         },
         {
             username: 'Gallade',
             email: 'gallade@test.com',
             password: 'test789',
-            Groups: [
-                {
-                    groupName: 'Ralts',
-                },
-            ],
-            Chores: [],
+            groups: [],
+            chores: [],
         },
     ]);
 
@@ -88,43 +60,43 @@ db.once('open', async () => {
 
     await Group.deleteMany();
 
-    const group = await Group.insertMany([
-        {
-            groupName: 'Eeveelutions',
-            Members: [
-                {
-                    username: 'Espeon',
-                },
-                {
-                    username: 'Umbreon',
-                },
-                {
-                    username: 'Flareon',
-                },
-                {
-                    username: 'Vaporeon',
-                },
-            ],
-            Chores: [],
-        },
-        {
-            groupName: 'Ralts',
-            Members: [
-                {
-                    username: 'Kirlia',
-                },
-                {
-                    username: 'Gardevoir',
-                },
-                {
-                    username: 'Gallade',
-                },
-            ],
-            Chores: [],
-        },
-    ]);
+    // const group = await Group.insertMany([
+    //     {
+    //         groupName: 'Eeveelutions',
+    //         users: [
+    //             {
+    //                 username: 'Espeon',
+    //             },
+    //             {
+    //                 username: 'Umbreon',
+    //             },
+    //             {
+    //                 username: 'Flareon',
+    //             },
+    //             {
+    //                 username: 'Vaporeon',
+    //             },
+    //         ],
+    //         chores: [],
+    //     },
+    //     {
+    //         groupName: 'Ralts',
+    //         users: [
+    //             {
+    //                 username: 'Kirlia',
+    //             },
+    //             {
+    //                 username: 'Gardevoir',
+    //             },
+    //             {
+    //                 username: 'Gallade',
+    //             },
+    //         ],
+    //         chores: [],
+    //     },
+    // ]);
 
-    console.log('groups seeded');
+    // console.log('groups seeded');
 
     process.exit();
 });

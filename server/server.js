@@ -5,8 +5,8 @@ const path = require('path');
 //import typeDefs and resolvers
 const { typeDefs, resolvers } = require('./schemas');
 
-// //import Authentication middleware
-// const { authMiddleware } = require("./utils/auth");
+//import Authentication middleware
+const { authMiddleware } = require('./utils/auth');
 
 const db = require('./config/connection');
 
@@ -19,7 +19,7 @@ const app = express();
 const server = new ApolloServer({
     typeDefs,
     resolvers,
-    //   context: authMiddleware,
+    context: authMiddleware,
 });
 
 app.use(express.urlencoded({ extended: true }));
