@@ -1,5 +1,5 @@
-import React from 'react';
-// import GroupFrom from "../components/GroupFrom";
+import { React, useState } from 'react';
+import GroupForm from '../../components/GroupForm';
 // import GroupList from "../components/GroupList";
 import ChoreForm from '../../components/ChoreForm';
 import ChoreList from '../../components/ChoreList';
@@ -14,6 +14,7 @@ const Home = () => {
     return (
         <main>
             <h2>Group Form</h2>
+            <GroupForm />
             <div className="groups-display">
                 {/* //map over group id */}
                 <div className="group-container">
