@@ -19,6 +19,7 @@
     margin-left: auto;
     margin-right: auto;
     background-color: rgb(169, 223, 223, 0.5);
+    padding: 15px;
 }
 
 .add-group-form {
@@ -27,4 +28,6 @@
 }
 
 .group-input {
+    display: flex;
+    align-items: center;
 }

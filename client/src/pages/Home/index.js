@@ -1,4 +1,4 @@
-import React from 'react';
+import { React, useState } from 'react';
 // import GroupFrom from "../components/GroupFrom";
 // import GroupList from "../components/GroupList";
 import ChoreForm from '../../components/ChoreForm';
@@ -20,21 +20,39 @@ const Home = () => {
     // query requests
 
     // If logged in, Auth.LogginIn() will be true
+    const [groups, setGroups] = useState([]);
 
+    function handleChange(event) {
+        setGroups([...event, event.target.value]);
+    }
+
+    function handleAddGroup() {
+        console.log(groups);
+    }
     return (
         <main>
             <h2>Group Form</h2>
             <div className="add-group-container">
                 <FormControl className="add-group-form">
-                    <Button colorScheme="green" variant="solid" size="lg">
+                    <Button
+                        onClick={handleAddGroup}
+                        colorScheme="green"
+                        variant="solid"
+                        size="lg"
+                    >
                         Add new group!
                     </Button>
-                    <FormLabel>Group Name:</FormLabel>
-                    <Input
-                        className="group-input"
-                        width="200px"
-                        style={{ border: '1px solid black' }}
-                    />
+                    <div className="group-input">
+                        <FormLabel>Group Name:</FormLabel>
+                        <Input
+                            name="groupName"
+                            id="groupName"
+                            onChange={handleChange}
+                            className="group-input"
+                            width="300px"
+                            style={{ border: '1px solid black' }}
+                        />
+                    </div>
                 </FormControl>
             </div>
             <div className="groups-display">
