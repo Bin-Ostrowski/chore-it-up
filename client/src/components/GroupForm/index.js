@@ -12,7 +12,7 @@ import { useMutation } from '@apollo/client';
 import { ADD_GROUP } from '../../utils/mutations';
 import Auth from '../../utils/auth';
 
-import './home.css';
+import './groupForm.css';
 
 const GroupForm = () => {
     const [groupInput, setGroupInput] = useState();

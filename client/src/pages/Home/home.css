@@ -1,0 +1,33 @@
+.groups-display {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.group-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: rgb(169, 223, 223, 0.5);
+    margin: 5px;
+    padding: 10px;
+}
+
+.add-group-container {
+    width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgb(169, 223, 223, 0.5);
+    padding: 15px;
+}
+
+.add-group-form {
+    display: flex;
+    justify-content: space-around;
+}
+
+.group-input {
+    display: flex;
+    align-items: center;
+}
