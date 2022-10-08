@@ -70,7 +70,7 @@ const ChoreForm = () => {
                         <Input
                             focusBorderColor="lime"
                             placeholder="Chore Name"
-                            value={choreName}
+                            value={choreData.choreName}
                             variant='filled'
                             name="choreName"
                             size="sm"
@@ -90,7 +90,7 @@ const ChoreForm = () => {
                             size="sm"
                             type="datetime-local"
                             variant='filled'
-                            value={dueDate}
+                            value={choreData.dueDate}
                             name="dueDate"
                             onChange={handleChange}
                             isInvalid
@@ -102,7 +102,7 @@ const ChoreForm = () => {
                         <Select
                             focusBorderColor="lime"
                             placeholder="Select Username"
-                            value={assignedTo}
+                            value={choreData.assignedTo}
                             name="assignedTo"
                             variant='filled'
                             size="sm"
@@ -116,7 +116,7 @@ const ChoreForm = () => {
                         <Input
                             focusBorderColor="lime"
                             placeholder="Describe Chore"
-                            value={choreBody}
+                            value={choreData.choreBody}
                             name="choreBody"
                             variant='filled'
                             size="sm"
@@ -136,6 +136,7 @@ const ChoreForm = () => {
                     </Button>
                 </div>
             </FormControl>
+            <ChoreList chore={choreData} />
         </div>
     );
 };
