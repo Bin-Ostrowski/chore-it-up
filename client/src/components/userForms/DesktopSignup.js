@@ -1,4 +1,7 @@
 import { React, useState } from 'react';
+import { useMutation } from '@apollo/client';
+import { ADD_USER } from '../../utils/mutations';
+import Auth from '../../utils/auth';
 
 import {
     FormControl,
@@ -18,6 +21,8 @@ const DesktopSignup = () => {
         password: '',
     });
     const [isError, setIsError] = useState();
+
+    // const [addUser, { error }] = useMutation(ADD_USER);
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -42,6 +47,16 @@ const DesktopSignup = () => {
             console.log(formState);
             setIsError(false);
         }
+
+        // try {
+        //     const { data } = await addUser({
+        //         variables: { ...formState },
+        //     });
+
+        //     Auth.login(data.addUser.token);
+        // } catch (e) {
+        //     console.error(e);
+        // }
     };
 
     return (
