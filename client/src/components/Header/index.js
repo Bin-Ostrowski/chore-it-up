@@ -1,10 +1,14 @@
 import React from 'react';
-// import Auth from "../../utils/auth";
+import Auth from '../../utils/auth';
 import { Link } from 'react-router-dom';
 import { Box } from '@chakra-ui/react';
 
 const Header = () => {
     // define logout
+    const logout = (event) => {
+        event.preventDefault();
+        Auth.logout();
+    };
 
     const navBoxStyles = {
         display: 'flex',
@@ -13,12 +17,14 @@ const Header = () => {
         padding: '20px',
         textAlign: 'center',
         color: 'black',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
     };
 
     const hoverStyles = {
         textShadow: '0 0 20px black',
     };
+
+    const loggedIn = Auth.loggedIn();
 
     return (
         <header>
@@ -31,9 +37,10 @@ const Header = () => {
                 bgColor="green.400"
             >
                 <Box sx={navBoxStyles} _hover={hoverStyles}>
-                    <Link to="/">
+                    {/* <Link to="/">
                         <h1>Chore It Up</h1>
-                    </Link>
+                    </Link> */}
+                    <h1>Chore It Up</h1>
                 </Box>
                 <nav>
                     {/* add Auth.login() ? () */}
@@ -42,9 +49,17 @@ const Header = () => {
                             <Box _hover={hoverStyles}>
                                 <Link to="/home">Home</Link>
                             </Box>
-                            <Box paddingLeft='20px' _hover={hoverStyles}>
+                            <Box paddingLeft="20px" _hover={hoverStyles}>
                                 <Link to="/chores">Your Chores</Link>
                             </Box>
+                            {loggedIn && (
+                                <Box paddingLeft={'20px'}>
+                                    <a href="/" onClick={logout}>
+                                        Logout
+                                    </a>
+                                </Box>
+                            )}
+
                             {/* <Link to="/login">Login</Link>
                         <Link to="/signup">Signup</Link> */}
                         </>
