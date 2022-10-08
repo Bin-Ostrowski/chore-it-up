@@ -23,14 +23,19 @@ const resolvers = {
             return User.findOne({ username }).populate('group');
         },
         groups: async () => {
-            return Group.find().populate('users').populate('chores');
+            return Group.find()
+                .populate('users')
+                .populate('chores')
+                .populate('chores');
         },
         group: async (parent, { groupName }) => {
-            return Group.findOne({ groupName }).populate('users');
+            return Group.findOne({ groupName })
+                .populate('users')
+                .populate('chores');
         },
-        chores: async () => {
-            return Chore.find().populate('group');
-        },
+        // chores: async () => {
+        //     return Chore.find().populate('group');
+        // },
         // add single chore later
     },
     Mutation: {
