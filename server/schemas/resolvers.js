@@ -36,7 +36,9 @@ const resolvers = {
         chores: async () => {
             return Chore.find().populate('group');
         },
-        // add single chore later
+        chore: async (parent, { chorename }) => {
+            return Chore.findOne({ choreName }).populate('group');
+        },
     },
     Mutation: {
         addUser: async (parent, args) => {
