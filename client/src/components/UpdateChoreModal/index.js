@@ -23,45 +23,39 @@ const UpdateChoreModal = ({chore}) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
 
     // set State for inputs - start with original chore info
-    const [choreName, setChoreName] = useState(chore.choreName);
-    const [dueDate, setDueDate] = useState(chore.dueDate);
-    const [assignedTo, setAssignedTo] = useState(chore.assignedTo);
-    const [choreBody, setChoreBody] = useState(chore.choreBody);
+    const [choreData, setChoreData] = useState({
+        choreName: chore.choreName,
+        dueDate: chore.dueDate,
+        assignedTo: chore.assignedTo,
+        choreBody: chore.choreBody,
+    });
+    console.log("updated chore", choreData);
+   
+    // error state
     const [isError, setIsError] = useState(false);
 
-    // testing state to update chore
-    const [choreData, setChoreData] = useState({choreName, dueDate, assignedTo, choreBody});
-    console.log("updated chore", choreData);
 
-    // will need to grap username someone so addChore will be created by that user.
+    // will need to grap username and group ids so addChore will be created by that user.
 
     // input onChange hangler
     const handleChange = (event) => {
-        switch (event.target.name) {
-            case 'choreName':
-                setChoreName(event.target.value);
-                break;
-            case 'dueDate':
-                setDueDate(event.target.value);
-                break;
-            case 'assignedTo':
-                setAssignedTo(event.target.value);
-                break;
-            case 'choreBody':
-                setChoreBody(event.target.value);
-                break;
-        }
+        const { name, value } = event.target;
+
+        setChoreData({
+            ...choreData,
+            [name]: value,
+        });
     };
 
     // form submit handler -
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        if (choreName === '') {
+        if (chore.choreName === '') {
             setIsError(true);
         } else {
-            console.log(choreName, dueDate, assignedTo, choreBody);
+            console.log(choreData);
             setIsError(false);
-            setChoreData({choreName, dueDate, assignedTo, choreBody});
+            setChoreData({ ...choreData });
 
             // update mutation
 
@@ -100,7 +94,7 @@ const UpdateChoreModal = ({chore}) => {
                                         <Input
                                             focusBorderColor="lime"
                                             placeholder="Chore Name"
-                                            value={choreName}
+                                            value={choreData.choreName}
                                             name="choreName"
                                             size="sm"
                                             onChange={handleChange}
@@ -120,7 +114,7 @@ const UpdateChoreModal = ({chore}) => {
                                             placeholder="Select Date"
                                             size="sm"
                                             type="datetime-local"
-                                            value={dueDate}
+                                            value={choreData.dueDate}
                                             name="dueDate"
                                             onChange={handleChange}
                                             isInvalid
@@ -134,7 +128,7 @@ const UpdateChoreModal = ({chore}) => {
                                         <Select
                                             focusBorderColor="lime"
                                             placeholder="Select Username"
-                                            value={assignedTo}
+                                            value={choreData.assignedTo}
                                             name="assignedTo"
                                             size="sm"
                                             onChange={handleChange}
@@ -156,7 +150,7 @@ const UpdateChoreModal = ({chore}) => {
                                         <Input
                                             focusBorderColor="lime"
                                             placeholder="Describe Chore"
-                                            value={choreBody}
+                                            value={choreData.choreBody}
                                             name="choreBody"
                                             size="sm"
                                             onChange={handleChange}
