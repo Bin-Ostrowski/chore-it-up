@@ -72,6 +72,7 @@ const ChoreForm = () => {
                             focusBorderColor="lime"
                             placeholder="Chore Name"
                             value={choreName}
+                            variant='filled'
                             name="choreName"
                             size="sm"
                             onChange={handleChange}
@@ -89,6 +90,7 @@ const ChoreForm = () => {
                             placeholder="Select Date"
                             size="sm"
                             type="datetime-local"
+                            variant='filled'
                             value={dueDate}
                             name="dueDate"
                             onChange={handleChange}
@@ -103,6 +105,7 @@ const ChoreForm = () => {
                             placeholder="Select Username"
                             value={assignedTo}
                             name="assignedTo"
+                            variant='filled'
                             size="sm"
                             onChange={handleChange}
                             isInvalid
@@ -123,6 +126,7 @@ const ChoreForm = () => {
                             placeholder="Describe Chore"
                             value={choreBody}
                             name="choreBody"
+                            variant='filled'
                             size="sm"
                             onChange={handleChange}
                             isInvalid
@@ -132,7 +136,7 @@ const ChoreForm = () => {
                 </div>
                 <div className="form-btn">
                     <Button
-                        colorScheme="blue"
+                        colorScheme="green"
                         type="click"
                         onClick={handleFormSubmit}
                     >
