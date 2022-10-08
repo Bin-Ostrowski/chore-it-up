@@ -7,7 +7,7 @@ const typeDefs = gql`
         choreBody: String
         createdAt: String
         username: String
-        assignedTo: String
+        assignedTo: User
         status: String
         dueDate: String
         group: Group
