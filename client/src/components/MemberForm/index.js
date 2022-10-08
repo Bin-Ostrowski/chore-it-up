@@ -64,19 +64,22 @@ const MemberForm = () => {
             </ul>
             </div>
             <FormControl className="flex-row" isInvalid={isError} isRequired>
-                {/* <div className="input-container"> */}
                 <div className="input-container">
                     <FormLabel className="form-lable">Username:</FormLabel>
                     <Input
-                        focusBorderColor="lime"
+                        focusBorderColor="black"
+                        variant='filled'
                         placeholder="username"
                         value={member.username}
                         name="username"
                         size="sm"
                         onChange={handleChange}
+                        
                     />
                     {isError && (
-                        <FormErrorMessage className="error">
+                        <FormErrorMessage 
+                        errorMessageColor="red"
+                        className="error">
                             That username does not exist!
                         </FormErrorMessage>
                     )}
@@ -84,7 +87,7 @@ const MemberForm = () => {
 
                 <div className="form-btn">
                     <Button
-                        colorScheme="blue"
+                        colorScheme="green"
                         type="click"
                         onClick={handleFormSubmit}
                     >
