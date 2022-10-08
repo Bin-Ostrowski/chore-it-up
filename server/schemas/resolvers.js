@@ -1,11 +1,6 @@
 const { User, Group, Chore } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
-<<<<<<< HEAD
 const { signToken } = require('../utils/auth');
-=======
-const { countDocuments } = require('../models/User');
-// const { signToken } = require('../utils/auth);
->>>>>>> 6fa978b (added a removeChore mutation to typeDef and resolvers)
 
 const resolvers = {
     Query: {
@@ -28,10 +23,7 @@ const resolvers = {
             return User.findOne({ username }).populate('group');
         },
         groups: async () => {
-            return Group.find()
-                .populate('users')
-                .populate('chores')
-                .populate('chores');
+            return Group.find().populate('users').populate('chores');
         },
         group: async (parent, { groupName }) => {
             return Group.findOne({ groupName })

@@ -50,7 +50,6 @@ const typeDefs = gql`
         removeGroup(_id: ID): Group
         addUserToGroup(userId: ID!, groupId: ID!): Group
         removeUserToGroup(username: String!): Group
-<<<<<<< HEAD
         addChore(
             group: ID!
             choreName: String!
@@ -58,10 +57,7 @@ const typeDefs = gql`
             dueDate: String
             assignedTo: String
         ): Chore
-=======
-        addChore(choreName: String!, choreBody: String): Group
         removeChore:(_id: ID!): Chore
->>>>>>> 6fa978b (added a removeChore mutation to typeDef and resolvers)
     }
 `;
 
