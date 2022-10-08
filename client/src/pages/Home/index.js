@@ -3,6 +3,7 @@ import React from 'react';
 // import GroupList from "../components/GroupList";
 import ChoreForm from '../../components/ChoreForm';
 import ChoreList from '../../components/ChoreList';
+import MemberForm from '../../components/MemberForm';
 import './home.css';
 
 const Home = () => {
@@ -17,6 +18,7 @@ const Home = () => {
                 {/* //map over group id */}
                 <div className="group-container">
                     <h2>Group One</h2>
+                    <MemberForm />
                     <ChoreForm />
                     <ChoreList />
                     {/* pass chores={chores}
