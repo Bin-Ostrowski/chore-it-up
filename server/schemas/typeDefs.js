@@ -57,7 +57,11 @@ const typeDefs = gql`
             dueDate: String
             assignedTo: String
         ): Chore
+<<<<<<< HEAD
         removeUserFromGroup(userId: ID!, groupId: ID!): Group
+=======
+        removeChore(choreId: ID!, groupId: ID!): Chore
+>>>>>>> develop
     }
 `;
 
