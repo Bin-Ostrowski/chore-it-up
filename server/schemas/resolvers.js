@@ -165,6 +165,7 @@ const resolvers = {
             if (context.user) {
                 const updateChore = await Chore.findByIdAndUpdate(
                     { _id: choreId },
+
                     { new: true }
                 );
             }
