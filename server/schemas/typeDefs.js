@@ -35,6 +35,7 @@ const typeDefs = gql`
         groups: [Group]
         group(groupName: String!): Group
         chores: [Chore]
+        chore(choreName: String!): Chore
     }
 
     type Auth {

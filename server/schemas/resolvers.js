@@ -36,7 +36,7 @@ const resolvers = {
         chores: async () => {
             return Chore.find().populate('group');
         },
-        chore: async (parent, { chorename }) => {
+        chore: async (parent, { choreName }) => {
             return Chore.findOne({ choreName }).populate('group');
         },
     },
