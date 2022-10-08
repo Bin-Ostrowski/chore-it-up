@@ -23,7 +23,7 @@ const ChoreForm = () => {
     });
     console.log('choreForm', choreData);
 
-// Set error State
+    // Set error State
     const [isError, setIsError] = useState(false);
 
     // declare addChore() and error variable for mutation

@@ -16,9 +16,9 @@ import {
     FormErrorMessage,
 } from '@chakra-ui/react';
 
-const UpdateChoreModal = ({chore}) => {
-    console.log('choreModal', chore)
-    
+const UpdateChoreModal = ({ chore }) => {
+    console.log('choreModal', chore);
+
     // set useDisclosure for updateChore modal
     const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -29,11 +29,10 @@ const UpdateChoreModal = ({chore}) => {
         assignedTo: chore.assignedTo,
         choreBody: chore.choreBody,
     });
-    console.log("updated chore", choreData);
-   
+    console.log('updated chore', choreData);
+
     // error state
     const [isError, setIsError] = useState(false);
-
 
     // will need to grap username and group ids so addChore will be created by that user.
 
