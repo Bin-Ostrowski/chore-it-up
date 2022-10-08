@@ -22,7 +22,7 @@ const DesktopSignup = () => {
     });
     const [isError, setIsError] = useState();
 
-    // const [addUser, { error }] = useMutation(ADD_USER);
+    const [addUser, { error }] = useMutation(ADD_USER);
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -48,15 +48,19 @@ const DesktopSignup = () => {
             setIsError(false);
         }
 
-        // try {
-        //     const { data } = await addUser({
-        //         variables: { ...formState },
-        //     });
+        if (!isError) {
+            try {
+                const { data } = await addUser({
+                    variables: { ...formState },
+                });
 
-        //     Auth.login(data.addUser.token);
-        // } catch (e) {
-        //     console.error(e);
-        // }
+                Auth.login(data.addUser.token);
+                window.location.replace('/home');
+            } catch (e) {
+                console.error(e);
+                console.log(e, null, 2);
+            }
+        }
     };
 
     return (

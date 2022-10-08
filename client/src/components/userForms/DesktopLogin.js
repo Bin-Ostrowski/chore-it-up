@@ -9,13 +9,19 @@ import {
     FormHelperText,
 } from '@chakra-ui/react';
 
+import { useMutation } from '@apollo/client';
+import { LOGIN_USER } from '../../utils/mutations';
+import Auth from '../../utils/auth';
+
 import './Forms.css';
 
 const DesktopLogin = () => {
+    const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
     const [formState, setFormState] = useState({
-        username: '',
+        email: '',
         password: '',
     });
+    const [login, { error }] = useMutation(LOGIN_USER);
     const [isError, setIsError] = useState();
 
     const handleChange = (event) => {
@@ -31,13 +37,26 @@ const DesktopLogin = () => {
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        if (formState.username === '') {
+        if (!formState.email.match(emailRegex)) {
             setIsError(true);
         } else if (formState.password.length < 5) {
             setIsError(true);
         } else {
             console.log(formState);
             setIsError(false);
+        }
+
+        if (!isError) {
+            try {
+                const { data } = await login({
+                    variables: { ...formState },
+                });
+
+                Auth.login(data.login.token);
+                window.location.replace('/home');
+            } catch (e) {
+                console.error(e);
+            }
         }
     };
 
@@ -47,12 +66,12 @@ const DesktopLogin = () => {
                 <h2>Login</h2>
             </div>
             <FormControl isInvalid={isError} isRequired>
-                <FormLabel fontSize="2xl">Username</FormLabel>
+                <FormLabel fontSize="2xl">Email:</FormLabel>
                 <Input
-                    name="username"
-                    id="username"
+                    name="email"
+                    id="email"
                     onChange={handleChange}
-                    type="username"
+                    type="email"
                 />
                 <FormLabel fontSize="2xl">Password</FormLabel>
                 <Input

@@ -28,6 +28,10 @@ const Login = () => {
             `width: ${windowDimensions.width} height: ${windowDimensions.height}`
         );
     });
+    // const loggedIn = Auth.loggedIn();
+    // if (loggedIn) {
+
+    // }
 
     if (windowDimensions.width > 768) {
         return <DesktopContainer />;
