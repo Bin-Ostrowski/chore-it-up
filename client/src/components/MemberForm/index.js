@@ -53,9 +53,19 @@ const MemberForm = () => {
 
     return (
         <div className="member-form-container">
+            <div className="members">
+
+            <h2>Group Members:</h2>
+            <ul>
+                {/* //map thought group members */}
+                <li className="username-list">
+                    <div>{member.username} </div>
+                </li>
+            </ul>
+            </div>
             <FormControl className="flex-row" isInvalid={isError} isRequired>
                 {/* <div className="input-container"> */}
-                <div className="form-input">
+                <div className="input-container">
                     <FormLabel className="form-lable">Username:</FormLabel>
                     <Input
                         focusBorderColor="lime"
@@ -83,13 +93,6 @@ const MemberForm = () => {
                 </div>
             </FormControl>
 
-            <h2>Group Members</h2>
-            <ul>
-                {/* //map thought group members */}
-                <li>
-                    <div className="list-text">{member.username} </div>
-                </li>
-            </ul>
         </div>
     );
 };
