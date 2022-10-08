@@ -10,20 +10,17 @@ const resolvers = {
                     _id: context.user._id,
                 })
                     .select('-_v -password')
-                    .populate('group')
-                    .populate('chores');
+                    .populate('group');
 
                 return userData;
             }
             throw new AuthenticationError('Not logged in');
         },
         users: async () => {
-            return User.find().populate('group').populate('chores');
+            return User.find().populate('group');
         },
         user: async (parent, { username }) => {
-            return User.findOne({ username })
-                .populate('group')
-                .populate('chores');
+            return User.findOne({ username }).populate('group');
         },
         groups: async () => {
             return Group.find().populate('users').populate('chores');
@@ -117,12 +114,6 @@ const resolvers = {
                     { new: true }
                 );
 
-                await User.findByIdAndUpdate(
-                    { _id: args.userId },
-                    { $push: { chores: chore._id } },
-                    { new: true }
-                );
-
                 console.log(chore);
                 return chore;
             }
@@ -161,14 +152,21 @@ const resolvers = {
             }
             throw new AuthenticationError('You need to be logged in!');
         },
-        updateChore: async (parent, { choreId }, context) => {
+        updateChore: async (parent, args, context) => {
             if (context.user) {
                 const updateChore = await Chore.findByIdAndUpdate(
-                    { _id: choreId },
-
+                    { _id: args.choreId },
+                    args,
                     { new: true }
                 );
+
+                // const assignedUser = await User.findByIdAndUpdate({
+                //     _id: args.assignedTo,
+                // });
+
+                return updateChore;
             }
+
             throw new AuthenticationError('You need to be logged in!');
         },
     },
