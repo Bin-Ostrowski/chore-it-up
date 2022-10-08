@@ -60,6 +60,7 @@ const typeDefs = gql`
         ): Chore
         removeUserFromGroup(userId: ID!, groupId: ID!): Group
         removeChore(choreId: ID!, groupId: ID!): Chore
+        updateChore(choreId: ID!): Chore
     }
 `;
 
