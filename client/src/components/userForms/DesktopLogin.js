@@ -1,6 +1,13 @@
 import { React, useState } from 'react';
 
-import { FormControl, FormLabel, Input, Button } from '@chakra-ui/react';
+import {
+    FormControl,
+    FormLabel,
+    Input,
+    Button,
+    FormErrorMessage,
+    FormHelperText,
+} from '@chakra-ui/react';
 
 import './Forms.css';
 
@@ -9,6 +16,7 @@ const DesktopLogin = () => {
         username: '',
         password: '',
     });
+    const [isError, setIsError] = useState();
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -21,12 +29,24 @@ const DesktopLogin = () => {
         console.log(formState);
     };
 
+    const handleFormSubmit = async (event) => {
+        event.preventDefault();
+        if (formState.username === '') {
+            setIsError(true);
+        } else if (formState.password.length < 5) {
+            setIsError(true);
+        } else {
+            console.log(formState);
+            setIsError(false);
+        }
+    };
+
     return (
         <div className="login-form">
             <div className="form-header">
                 <h2>Login</h2>
             </div>
-            <FormControl>
+            <FormControl isInvalid={isError} isRequired>
                 <FormLabel fontSize="2xl">Username</FormLabel>
                 <Input
                     name="username"
@@ -41,7 +61,13 @@ const DesktopLogin = () => {
                     onChange={handleChange}
                     type="password"
                 />
+                {isError && (
+                    <FormErrorMessage className="error">
+                        invalid form info!
+                    </FormErrorMessage>
+                )}
                 <Button
+                    onClick={handleFormSubmit}
                     className="button"
                     colorScheme="green.400"
                     variant="outline"
