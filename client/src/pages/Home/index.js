@@ -13,6 +13,9 @@ import {
     Button,
     ButtonGroup,
 } from '@chakra-ui/react';
+import { useMutation } from '@apollo/client';
+import { ADD_GROUP } from '../../utils/mutations';
+import Auth from '../../utils/auth';
 
 import './home.css';
 
@@ -20,22 +23,49 @@ const Home = () => {
     // query requests
 
     // If logged in, Auth.LogginIn() will be true
-    const [groups, setGroups] = useState([]);
+    const [groupState, setGroups] = useState([
+        {
+            groupName: '',
+            users: [],
+        },
+    ]);
+    const [addGroup, { error }] = useMutation(ADD_GROUP);
+    const [isError, setIsError] = useState();
 
-    function handleChange(event) {
-        setGroups([...event, event.target.value]);
-    }
+    const handleChange = (event) => {
+        const { name, value } = event.target;
 
-    function handleAddGroup() {
-        console.log(groups);
-    }
+        setGroups({
+            ...groupState,
+            [name]: value,
+        });
+    };
+
+    const handleGroupSubmit = async (event) => {
+        event.preventDefault();
+
+        if (!groupState.groupName) {
+            setIsError(true);
+        }
+        if (!isError) {
+            try {
+                await addGroup({
+                    variables: { ...groupState },
+                });
+
+                console.log(groupState);
+            } catch (e) {
+                console.error(e);
+            }
+        }
+    };
     return (
         <main>
             <h2>Group Form</h2>
             <div className="add-group-container">
                 <FormControl className="add-group-form">
                     <Button
-                        onClick={handleAddGroup}
+                        onClick={handleGroupSubmit}
                         colorScheme="green"
                         variant="solid"
                         size="lg"

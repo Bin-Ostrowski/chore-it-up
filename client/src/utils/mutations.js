@@ -23,3 +23,12 @@ export const ADD_USER = gql`
         }
     }
 `;
+
+export const ADD_GROUP = gql`
+    mutation addGroup($groupName: String!) {
+        addGroup(groupName: $groupName) {
+            _id
+            groupName
+        }
+    }
+`;
