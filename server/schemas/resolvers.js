@@ -33,9 +33,9 @@ const resolvers = {
                 .populate('users')
                 .populate('chores');
         },
-        // chores: async () => {
-        //     return Chore.find().populate('group');
-        // },
+        chores: async () => {
+            return Chore.find().populate('group');
+        },
         // add single chore later
     },
     Mutation: {
