@@ -60,7 +60,7 @@ const ChoreForm = () => {
     };
 
     return (
-        <div>
+    
             <div className="form-container" choreData={choreData}>
                 <FormControl
                     className="flex-row"
@@ -150,11 +150,10 @@ const ChoreForm = () => {
                         </Button>
                     </div>
                 </FormControl>
+                <ChoreList chore={choreData} />
+                {/* pass chores={chores}
+                    groups={groups} /> */}
             </div>
-            <ChoreList chore={choreData} />
-            {/* pass chores={chores}
-                groups={groups} /> */}
-        </div>
     );
 };
 
