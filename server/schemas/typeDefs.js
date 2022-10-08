@@ -52,6 +52,7 @@ const typeDefs = gql`
         removeUserToGroup(username: String!): Group
         addChore(
             group: ID!
+            userId: ID!
             choreName: String!
             choreBody: String
             dueDate: String

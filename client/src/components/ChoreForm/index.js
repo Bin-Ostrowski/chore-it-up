@@ -60,100 +60,83 @@ const ChoreForm = () => {
     };
 
     return (
-    
-            <div className="form-container" choreData={choreData}>
-                <FormControl
-                    className="flex-row"
-                    isInvalid={isError}
-                    isRequired
-                >
-                    <div className="input-container">
-                        <div className="form-input">
-                            <FormLabel className="form-lable">
-                                Chore Name:
-                            </FormLabel>
-                            <Input
-                                focusBorderColor="lime"
-                                placeholder="Chore Name"
-                                value={choreData.choreName}
-                                name="choreName"
-                                size="sm"
-                                onChange={handleChange}
-                            />
-                            {isError && (
-                                <FormErrorMessage className="error">
-                                    Chore name is required.
-                                </FormErrorMessage>
-                            )}
-                        </div>
-                        <div className="form-input">
-                            <FormLabel requiredIndicator>
-                                Finish By Date:
-                            </FormLabel>
-                            <Input
-                                focusBorderColor="lime"
-                                placeholder="Select Date"
-                                size="sm"
-                                type="datetime-local"
-                                value={choreData.dueDate}
-                                name="dueDate"
-                                onChange={handleChange}
-                                isInvalid
-                                errorBorderColor="null"
-                            />
-                        </div>
-                        <div className="form-input">
-                            <FormLabel requiredIndicator>
-                                Assigned To:
-                            </FormLabel>
-                            <Select
-                                focusBorderColor="lime"
-                                placeholder="Select Username"
-                                value={choreData.assignedTo}
-                                name="assignedTo"
-                                size="sm"
-                                onChange={handleChange}
-                                isInvalid
-                                errorBorderColor="null"
-                            >
-                                {/* Map over users in group */}
-                                <option>Luffy</option>
-                                <option>Nami</option>
-                                <option>Chopper</option>
-                                <option>Zoro</option>
-                                <option>None</option>
-                            </Select>
-                        </div>
-                        <div className="form-input">
-                            <FormLabel requiredIndicator>
-                                Chore Notes:
-                            </FormLabel>
-                            <Input
-                                focusBorderColor="lime"
-                                placeholder="Describe Chore"
-                                value={choreData.choreBody}
-                                name="choreBody"
-                                size="sm"
-                                onChange={handleChange}
-                                isInvalid
-                                errorBorderColor="null"
-                            />
-                        </div>
+        <div className="form-container">
+            <FormControl className="flex-row" isInvalid={isError} isRequired>
+                <div className="input-container">
+                    <div className="form-input">
+                        <FormLabel className="form-lable">
+                            Chore Name:
+                        </FormLabel>
+                        <Input
+                            focusBorderColor="lime"
+                            placeholder="Chore Name"
+                            value={choreName}
+                            variant='filled'
+                            name="choreName"
+                            size="sm"
+                            onChange={handleChange}
+                        />
+                        {isError && (
+                            <FormErrorMessage className="error">
+                                Chore name is required.
+                            </FormErrorMessage>
+                        )}
                     </div>
-                    <div className="form-btn">
-                        <Button
-                            colorScheme="blue"
-                            type="click"
-                            onClick={handleFormSubmit}
-                        >
-                            Add This Chore
-                        </Button>
+                    <div className="form-input">
+                        <FormLabel requiredIndicator>Finish By Date:</FormLabel>
+                        <Input
+                            focusBorderColor="lime"
+                            placeholder="Select Date"
+                            size="sm"
+                            type="datetime-local"
+                            variant='filled'
+                            value={dueDate}
+                            name="dueDate"
+                            onChange={handleChange}
+                            isInvalid
+                            errorBorderColor="null"
+                        />
                     </div>
-                </FormControl>
-                <ChoreList chore={choreData} />
-                {/* pass chores={chores}
-                    groups={groups} /> */}
-            </div>
+                    <div className="form-input">
+                        <FormLabel requiredIndicator>Assigned To:</FormLabel>
+                        <Select
+                            focusBorderColor="lime"
+                            placeholder="Select Username"
+                            value={assignedTo}
+                            name="assignedTo"
+                            variant='filled'
+                            size="sm"
+                            onChange={handleChange}
+                            isInvalid
+                            errorBorderColor="null"
+                        />
+                    </div>
+                    <div className="form-input">
+                        <FormLabel requiredIndicator>Chore Notes:</FormLabel>
+                        <Input
+                            focusBorderColor="lime"
+                            placeholder="Describe Chore"
+                            value={choreBody}
+                            name="choreBody"
+                            variant='filled'
+                            size="sm"
+                            onChange={handleChange}
+                            isInvalid
+                            errorBorderColor="null"
+                        />
+                    </div>
+                </div>
+                <div className="form-btn">
+                    <Button
+                        colorScheme="green"
+                        type="click"
+                        onClick={handleFormSubmit}
+                    >
+                        Add This Chore
+                    </Button>
+                </div>
+            </FormControl>
+        </div>
     );
 };
 
