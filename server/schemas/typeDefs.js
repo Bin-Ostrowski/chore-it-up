@@ -57,7 +57,7 @@ const typeDefs = gql`
             dueDate: String
             assignedTo: String
         ): Chore
-        removeChore:(_id: ID!): Chore
+        removeChore(choreId: ID!, groupId: ID!): Chore
     }
 `;
 

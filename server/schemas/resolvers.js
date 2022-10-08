@@ -119,15 +119,21 @@ const resolvers = {
             }
             throw new AuthenticationError('You need to be logged in!');
         },
-        removeChore: async (parent, { _id }, context) => {
+        removeChore: async (parent, { choreId, groupId }, context) => {
             if (context.user) {
-                console.log({ user: context.user });
-                return Group.findByIdAndUpdate(
-                    { _id: context.group._id },
-                    { $pull: { Chore } },
+                const updateGroup = await Group.findByIdAndUpdate(
+                    { _id: groupId },
+                    { $pull: { chores: choreId } },
                     { new: true }
                 );
+
+                const updateChore = await Chore.findByIdAndRemove({
+                    _id: choreId,
+                });
+
+                return { updateGroup, updateChore };
             }
+            throw new AuthenticationError('You need to be logged in!');
         },
     },
 };
