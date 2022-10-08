@@ -32,6 +32,11 @@ const choreSchema = new Schema({
     dueDate: {
         type: Date,
     },
+    group: {
+        type: Schema.Types.ObjectId,
+        ref: 'Group',
+        required: true,
+    },
 });
 
 const Chore = model('Chore', choreSchema);
