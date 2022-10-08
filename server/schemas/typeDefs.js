@@ -35,6 +35,7 @@ const typeDefs = gql`
         groups: [Group]
         group(groupName: String!): Group
         chores: [Chore]
+        chore(choreName: String!): Chore
     }
 
     type Auth {
@@ -49,7 +50,13 @@ const typeDefs = gql`
         removeGroup(_id: ID): Group
         addUserToGroup(userId: ID!, groupId: ID!): Group
         removeUserToGroup(username: String!): Group
-        addChore(choreName: String!, choreBody: String): Group
+        addChore(
+            group: ID!
+            choreName: String!
+            choreBody: String
+            dueDate: String
+            assignedTo: String
+        ): Chore
     }
 `;
 

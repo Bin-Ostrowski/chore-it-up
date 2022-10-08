@@ -23,15 +23,22 @@ const resolvers = {
             return User.findOne({ username }).populate('group');
         },
         groups: async () => {
-            return Group.find().populate('users');
+            return Group.find()
+                .populate('users')
+                .populate('chores')
+                .populate('chores');
         },
         group: async (parent, { groupName }) => {
-            return Group.findOne({ groupName }).populate('users');
+            return Group.findOne({ groupName })
+                .populate('users')
+                .populate('chores');
         },
         chores: async () => {
-            return Chore.find();
+            return Chore.find().populate('group');
         },
-        // add single chore later
+        chore: async (parent, { choreName }) => {
+            return Chore.findOne({ choreName }).populate('group');
+        },
     },
     Mutation: {
         addUser: async (parent, args) => {
@@ -105,10 +112,12 @@ const resolvers = {
                 });
 
                 await Group.findByIdAndUpdate(
-                    { _id: context.group._id },
+                    { _id: args.group },
                     { $push: { chores: chore._id } },
                     { new: true }
                 );
+
+                console.log(chore);
                 return chore;
             }
             throw new AuthenticationError('You need to be logged in!');
