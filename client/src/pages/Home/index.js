@@ -16,16 +16,18 @@ const Home = () => {
     // If logged in, Auth.LogginIn() will be true
 
     const { loading, error, data } = useQuery(QUERY_ME);
-    console.log(data);
-    const [groupState, setGroupState] = useState();
+
+    const [isGroup, setisGroup] = useState(false);
 
     if (!loading) {
         if (error) {
             console.log(error);
         }
+
         if (!data.me) {
             return <GroupForm />;
         }
+
         console.log(data.me);
         if (data.me.group) {
             const groupName = data.me.group.groupName;

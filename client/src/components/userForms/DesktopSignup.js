@@ -1,6 +1,6 @@
 import { React, useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { ADD_USER } from '../../utils/mutations';
+import { ADD_USER, LOGIN_USER } from '../../utils/mutations';
 import Auth from '../../utils/auth';
 
 import {
@@ -23,6 +23,7 @@ const DesktopSignup = () => {
     const [isError, setIsError] = useState();
 
     const [addUser, { error }] = useMutation(ADD_USER);
+    const [login, { loginError }] = useMutation(LOGIN_USER);
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -31,8 +32,6 @@ const DesktopSignup = () => {
             ...formState,
             [name]: value,
         });
-
-        console.log(formState);
     };
 
     const handleFormSubmit = async (event) => {
@@ -44,7 +43,6 @@ const DesktopSignup = () => {
         } else if (!formState.email.match(emailRegex)) {
             setIsError(true);
         } else {
-            console.log(formState);
             setIsError(false);
         }
 
@@ -53,7 +51,7 @@ const DesktopSignup = () => {
                 const { data } = await addUser({
                     variables: { ...formState },
                 });
-                console.log(data.addUser.token);
+                console.log(data.addUser);
                 Auth.login(data.addUser.token);
             } catch (e) {
                 console.error(e);
