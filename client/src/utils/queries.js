@@ -31,7 +31,6 @@ export const QUERY_ME = gql`
                     choreBody
                     createdAt
                     username
-                    assignedTo
                     dueDate
                     status
                 }
