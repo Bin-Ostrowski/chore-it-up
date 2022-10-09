@@ -1,4 +1,7 @@
 import { React, useState } from 'react';
+import { useMutation } from '@apollo/client';
+import { ADD_USER } from '../../utils/mutations';
+import Auth from '../../utils/auth';
 
 import {
     FormControl,
@@ -6,23 +9,20 @@ import {
     Input,
     Button,
     FormErrorMessage,
-    FormHelperText,
 } from '@chakra-ui/react';
-
-import { useMutation, useQuery } from '@apollo/client';
-import { LOGIN_USER } from '../../utils/mutations';
-import Auth from '../../utils/auth';
 
 import './Forms.css';
 
-const DesktopLogin = () => {
+const DesktopSignup = () => {
     const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
     const [formState, setFormState] = useState({
+        username: '',
         email: '',
         password: '',
     });
-    const [login, { error }] = useMutation(LOGIN_USER);
     const [isError, setIsError] = useState();
+
+    const [addUser, { error }] = useMutation(ADD_USER);
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -31,28 +31,34 @@ const DesktopLogin = () => {
             ...formState,
             [name]: value,
         });
+
+        console.log(formState);
     };
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        if (!formState.email.match(emailRegex)) {
+        if (formState.username === '') {
             setIsError(true);
         } else if (formState.password.length < 5) {
             setIsError(true);
+        } else if (!formState.email.match(emailRegex)) {
+            setIsError(true);
         } else {
+            console.log(formState);
             setIsError(false);
         }
 
         if (!isError) {
             try {
-                const { data } = await login({
+                const { data } = await addUser({
                     variables: { ...formState },
                 });
 
-                Auth.login(data.login.token);
-                window.location.replace(`/home`);
+                Auth.login(data.addUser.token);
+                window.location.replace('/home');
             } catch (e) {
                 console.error(e);
+                console.log(e, null, 2);
             }
         }
     };
@@ -60,10 +66,17 @@ const DesktopLogin = () => {
     return (
         <div className="login-form">
             <div className="form-header">
-                <h2>Login</h2>
+                <h2>Sign Up</h2>
             </div>
             <FormControl isInvalid={isError} isRequired>
-                <FormLabel fontSize="2xl">Email:</FormLabel>
+                <FormLabel fontSize="2xl">Username</FormLabel>
+                <Input
+                    name="username"
+                    id="username"
+                    onChange={handleChange}
+                    type="username"
+                />
+                <FormLabel fontSize="2xl">Email address</FormLabel>
                 <Input
                     name="email"
                     id="email"
@@ -84,17 +97,16 @@ const DesktopLogin = () => {
                 )}
                 <Button
                     onClick={handleFormSubmit}
-                    type="submit"
                     className="button"
                     colorScheme="green.400"
                     variant="outline"
                     size="lg"
                 >
-                    Login
+                    Sign Up
                 </Button>
             </FormControl>
         </div>
     );
 };
 
-export default DesktopLogin;
+export default DesktopSignup;

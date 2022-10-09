@@ -98,5 +98,7 @@ db.once('open', async () => {
 
     // console.log('groups seeded');
 
+    await Chore.deleteMany();
+
     process.exit();
 });

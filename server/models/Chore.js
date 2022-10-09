@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
+const User = require('./User');
 
 const choreSchema = new Schema({
     choreName: {
@@ -22,7 +23,8 @@ const choreSchema = new Schema({
         required: true,
     },
     assignedTo: {
-        type: String,
+        type: Schema.Types.ObjectId,
+        ref: 'User',
         required: false,
     },
     status: {

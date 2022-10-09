@@ -26,21 +26,30 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 //Serve up static assets
 //check to see if Node environment is in production. Express serve React application's build directory in the
-//client folder.
-if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, '../client/build')));
-}
+// //client folder.
+// if (process.env.NODE_ENV === 'production') {
+//     app.use(express.static(path.join(__dirname, '../client/build')));
+// }
 
-//if a GET request doesn't have route defined, respond with production-ready React front-end code.
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/build/index.html'));
-});
+// //if a GET request doesn't have route defined, respond with production-ready React front-end code.
+// app.get('/', (req, res) => {
+//     res.sendFile(path.join(__dirname, '../client/build/index.html'));
+// });
 
 // create new instance of Apollo server with GraphQL schema
 const startApolloServer = async (typeDefs, resolvers) => {
     await server.start();
     //integrate Apollo server with Express application as middleware
     server.applyMiddleware({ app });
+
+    // Serve up static assets
+    if (process.env.NODE_ENV === 'production') {
+        app.use(express.static(path.join(__dirname, '../client/build')));
+    }
+
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname, '../client/build/index.html'));
+    });
 
     //run server
     db.once('open', () => {
