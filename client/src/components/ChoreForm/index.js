@@ -32,13 +32,23 @@ const ChoreForm = () => {
     // declare addChore() and error variable for mutation
     const [addChore, { error }] = useMutation(ADD_CHORE);
 
-    // will need to grap username and groupID someone so addChore will be created by that user.
+    // declare query_ME
+    const { loading, data } = useQuery(QUERY_ME);
+
+    // set user and group id's
+    const groupId = data.me.group._Id;
+    console.log(groupId);
+
+    const userId = data.me._Id;
+    console.log(userId);
 
     // input onChange hangler
     const handleChange = (event) => {
         const { name, value } = event.target;
 
         setChoreData({
+            ...userId,
+            ...groupId,
             ...choreData,
             [name]: value,
         });
@@ -52,13 +62,13 @@ const ChoreForm = () => {
         } else {
             console.log(choreData);
             setIsError(false);
-            setChoreData({ ...choreData });
+            setChoreData({ ...userId, ...groupId, ...choreData });
 
             // addChore mutation
             try {
                 await addChore({
                     variables: { ...choreData },
-                })
+                });
 
                 //clear form values
                 // setChoreName('');
@@ -71,6 +81,9 @@ const ChoreForm = () => {
         }
     };
 
+    if (loading) {
+        <div>LOADING ... </div>;
+    }
     return (
         <div className="form-container">
             <FormControl className="flex-row" isInvalid={isError} isRequired>
@@ -148,7 +161,6 @@ const ChoreForm = () => {
                     </Button>
                 </div>
             </FormControl>
-            <ChoreList chore={choreData} />
         </div>
     );
 };

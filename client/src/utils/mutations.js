@@ -65,3 +65,11 @@ export const ADD_CHORE = gql`
         }
     }
 `;
+
+export const REMOVE_CHORE = gql `
+mutation removeChore($choreId: ID!, $groupId: ID!) {
+    removeChore(choreId: $choreId, groupId: $groupId) {
+      _id
+    }
+  }
+`;
