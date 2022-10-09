@@ -22,6 +22,7 @@ const GroupForm = () => {
             users: [],
         },
     ]);
+
     const [addGroup, { error }] = useMutation(ADD_GROUP);
     const [isError, setIsError] = useState(false);
 
@@ -35,7 +36,6 @@ const GroupForm = () => {
     };
 
     const handleGroupSubmit = async (event) => {
-        event.preventDefault();
         console.log(isError);
         if (!groupState.groupName) {
             setIsError(true);
@@ -52,6 +52,7 @@ const GroupForm = () => {
                 console.error(e);
             }
         }
+        window.location.reload();
     };
     return (
         <div className="add-group-container">
