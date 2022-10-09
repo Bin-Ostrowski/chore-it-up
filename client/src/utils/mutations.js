@@ -32,3 +32,31 @@ export const ADD_GROUP = gql`
         }
     }
 `;
+
+export const ADD_CHORE = gql`
+    mutation addChore(
+        $group: ID!
+        $userId: ID!
+        $choreName: String!
+        $choreBody: String
+        $dueDate: String
+        $assignedTo: String
+    ) {
+        addChore(
+            group: $group
+            userId: $userId
+            choreName: $choreName
+            choreBody: $choreBody
+            dueDate: $dueDate
+            assignedTo: $assignedTo
+        ) {
+            _id
+            choreName
+            choreBody
+            createdAt
+            username
+            dueDate
+            assignedTo
+        }
+    }
+`;

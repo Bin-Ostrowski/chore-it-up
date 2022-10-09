@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import ChoreList from '../ChoreList';
+import { useMutation, useQuery } from '@apollo/client';
+import { ADD_CHORE } from '../../utils/mutations';
+import { QUERY_ME } from '../../utils/queries';
 
 import {
     FormControl,
@@ -27,6 +30,7 @@ const ChoreForm = () => {
     const [isError, setIsError] = useState(false);
 
     // declare addChore() and error variable for mutation
+    const [addChore, { error }] = useMutation(ADD_CHORE);
 
     // will need to grap username and groupID someone so addChore will be created by that user.
 
@@ -51,11 +55,19 @@ const ChoreForm = () => {
             setChoreData({ ...choreData });
 
             // addChore mutation
+            try {
+                await addChore({
+                    variables: { ...choreData },
+                })
 
-            // setChoreName('');
-            // setDueDate('');
-            // setAssignedTo('');
-            // setChoreBody('');
+                //clear form values
+                // setChoreName('');
+                // setDueDate('');
+                // setAssignedTo('');
+                // setChoreBody('');
+            } catch (e) {
+                console.error(e);
+            }
         }
     };
 
@@ -71,7 +83,7 @@ const ChoreForm = () => {
                             focusBorderColor="lime"
                             placeholder="Chore Name"
                             value={choreData.choreName}
-                            variant='filled'
+                            variant="filled"
                             name="choreName"
                             size="sm"
                             onChange={handleChange}
@@ -89,7 +101,7 @@ const ChoreForm = () => {
                             placeholder="Select Date"
                             size="sm"
                             type="datetime-local"
-                            variant='filled'
+                            variant="filled"
                             value={choreData.dueDate}
                             name="dueDate"
                             onChange={handleChange}
@@ -104,7 +116,7 @@ const ChoreForm = () => {
                             placeholder="Select Username"
                             value={choreData.assignedTo}
                             name="assignedTo"
-                            variant='filled'
+                            variant="filled"
                             size="sm"
                             onChange={handleChange}
                             isInvalid
@@ -118,7 +130,7 @@ const ChoreForm = () => {
                             placeholder="Describe Chore"
                             value={choreData.choreBody}
                             name="choreBody"
-                            variant='filled'
+                            variant="filled"
                             size="sm"
                             onChange={handleChange}
                             isInvalid
