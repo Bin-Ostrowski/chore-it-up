@@ -63,6 +63,7 @@ const GroupForm = () => {
             >
                 <Button
                     onClick={handleGroupSubmit}
+                    id="add-group-btn"
                     colorScheme="green"
                     variant="solid"
                     size="lg"
@@ -77,8 +78,6 @@ const GroupForm = () => {
                         value={groupInput}
                         onChange={handleChange}
                         className="group-input"
-                        width="300px"
-                        style={{ border: '1px solid black' }}
                     />
                     <FormErrorMessage
                         style={{
