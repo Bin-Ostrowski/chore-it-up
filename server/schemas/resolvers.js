@@ -125,7 +125,6 @@ const resolvers = {
                     { new: true }
                 );
 
-                console.log(chore);
                 return chore;
             }
             throw new AuthenticationError('You need to be logged in!');
