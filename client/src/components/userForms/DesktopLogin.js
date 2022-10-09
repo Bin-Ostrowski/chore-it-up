@@ -9,7 +9,7 @@ import {
     FormHelperText,
 } from '@chakra-ui/react';
 
-import { useMutation } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import { LOGIN_USER } from '../../utils/mutations';
 import Auth from '../../utils/auth';
 
@@ -31,8 +31,6 @@ const DesktopLogin = () => {
             ...formState,
             [name]: value,
         });
-
-        console.log(formState);
     };
 
     const handleFormSubmit = async (event) => {
@@ -42,7 +40,6 @@ const DesktopLogin = () => {
         } else if (formState.password.length < 5) {
             setIsError(true);
         } else {
-            console.log(formState);
             setIsError(false);
         }
 
@@ -53,7 +50,7 @@ const DesktopLogin = () => {
                 });
 
                 Auth.login(data.login.token);
-                window.location.replace('/home');
+                window.location.replace(`/home`);
             } catch (e) {
                 console.error(e);
             }
@@ -87,6 +84,7 @@ const DesktopLogin = () => {
                 )}
                 <Button
                     onClick={handleFormSubmit}
+                    type="submit"
                     className="button"
                     colorScheme="green.400"
                     variant="outline"
