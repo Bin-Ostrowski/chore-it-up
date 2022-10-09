@@ -32,8 +32,7 @@ const Home = () => {
         if (data.me.group) {
             const groupName = data.me.group.groupName;
             return (
-                <main>
-                    <h2>Group Form</h2>
+                <main style={{ backgroundColor: '#284B63' }}>
                     {data.me.group && (
                         <div className="groups-display">
                             {/* //map over group id */}

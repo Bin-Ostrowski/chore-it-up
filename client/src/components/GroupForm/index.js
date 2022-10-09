@@ -55,41 +55,49 @@ const GroupForm = () => {
         window.location.reload();
     };
     return (
-        <div className="add-group-container">
-            <FormControl
-                isInvalid={isError}
-                isRequired
-                className="add-group-form"
-            >
-                <Button
-                    onClick={handleGroupSubmit}
-                    id="add-group-btn"
-                    colorScheme="green"
-                    variant="solid"
-                    size="lg"
+        <div id="form-helper-container">
+            <div className="add-group-container">
+                <FormControl
+                    isInvalid={isError}
+                    isRequired
+                    className="add-group-form"
                 >
-                    Add new group!
-                </Button>
-                <div className="group-input">
-                    <FormLabel>Group Name:</FormLabel>
-                    <Input
-                        name="groupName"
-                        id="groupName"
-                        value={groupInput}
-                        onChange={handleChange}
-                        className="group-input"
-                    />
-                    <FormErrorMessage
-                        style={{
-                            paddingLeft: '15px',
-                            fontSize: '20px',
-                            marginTop: '0',
-                        }}
+                    <Button
+                        onClick={handleGroupSubmit}
+                        id="add-group-btn"
+                        colorScheme="green"
+                        variant="solid"
+                        size="lg"
                     >
-                        Group name required!
-                    </FormErrorMessage>
-                </div>
-            </FormControl>
+                        Add new group!
+                    </Button>
+                    <div className="group-input">
+                        <FormLabel>Group Name:</FormLabel>
+                        <Input
+                            name="groupName"
+                            id="groupName"
+                            value={groupInput}
+                            onChange={handleChange}
+                            className="group-input"
+                        />
+                        <FormErrorMessage
+                            style={{
+                                paddingLeft: '15px',
+                                fontSize: '20px',
+                                marginTop: '0',
+                            }}
+                        >
+                            Group name required!
+                        </FormErrorMessage>
+                    </div>
+                </FormControl>
+            </div>
+            <div id="helper-container">
+                <p id="helper-text">
+                    Looks like you aren't part of a chore group yet! To get
+                    started create a group above!
+                </p>
+            </div>
         </div>
     );
 };
