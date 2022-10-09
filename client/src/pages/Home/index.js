@@ -17,8 +17,18 @@ const Home = () => {
 
     const { loading, error, data } = useQuery(QUERY_ME);
 
-    const [groupState, setGroupState] = useState();
+    const [isGroup, setisGroup] = useState(false);
+
     if (!loading) {
+        if (error) {
+            console.log(error);
+        }
+
+        if (!data.me) {
+            return <GroupForm />;
+        }
+
+        console.log(data.me);
         if (data.me.group) {
             const groupName = data.me.group.groupName;
             return (

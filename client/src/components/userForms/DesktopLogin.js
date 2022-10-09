@@ -50,7 +50,6 @@ const DesktopLogin = () => {
                 });
 
                 Auth.login(data.login.token);
-                window.location.replace(`/home`);
             } catch (e) {
                 console.error(e);
             }
