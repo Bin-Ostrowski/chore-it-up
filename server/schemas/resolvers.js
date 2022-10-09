@@ -161,6 +161,19 @@ const resolvers = {
             }
             throw new AuthenticationError('You need to be logged in!');
         },
+        updateChore: async (parent, args, context) => {
+            if (context.user) {
+                const updateChore = await Chore.findByIdAndUpdate(
+                    { _id: args.choreId },
+                    args,
+                    { new: true }
+                );
+
+                return updateChore;
+            }
+
+            throw new AuthenticationError('You need to be logged in!');
+        },
     },
 };
 
