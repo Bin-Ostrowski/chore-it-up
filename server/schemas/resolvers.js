@@ -160,10 +160,6 @@ const resolvers = {
                     { new: true }
                 );
 
-                // const assignedUser = await User.findByIdAndUpdate({
-                //     _id: args.assignedTo,
-                // });
-
                 return updateChore;
             }
 
