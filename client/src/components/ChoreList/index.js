@@ -18,7 +18,7 @@ const ChoreList = ({ chores }) => {
     };
 
     // conditionaly render chores
-    if (chores.length) {
+    if (!chores.length) {
         // if no choes return this:
         return <h3>No Chores Yet</h3>;
     }

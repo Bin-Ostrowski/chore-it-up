@@ -41,7 +41,7 @@ const Home = () => {
                                 <h2>{groupName}</h2>
                                 <MemberForm />
                                 <ChoreForm />
-                                <ChoreList chores={data.me.chores}/>
+                               . {/* <ChoreList chores={data.me.chores}/> */}
                             </div>
                         </div>
                     )}
