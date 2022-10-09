@@ -13,6 +13,31 @@ export const QUERY_USER = gql`
     }
 `;
 
+export const QUERY_USERS = gql`
+    query Users {
+        users {
+            _id
+            username
+            group {
+                _id
+                groupName
+                users {
+                    _id
+                    username
+                }
+            }
+            chores {
+                _id
+                choreName
+                choreBody
+                createdAt
+                username
+                dueDate
+            }
+        }
+    }
+`;
+
 export const QUERY_ME = gql`
     {
         me {

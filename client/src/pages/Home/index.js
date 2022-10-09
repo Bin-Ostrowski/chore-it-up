@@ -39,7 +39,7 @@ const Home = () => {
                             {/* //map over group id */}
                             <div className="group-container">
                                 <h2>{groupName}</h2>
-                                <MemberForm />
+                                <MemberForm userData={data.me} />
                                 <ChoreForm />
                                 <ChoreList />
                                 {/* pass chores={chores}

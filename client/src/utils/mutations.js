@@ -37,3 +37,13 @@ export const ADD_GROUP = gql`
         }
     }
 `;
+
+// will need to fix - username is null when queried
+export const ADD_USER_TO_GROUP = gql`
+    mutation addUserToGroup($userId: ID!, $groupId: ID!) {
+        addUserToGroup(userId: $userId, groupId: $groupId) {
+            _id
+            groupName
+        }
+    }
+`;
