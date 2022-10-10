@@ -67,6 +67,7 @@ const MemberForm = ({ userData }) => {
                 await addUserToGroup({
                     variables: { ...member },
                 });
+                console.log(member);
             } catch (e) {
                 console.error(e);
             }

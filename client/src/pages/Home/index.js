@@ -33,8 +33,6 @@ const Home = () => {
             return <GroupForm />;
         }
 
-
-
         console.log(data.me);
         if (data.me.group) {
             const groupName = data.me.group.groupName;
@@ -49,8 +47,6 @@ const Home = () => {
                                 <MemberList userData={data.me} />
                                 <ChoreForm />
                                 <ChoreList />
-                                {/* pass chores={chores}
-                    groups={groups} /> */}
                             </div>
                         </div>
                     )}
