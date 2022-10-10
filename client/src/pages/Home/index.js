@@ -44,9 +44,7 @@ const Home = () => {
                                 <h2>{groupName}</h2>
                                 <MemberForm />
                                 <ChoreForm />
-                                <ChoreList />
-                                {/* pass chores={chores}
-                    groups={groups} /> */}
+                               . {/* <ChoreList chores={data.me.chores}/> */}
                             </div>
                         </div>
                     )}
