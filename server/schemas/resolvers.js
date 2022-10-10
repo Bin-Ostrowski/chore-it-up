@@ -77,31 +77,32 @@ const resolvers = {
                     { new: true }
                 );
 
-                const hostUser = await Group.findByIdAndUpdate(
+                await Group.findByIdAndUpdate(
                     { _id: group._id },
                     { $push: { users: context.user._id } },
                     { new: true }
                 );
 
-                return { group, hostUser };
+                return group;
             }
 
             throw new AuthenticationError('You need to be logged in!');
         },
         addUserToGroup: async (parent, { userId, groupId }, context) => {
             if (context.user) {
-                const updateGroup = await Group.findByIdAndUpdate(
+                const group = await Group.findByIdAndUpdate(
                     { _id: groupId },
                     { $push: { users: userId } },
                     { new: true }
                 );
-                const updateUser = await User.findByIdAndUpdate(
+
+                await User.findByIdAndUpdate(
                     { _id: userId },
                     { group: groupId },
                     { new: true }
                 );
 
-                return { updateGroup, updateUser };
+                return group;
             }
 
             throw new AuthenticationError('You need to be logged in');
@@ -131,7 +132,6 @@ const resolvers = {
         },
         removeUserFromGroup: async (parent, { userId, groupId }, context) => {
             if (context.user) {
-                console.log({ user: context.user });
                 const updateGroup = await Group.findByIdAndUpdate(
                     { _id: groupId },
                     { $pull: { users: userId } },
