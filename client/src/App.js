@@ -5,6 +5,7 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import YourChores from './pages/YourChores';
 import Login from './pages/Login';
+import auth from './utils/auth';
 
 // import `ChakraProvider` component
 import { ChakraProvider } from '@chakra-ui/react';
@@ -20,6 +21,8 @@ import {
 
 // set token context
 import { setContext } from '@apollo/client/link/context';
+
+const isLoggedin = auth.loggedIn();
 
 // establish new link to GraphQL
 const httpLink = createHttpLink({
@@ -50,7 +53,8 @@ export default function App() {
                 {/* // wrap all in ApolloProvider */}
                 <Router>
                     <div>
-                        <Header />
+                        {isLoggedin && <Header />}
+
                         <div>
                             <Routes>
                                 <Route path="/" element={<Login />} />
