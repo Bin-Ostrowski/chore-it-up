@@ -45,7 +45,6 @@ export const ADD_CHORE = gql`
         $choreName: String!
         $choreBody: String
         $dueDate: String
-        $assignedTo: String
     ) {
         addChore(
             group: $group
@@ -53,23 +52,20 @@ export const ADD_CHORE = gql`
             choreName: $choreName
             choreBody: $choreBody
             dueDate: $dueDate
-            assignedTo: $assignedTo
         ) {
             _id
             choreName
             choreBody
             createdAt
-            username
             dueDate
-            assignedTo
         }
     }
 `;
 
-export const REMOVE_CHORE = gql `
-mutation removeChore($choreId: ID!, $groupId: ID!) {
-    removeChore(choreId: $choreId, groupId: $groupId) {
-      _id
+export const REMOVE_CHORE = gql`
+    mutation removeChore($choreId: ID!, $groupId: ID!) {
+        removeChore(choreId: $choreId, groupId: $groupId) {
+            _id
+        }
     }
-  }
 `;

@@ -17,12 +17,24 @@ import {
 import './choreForm.css';
 
 const ChoreForm = () => {
+    // declare query_ME
+    const { loading, data } = useQuery(QUERY_ME);
+
+    // set user and group id's
+
+    const groupId = data.me.group._id;
+    console.log(groupId);
+
+    const userId = data.me._id;
+    console.log(userId);
     // set State for inputs
     const [choreData, setChoreData] = useState({
-        choreName: 'testName',
-        dueDate: '2022-10-11T23:11',
-        assignedTo: 'Nami',
-        choreBody: 'testBody',
+        // group: groupId,
+        // userId: userId,
+        // choreName: 'testName',
+        // dueDate: '2022-10-11T23:11',
+        // // assignedTo: 'Nami',
+        // choreBody: 'testBody',
     });
     console.log('choreForm', choreData);
 
@@ -32,24 +44,15 @@ const ChoreForm = () => {
     // declare addChore() and error variable for mutation
     const [addChore, { error }] = useMutation(ADD_CHORE);
 
-    // declare query_ME
-    const { loading, data } = useQuery(QUERY_ME);
-
-    // set user and group id's
-    const groupId = data.me.group._Id;
-    console.log(groupId);
-
-    const userId = data.me._Id;
-    console.log(userId);
-
     // input onChange hangler
     const handleChange = (event) => {
         const { name, value } = event.target;
 
         setChoreData({
-            ...userId,
-            ...groupId,
             ...choreData,
+            group: groupId,
+            userId: userId,
+
             [name]: value,
         });
     };
@@ -60,9 +63,9 @@ const ChoreForm = () => {
         if (choreData.choreName === '') {
             setIsError(true);
         } else {
-            console.log(choreData);
             setIsError(false);
-            setChoreData({ ...userId, ...groupId, ...choreData });
+            setChoreData({ ...choreData });
+            console.log({ ...choreData });
 
             // addChore mutation
             try {
