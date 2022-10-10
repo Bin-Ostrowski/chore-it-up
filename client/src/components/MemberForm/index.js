@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useMutation, useQuery } from '@apollo/client';
 import { ADD_USER_TO_GROUP } from '../../utils/mutations';
-import { QUERY_ME, QUERY_USERS } from '../../utils/queries';
+import { QUERY_ME, QUERY_USERS, QUERY_GROUP } from '../../utils/queries';
 
 import {
     FormControl,
@@ -54,32 +54,41 @@ const MemberForm = ({ userData }) => {
     const handleFormSubmit = async (event) => {
         event.preventDefault();
 
-        const result = data.users.filter(user => user.username === member.username);      
-        console.log("result", result);
+        const result = data.users.filter(
+            (user) => user.username === member.username
+        );
+        console.log('result', result);
+        const {_id, username} = (result[0])
+        console.log(_id);
+        console.log(username);
 
-        // if (!member.username) {
+        // console.log ("_id and username", _id, username);
+        if (!member.username) {
+            setIsError(true);
+        }
+        // add error or not matching username
+        // if (!data.users.user.username === member.username) {
         //     setIsError(true);
         // }
+        else {
+            setIsError(false);
+            setMember({ ...member, userId: _id, username: username});
+            console.log(_id);
+            console.log('submit', member);
 
-        
-        // else {
-        //     console.log('submit', member);
-        //     setIsError(false);
-        //     setMember({ ...setMember });
+            // addUserToGroup mutation
+            try {
+                await addUserToGroup({
+                    variables: { ...member },
+                });
 
-        //     // addUserToGroup mutation
-        //     try {
-        //         await addUserToGroup({
-        //             variables: { ...member },
-        //         });
+                // console.log(member);
+            } catch (e) {
+                console.error(e);
+            }
 
-        //         // console.log(member);
-        //     } catch (e) {
-        //         console.error(e);
-        //     }
-
-        //     // setMember('');
-        // }
+            // // setMember('');
+        }
     };
 
     if (loading) {
@@ -95,7 +104,7 @@ const MemberForm = ({ userData }) => {
             <div className="members">
                 <h2>Group Members:</h2>
                 <ul>
-                    {/* //map thought group members */}
+                    {data.{/* //map thought group members */}
                     <li className="username-list">
                         <div>{member.userId} </div>
                     </li>
