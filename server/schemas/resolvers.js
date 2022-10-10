@@ -34,10 +34,12 @@ const resolvers = {
                 .populate('chores');
         },
         chores: async () => {
-            return Chore.find().populate('group');
+            return Chore.find().populate('group').populate('assignedTo');
         },
         chore: async (parent, { choreName }) => {
-            return Chore.findOne({ choreName }).populate('group');
+            return Chore.findOne({ choreName })
+                .populate('group')
+                .populate('assignedTo');
         },
     },
     Mutation: {
@@ -123,7 +125,6 @@ const resolvers = {
                     { new: true }
                 );
 
-                console.log(chore);
                 return chore;
             }
             throw new AuthenticationError('You need to be logged in!');
@@ -170,6 +171,25 @@ const resolvers = {
                 );
 
                 return updateChore;
+            }
+
+            throw new AuthenticationError('You need to be logged in!');
+        },
+        assignedChore: async (parent, { choreId, assignedId }, context) => {
+            if (context.user) {
+                const assignChore = await Chore.findByIdAndUpdate(
+                    { _id: choreId },
+                    { assignedTo: assignedId },
+                    { new: true }
+                );
+
+                const assignUser = await User.findByIdAndUpdate(
+                    { _id: assignedId },
+                    { chores: choreId },
+                    { new: true }
+                );
+
+                return { assignChore, assignUser };
             }
 
             throw new AuthenticationError('You need to be logged in!');
