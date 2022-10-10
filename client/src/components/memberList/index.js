@@ -27,11 +27,12 @@ const MemeberList = ({ userData }) => {
             <h2>Group Members:</h2>
             <ul>
                 {/* //map thought group members */}
-                {data.group.users.map((user) => (
+                {data.group.users.map((user, i) => (
                     <li key={user._id} className="username-list">
-                        <div> {userData.group.users.username}</div>
+                        <div> {user.username}</div>
                     </li>
                 ))}
+
             </ul>
         </div>
     );
