@@ -114,11 +114,11 @@ const resolvers = {
                     username: context.user.username,
                 });
 
-                await Group.findByIdAndUpdate(
-                    { _id: args.group },
-                    { $push: { chores: chore._id } },
-                    { new: true }
-                );
+                // await Group.findByIdAndUpdate(
+                //     { _id: args.group },
+                //     { $push: { chores: chore._id } },
+                //     { new: true }
+                // );
 
                 await User.findByIdAndUpdate(
                     { _id: args.userId },
@@ -177,19 +177,19 @@ const resolvers = {
         },
         assignedChore: async (parent, { choreId, assignedId }, context) => {
             if (context.user) {
-                const assignChore = await Chore.findByIdAndUpdate(
+                const chore = await Chore.findByIdAndUpdate(
                     { _id: choreId },
                     { assignedTo: assignedId },
                     { new: true }
                 );
 
-                const assignUser = await User.findByIdAndUpdate(
+                await User.findByIdAndUpdate(
                     { _id: assignedId },
                     { chores: choreId },
                     { new: true }
                 );
 
-                return { assignChore, assignUser };
+                return chore;
             }
 
             throw new AuthenticationError('You need to be logged in!');
