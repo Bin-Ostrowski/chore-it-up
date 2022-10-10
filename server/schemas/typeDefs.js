@@ -56,7 +56,7 @@ const typeDefs = gql`
             choreName: String!
             choreBody: String
             dueDate: String
-            assignedTo: String
+            assignedTo: ID
         ): Chore
         removeUserFromGroup(userId: ID!, groupId: ID!): Group
         removeChore(choreId: ID!, groupId: ID!): Chore
@@ -66,6 +66,7 @@ const typeDefs = gql`
             choreBody: String
             dueDate: String
         ): Chore
+        assignedChore(choreId: ID!, assignedId: ID!): Chore
     }
 `;
 
