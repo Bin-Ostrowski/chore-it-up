@@ -74,10 +74,14 @@ const ChoreForm = () => {
                 });
 
                 //clear form values
-                // setChoreName('');
-                // setDueDate('');
-                // setAssignedTo('');
-                // setChoreBody('');
+
+                setChoreData({
+                    choreName: '',
+                    dueDate: '',
+                    assignedTo: '',
+                    choreBody: '',
+                });
+                console.log(choreData);
             } catch (e) {
                 console.error(e);
             }
