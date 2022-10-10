@@ -92,7 +92,7 @@ const resolvers = {
             if (context.user) {
                 const group = await Group.findByIdAndUpdate(
                     { _id: groupId },
-                    { $push: { users: userId } },
+                    { $addToSet: { users: userId } },
                     { new: true }
                 );
 
