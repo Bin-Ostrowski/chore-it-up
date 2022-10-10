@@ -1,7 +1,8 @@
 import React from 'react';
 import ChoreList from '../../components/ChoreList';
+import auth from '../../utils/auth';
 
-import './youChores.css'
+import './youChores.css';
 // import ChoreForm from '../components/ChoreForm';
 
 // import Auth from "../utils/auth";
@@ -11,6 +12,9 @@ import './youChores.css'
 // import query
 
 const YourChores = () => {
+    if (auth.isTokenExpired(auth.getToken())) {
+        window.location.replace('/');
+    }
     // grab id from params
     // define and deconstruct userID
 

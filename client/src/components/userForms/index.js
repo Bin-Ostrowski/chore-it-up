@@ -1,4 +1,4 @@
 import DesktopContainer from './DesktopContainer';
-import MobileLogin from './MobileLogin';
+import MobileForms from './MobileForms';
 
-export { DesktopContainer, MobileLogin };
+export { DesktopContainer, MobileForms };

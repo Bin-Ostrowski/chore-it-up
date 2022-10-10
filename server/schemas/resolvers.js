@@ -34,15 +34,17 @@ const resolvers = {
                 .populate('chores');
         },
         chores: async () => {
-            return Chore.find().populate('group');
+            return Chore.find().populate('group').populate('assignedTo');
         },
         chore: async (parent, { choreName }) => {
-            return Chore.findOne({ choreName }).populate('group');
+            return Chore.findOne({ choreName })
+                .populate('group')
+                .populate('assignedTo');
         },
     },
     Mutation: {
         addUser: async (parent, args) => {
-            const user = User.create(args);
+            const user = await User.create(args);
             const token = signToken(user);
 
             // add token to return
@@ -75,31 +77,32 @@ const resolvers = {
                     { new: true }
                 );
 
-                const hostUser = await Group.findByIdAndUpdate(
+                await Group.findByIdAndUpdate(
                     { _id: group._id },
                     { $push: { users: context.user._id } },
                     { new: true }
                 );
 
-                return { group, hostUser };
+                return group;
             }
 
             throw new AuthenticationError('You need to be logged in!');
         },
         addUserToGroup: async (parent, { userId, groupId }, context) => {
             if (context.user) {
-                const updateGroup = await Group.findByIdAndUpdate(
+                const group = await Group.findByIdAndUpdate(
                     { _id: groupId },
-                    { $push: { users: userId } },
+                    { $addToSet: { users: userId } },
                     { new: true }
                 );
-                const updateUser = await User.findByIdAndUpdate(
+
+                const user = await User.findByIdAndUpdate(
                     { _id: userId },
                     { group: groupId },
                     { new: true }
                 );
 
-                return { updateGroup, updateUser };
+                return group;
             }
 
             throw new AuthenticationError('You need to be logged in');
@@ -123,25 +126,23 @@ const resolvers = {
                     { new: true }
                 );
 
-                console.log(chore);
                 return chore;
             }
             throw new AuthenticationError('You need to be logged in!');
         },
         removeUserFromGroup: async (parent, { userId, groupId }, context) => {
             if (context.user) {
-                console.log({ user: context.user });
                 const updateGroup = await Group.findByIdAndUpdate(
                     { _id: groupId },
                     { $pull: { users: userId } },
                     { new: true }
                 );
-                const updateUser = await User.findByIdAndUpdate(
+                await User.findByIdAndUpdate(
                     { _id: userId },
                     { $unset: { group: groupId } },
                     { new: true }
                 );
-                return { updateGroup, updateUser };
+                return group;
             }
             throw new AuthenticationError('You need to be logged in');
         },
@@ -170,6 +171,25 @@ const resolvers = {
                 );
 
                 return updateChore;
+            }
+
+            throw new AuthenticationError('You need to be logged in!');
+        },
+        assignedChore: async (parent, { choreId, assignedId }, context) => {
+            if (context.user) {
+                const assignChore = await Chore.findByIdAndUpdate(
+                    { _id: choreId },
+                    { assignedTo: assignedId },
+                    { new: true }
+                );
+
+                const assignUser = await User.findByIdAndUpdate(
+                    { _id: assignedId },
+                    { chores: choreId },
+                    { new: true }
+                );
+
+                return { assignChore, assignUser };
             }
 
             throw new AuthenticationError('You need to be logged in!');
