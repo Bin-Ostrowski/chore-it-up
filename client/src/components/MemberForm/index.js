@@ -7,7 +7,6 @@ import {
     FormControl,
     FormLabel,
     FormErrorMessage,
-    FormHelperText,
     Input,
     Button,
 } from '@chakra-ui/react';
@@ -15,8 +14,7 @@ import {
 import './memberForm.css';
 
 const MemberForm = ({ userData }) => {
-    // query users to get all users to populate member drop down list
-
+    // query users
     const { loading, data } = useQuery(QUERY_USERS);
 
     // define addUserToGroup mutation
@@ -29,10 +27,10 @@ const MemberForm = ({ userData }) => {
         username: userData.username,
     });
 
-    // Set error State
+    // Set error State for FormController
     const [isError, setIsError] = useState(false);
 
-    // input onChange hangler
+    // input onChange handler
     const handleChange = (event) => {
         const { name, value } = event.target;
         setMember({
@@ -41,14 +39,16 @@ const MemberForm = ({ userData }) => {
         });
     };
 
-    // form submit handler -
+    // form submit handler
     const handleFormSubmit = async (event) => {
         event.preventDefault();
 
+        // Filter users in DB to match input
         const result = data.users.filter(
             (user) => user.username === member.username
         );
 
+        // deconstruct result
         const { _id, username } = result[0];
 
         if (!member.username) {

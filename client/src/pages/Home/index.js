@@ -8,7 +8,7 @@ import MemberList from '../../components/MemberList';
 import './home.css';
 
 import { useMutation, useQuery } from '@apollo/client';
-import { QUERY_USER } from '../../utils/queries';
+// import { QUERY_USER } from '../../utils/queries';
 import { QUERY_ME } from '../../utils/queries';
 import auth from '../../utils/auth';
 
@@ -22,7 +22,7 @@ const Home = () => {
 
     const { loading, error, data } = useQuery(QUERY_ME);
 
-    const [isGroup, setisGroup] = useState(false);
+    // const [isGroup, setisGroup] = useState(false);
 
     if (!loading) {
         if (error) {
