@@ -96,7 +96,7 @@ const resolvers = {
                     { new: true }
                 );
 
-                await User.findByIdAndUpdate(
+                const user = await User.findByIdAndUpdate(
                     { _id: userId },
                     { group: groupId },
                     { new: true }
