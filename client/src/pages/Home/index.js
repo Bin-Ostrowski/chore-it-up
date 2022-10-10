@@ -4,6 +4,7 @@ import GroupForm from '../../components/GroupForm';
 import ChoreForm from '../../components/ChoreForm';
 import ChoreList from '../../components/ChoreList';
 import MemberForm from '../../components/MemberForm';
+import MemberList from '../../components/MemberForm';
 import './home.css';
 
 import { useMutation, useQuery } from '@apollo/client';
@@ -43,6 +44,7 @@ const Home = () => {
                             <div className="group-container">
                                 <h2>{groupName}</h2>
                                 <MemberForm userData={data.me} />
+                                <MemberList />
                                 <ChoreForm />
                                 <ChoreList />
                                 {/* pass chores={chores}

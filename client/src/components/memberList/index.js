@@ -6,14 +6,21 @@ import { QUERY_USERS, QUERY_GROUP } from '../../utils/queries';
 import './memberForm.css';
 
 const MemeberList = ({ userData }) => {
-    // const { groupLoading, e, groupData } = useQuery(QUERY_GROUP, {
-    //     variables: { groupName: userData.group.groupName },
-    //     skip: data,
-    // });
+    const { loading, error, groupData } = useQuery(QUERY_GROUP, {
+        variables: { groupName: userData.group.groupName },
+        skip: data,
+    });
 
-    // console.log(e)
-    // console.log('groupData', groupData);
+    console.log(e)
+    console.log('groupData', groupData);
 
+    if (loading) {
+        return <h3>LOADING...</h3>;
+    }
+
+    if (error) {
+        console.error(error);
+    }
     return (
         <div className="members">
             <h2>Group Members:</h2>
@@ -28,3 +35,6 @@ const MemeberList = ({ userData }) => {
         </div>
     );
 };
+
+
+export default MemeberList;
