@@ -131,17 +131,17 @@ const resolvers = {
         removeUserFromGroup: async (parent, { userId, groupId }, context) => {
             if (context.user) {
                 console.log({ user: context.user });
-                const updateGroup = await Group.findByIdAndUpdate(
+                const group = await Group.findByIdAndUpdate(
                     { _id: groupId },
                     { $pull: { users: userId } },
                     { new: true }
                 );
-                const updateUser = await User.findByIdAndUpdate(
+                await User.findByIdAndUpdate(
                     { _id: userId },
                     { $unset: { group: groupId } },
                     { new: true }
                 );
-                return { updateGroup, updateUser };
+                return group;
             }
             throw new AuthenticationError('You need to be logged in');
         },
