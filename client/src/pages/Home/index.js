@@ -9,8 +9,12 @@ import './home.css';
 import { useMutation, useQuery } from '@apollo/client';
 import { QUERY_USER } from '../../utils/queries';
 import { QUERY_ME } from '../../utils/queries';
+import auth from '../../utils/auth';
 
 const Home = () => {
+    if (auth.isTokenExpired(auth.getToken())) {
+        window.location.replace('/');
+    }
     // query requests
 
     // If logged in, Auth.LogginIn() will be true
