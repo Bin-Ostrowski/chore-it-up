@@ -132,12 +132,7 @@ const resolvers = {
         },
         removeUserFromGroup: async (parent, { userId, groupId }, context) => {
             if (context.user) {
-<<<<<<< HEAD
-                console.log({ user: context.user });
-                const group = await Group.findByIdAndUpdate(
-=======
                 const updateGroup = await Group.findByIdAndUpdate(
->>>>>>> develop
                     { _id: groupId },
                     { $pull: { users: userId } },
                     { new: true }
