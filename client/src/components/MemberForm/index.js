@@ -26,17 +26,20 @@ const MemberForm = ({ userData }) => {
         groupId: userData.group._id,
         username: userData.username,
     });
-
     // Set error State for FormController
     const [isError, setIsError] = useState(false);
 
+    // const [input, setInput] = useState('');
+
     // input onChange handler
     const handleChange = (event) => {
+        setIsError(false);
         const { name, value } = event.target;
         setMember({
             ...member,
             [name]: value,
         });
+        //     setInput(event.target.value);
     };
 
     // form submit handler
@@ -47,20 +50,14 @@ const MemberForm = ({ userData }) => {
         const result = data.users.filter(
             (user) => user.username === member.username
         );
-
-        // deconstruct result
-        const { _id, username } = result[0];
-
-        if (!member.username) {
+        // if input value is empty or if username is not in database return errorMessage
+        if (member.username === '' || result.length == 0) {
             setIsError(true);
-        }
-        // add error or not matching username
-        // if (!data.users.user.username === member.username) {
-        //     setIsError(true);
-        // }
-        else {
+        } else {
+            // deconstruct result
+            const { _id, username } = result[0];
             setIsError(false);
-            setMember({ ...member, userId: _id, username: username });
+            // setMember({ ...member, userId: _id, username: username });
 
             // addUserToGroup mutation
             try {
@@ -68,6 +65,7 @@ const MemberForm = ({ userData }) => {
                     variables: { ...member },
                 });
                 console.log(member);
+                console.log(data.users)
             } catch (e) {
                 console.error(e);
             }
@@ -87,8 +85,9 @@ const MemberForm = ({ userData }) => {
     return (
         <FormControl className="flex-row" isInvalid={isError} isRequired>
             <div className="input-container">
-                <FormLabel className="form-lable">Username:</FormLabel>
+                <FormLabel className="form-label">Username:</FormLabel>
                 <Input
+                    type="text"
                     focusBorderColor="black"
                     variant="filled"
                     placeholder="username"
@@ -105,13 +104,7 @@ const MemberForm = ({ userData }) => {
             </div>
 
             <div className="form-btn">
-                <Button
-                    colorScheme="green"
-                    type="click"
-                    onClick={handleFormSubmit}
-                >
-                    Add Member
-                </Button>
+                <Button onClick={handleFormSubmit}>Add Member</Button>
             </div>
         </FormControl>
     );
