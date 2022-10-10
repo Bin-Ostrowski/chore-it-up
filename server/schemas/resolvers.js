@@ -44,7 +44,7 @@ const resolvers = {
     },
     Mutation: {
         addUser: async (parent, args) => {
-            const user = User.create(args);
+            const user = await User.create(args);
             const token = signToken(user);
 
             // add token to return
@@ -92,7 +92,7 @@ const resolvers = {
             if (context.user) {
                 const group = await Group.findByIdAndUpdate(
                     { _id: groupId },
-                    { $push: { users: userId } },
+                    { $addToSet: { users: userId } },
                     { new: true }
                 );
 
@@ -137,12 +137,12 @@ const resolvers = {
                     { $pull: { users: userId } },
                     { new: true }
                 );
-                const updateUser = await User.findByIdAndUpdate(
+                await User.findByIdAndUpdate(
                     { _id: userId },
                     { $unset: { group: groupId } },
                     { new: true }
                 );
-                return { updateGroup, updateUser };
+                return group;
             }
             throw new AuthenticationError('You need to be logged in');
         },
