@@ -1,18 +1,19 @@
-import React, { useState } from 'react';
-import { useMutation, useQuery } from '@apollo/client';
-import { ADD_USER_TO_GROUP } from '../../utils/mutations';
-import { QUERY_USERS, QUERY_GROUP } from '../../utils/queries';
+import React from 'react';
+import { useQuery } from '@apollo/client';
 
-import './memberForm.css';
+import { QUERY_GROUP } from '../../utils/queries';
+
+import '../MemberForm/memberForm.css';
 
 const MemeberList = ({ userData }) => {
-    const { loading, error, groupData } = useQuery(QUERY_GROUP, {
+    console.log(userData.group.groupName )
+    const { loading, error, data } = useQuery(QUERY_GROUP, {
         variables: { groupName: userData.group.groupName },
-        skip: data,
     });
 
-    console.log(e)
-    console.log('groupData', groupData);
+
+    console.log('groupData', data);
+    console.log('username', data.group.users[0].username)
 
     if (loading) {
         return <h3>LOADING...</h3>;
@@ -26,7 +27,7 @@ const MemeberList = ({ userData }) => {
             <h2>Group Members:</h2>
             <ul>
                 {/* //map thought group members */}
-                {groupData.users.map((user) => (
+                {data.group.users.map((user) => (
                     <li key={user._id} className="username-list">
                         <div> {userData.group.users.username}</div>
                     </li>

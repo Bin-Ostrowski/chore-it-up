@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useMutation, useQuery } from '@apollo/client';
 import { ADD_USER_TO_GROUP } from '../../utils/mutations';
-import { QUERY_USERS, QUERY_GROUP } from '../../utils/queries';
+import { QUERY_USERS } from '../../utils/queries';
 
 import {
     FormControl,
@@ -16,7 +16,7 @@ import './memberForm.css';
 
 const MemberForm = ({ userData }) => {
     // query users to get all users to populate member drop down list
-    console.log(userData.group.groupName);
+
     const { loading, data } = useQuery(QUERY_USERS);
 
     // define addUserToGroup mutation
@@ -51,7 +51,6 @@ const MemberForm = ({ userData }) => {
 
         const { _id, username } = result[0];
 
-        // console.log ("_id and username", _id, username);
         if (!member.username) {
             setIsError(true);
         }
@@ -68,8 +67,6 @@ const MemberForm = ({ userData }) => {
                 await addUserToGroup({
                     variables: { ...member },
                 });
-
-                // console.log(member);
             } catch (e) {
                 console.error(e);
             }
