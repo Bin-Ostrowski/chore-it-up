@@ -8,7 +8,7 @@ import {
     FormLabel,
     FormErrorMessage,
     FormHelperText,
-    Select,
+    Input,
     Button,
 } from '@chakra-ui/react';
 
@@ -18,6 +18,7 @@ const MemberForm = ({ userData }) => {
     // query users to get all users to populate member drop down list
     const { loading, data } = useQuery(QUERY_USERS);
 
+    console.log('users queried', data);
     // define addUserToGroup mutation
     const [addUserToGroup, { error }] = useMutation(ADD_USER_TO_GROUP);
 
@@ -28,6 +29,7 @@ const MemberForm = ({ userData }) => {
     const [member, setMember] = useState({
         userId: userData._id,
         groupId: userData.group._id,
+        username: userData.username,
     });
     console.log('memberForm', member);
 
@@ -41,7 +43,7 @@ const MemberForm = ({ userData }) => {
     // input onChange hangler
     const handleChange = (event) => {
         const { name, value } = event.target;
-
+        console.log(value);
         setMember({
             ...member,
             [name]: value,
@@ -50,28 +52,43 @@ const MemberForm = ({ userData }) => {
 
     // form submit handler -
     const handleFormSubmit = async (event) => {
-        // event.preventDefault();
-        if (member.username === '') {
-            setIsError(true);
-        } else {
-            console.log('submit', member);
-            setIsError(false);
-            setMember({ ...setMember });
+        event.preventDefault();
 
-            // addUserToGroup mutation
-            try {
-                await addUserToGroup({
-                    variables: { ...member },
-                });
+        const result = data.users.filter(user => user.username === member.username);      
+        console.log("result", result);
 
-                console.log(member);
-            } catch (e) {
-                console.error(e);
-            };
+        // if (!member.username) {
+        //     setIsError(true);
+        // }
 
-            // setMember('');
-        };
+        
+        // else {
+        //     console.log('submit', member);
+        //     setIsError(false);
+        //     setMember({ ...setMember });
+
+        //     // addUserToGroup mutation
+        //     try {
+        //         await addUserToGroup({
+        //             variables: { ...member },
+        //         });
+
+        //         // console.log(member);
+        //     } catch (e) {
+        //         console.error(e);
+        //     }
+
+        //     // setMember('');
+        // }
     };
+
+    if (loading) {
+        return (
+            <div className="member-form-container">
+                <h3>Loading...</h3>
+            </div>
+        );
+    }
 
     return (
         <div className="member-form-container">
@@ -87,26 +104,46 @@ const MemberForm = ({ userData }) => {
             <FormControl className="flex-row" isInvalid={isError} isRequired>
                 <div className="input-container">
                     <FormLabel className="form-lable">Username:</FormLabel>
-                    <Select
+                    <Input
                         focusBorderColor="black"
                         variant="filled"
                         placeholder="username"
-                        value={member.userId}
+                        value={member.username}
+                        name="username"
+                        size="sm"
+                        onChange={handleChange}
+                    />
+                    {isError && (
+                        <FormErrorMessage className="error">
+                            That username does not exist!
+                        </FormErrorMessage>
+                    )}
+                </div>
+
+                <div className="form-btn">
+                    <Button
+                        colorScheme="green"
+                        type="click"
+                        onClick={handleFormSubmit}
+                    >
+                        Add Member
+                    </Button>
+                </div>
+            </FormControl>
+            {/* <FormControl className="flex-row" isInvalid={isError} isRequired>
+                <div className="input-container">
+                    <FormLabel className="form-lable">Username:</FormLabel>
+                    <Input
+                        focusBorderColor="black"
+                        variant="filled"
+                        placeholder="username"
+                        value={member.username}
                         name="username"
                         size="sm"
                         onChange={handleChange}
                     >
-                        {/* Map over all users */}
-                        {/* remove me from map */}
-                        {data &&
-                            data.users.map((users) => {
-                                return (
-                                    <option key={users._id}>
-                                        {users.username}
-                                    </option>
-                                );
-                            })}
-                    </Select>
+                        
+                    </Input>
 
                     {isError && (
                         <FormErrorMessage
@@ -127,7 +164,7 @@ const MemberForm = ({ userData }) => {
                         Add Member
                     </Button>
                 </div>
-            </FormControl>
+            </FormControl> */}
         </div>
     );
 };
