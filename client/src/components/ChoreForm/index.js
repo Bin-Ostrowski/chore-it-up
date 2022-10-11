@@ -1,4 +1,8 @@
 import React, { useState } from 'react';
+import ChoreList from '../ChoreList';
+import { useMutation, useQuery } from '@apollo/client';
+import { ADD_CHORE } from '../../utils/mutations';
+import { QUERY_ME } from '../../utils/queries';
 
 import {
     FormControl,
@@ -13,53 +17,80 @@ import {
 import './choreForm.css';
 
 const ChoreForm = () => {
+    // declare query_ME
+    const { loading, data } = useQuery(QUERY_ME);
+
+    // set user and group id's
+
+    const groupId = data.me.group._id;
+    console.log(groupId);
+
+    const userId = data.me._id;
+    console.log(userId);
     // set State for inputs
-    const [choreName, setChoreName] = useState('');
-    const [dueDate, setDueDate] = useState('');
-    const [assignedTo, setAssignedTo] = useState('');
-    const [choreBody, setChoreBody] = useState('');
+    const [choreData, setChoreData] = useState({
+        // group: groupId,
+        // userId: userId,
+        // choreName: 'testName',
+        // dueDate: '2022-10-11T23:11',
+        // // assignedTo: 'Nami',
+        // choreBody: 'testBody',
+    });
+    console.log('choreForm', choreData);
+
+    // Set error State
     const [isError, setIsError] = useState(false);
 
     // declare addChore() and error variable for mutation
-
-    // will need to grap username someone so addChore will be created by that user.
+    const [addChore, { error }] = useMutation(ADD_CHORE);
 
     // input onChange hangler
     const handleChange = (event) => {
-        switch (event.target.name) {
-            case 'choreName':
-                setChoreName(event.target.value);
-                break;
-            case 'dueDate':
-                setDueDate(event.target.value);
-                break;
-            case 'assignedTo':
-                setAssignedTo(event.target.value);
-                break;
-            case 'choreBody':
-                setChoreBody(event.target.value);
-                break;
-        }
+        const { name, value } = event.target;
+
+        setChoreData({
+            ...choreData,
+            group: groupId,
+            userId: userId,
+
+            [name]: value,
+        });
     };
 
     // form submit handler -
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        if (choreName === '') {
+        if (choreData.choreName === '') {
             setIsError(true);
         } else {
-            console.log(choreName, dueDate, assignedTo, choreBody);
             setIsError(false);
+            setChoreData({ ...choreData });
+            console.log({ ...choreData });
 
             // addChore mutation
+            try {
+                await addChore({
+                    variables: { ...choreData },
+                });
 
-            setChoreName('');
-            setDueDate('');
-            setAssignedTo('');
-            setChoreBody('');
+                //clear form values
+
+                setChoreData({
+                    choreName: '',
+                    dueDate: '',
+                    assignedTo: '',
+                    choreBody: '',
+                });
+                console.log(choreData);
+            } catch (e) {
+                console.error(e);
+            }
         }
     };
 
+    if (loading) {
+        <div>LOADING ... </div>;
+    }
     return (
         <div className="form-container">
             <FormControl className="flex-row" isInvalid={isError} isRequired>
@@ -71,8 +102,8 @@ const ChoreForm = () => {
                         <Input
                             focusBorderColor="lime"
                             placeholder="Chore Name"
-                            value={choreName}
-                            variant='filled'
+                            value={choreData.choreName}
+                            variant="filled"
                             name="choreName"
                             size="sm"
                             onChange={handleChange}
@@ -90,8 +121,8 @@ const ChoreForm = () => {
                             placeholder="Select Date"
                             size="sm"
                             type="datetime-local"
-                            variant='filled'
-                            value={dueDate}
+                            variant="filled"
+                            value={choreData.dueDate}
                             name="dueDate"
                             onChange={handleChange}
                             isInvalid
@@ -103,30 +134,23 @@ const ChoreForm = () => {
                         <Select
                             focusBorderColor="lime"
                             placeholder="Select Username"
-                            value={assignedTo}
+                            value={choreData.assignedTo}
                             name="assignedTo"
-                            variant='filled'
+                            variant="filled"
                             size="sm"
                             onChange={handleChange}
                             isInvalid
                             errorBorderColor="null"
-                        >
-                            {/* Map over users in group */}
-                            <option>Luffy</option>
-                            <option>Nami</option>
-                            <option>Chopper</option>
-                            <option>Zoro</option>
-                            <option>None</option>
-                        </Select>
+                        />
                     </div>
                     <div className="form-input">
                         <FormLabel requiredIndicator>Chore Notes:</FormLabel>
                         <Input
                             focusBorderColor="lime"
                             placeholder="Describe Chore"
-                            value={choreBody}
+                            value={choreData.choreBody}
                             name="choreBody"
-                            variant='filled'
+                            variant="filled"
                             size="sm"
                             onChange={handleChange}
                             isInvalid
