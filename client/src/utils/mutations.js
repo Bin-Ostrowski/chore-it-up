@@ -69,3 +69,20 @@ export const REMOVE_CHORE = gql`
         }
     }
 `;
+
+export const ADD_USER_TO_GROUP = gql`
+    mutation addUserToGroup($userId: ID!, $groupId: ID!) {
+        addUserToGroup(userId: $userId, groupId: $groupId) {
+            _id
+            groupName
+        }
+    }
+`;
+
+export const REMOVE_USER_FROM_GROUP = gql`
+    mutation removeUserFromGroup($userId: ID!, $groupId: ID!) {
+        removeUserFromGroup(userId: $userId, groupId: $groupId) {
+            _id
+        }
+    }
+`;

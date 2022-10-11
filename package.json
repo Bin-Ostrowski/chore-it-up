@@ -24,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/Bin-Ostrowski/chore-it-up/issues"
   },
-  "homepage": "https://github.com/Bin-Ostrowski/chore-it-up#readme"
+  "homepage": "https://github.com/Bin-Ostrowski/chore-it-up#readme",
+  "dependencies": {
+    "@chakra-ui/icons": "^2.0.11"
+  }
 }
