@@ -33,7 +33,7 @@ const Home = () => {
             return <GroupForm />;
         }
 
-        // console.log(data.me);
+        console.log(data.me);
         if (data.me.group) {
             const groupName = data.me.group.groupName;
             return (
