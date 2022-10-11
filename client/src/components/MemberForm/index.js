@@ -15,7 +15,7 @@ import './memberForm.css';
 
 const MemberForm = ({ userData }) => {
     // query users
-    const { loading, data } = useQuery(QUERY_USERS);
+    const { loading, data, refetch } = useQuery(QUERY_USERS);
 
     // define addUserToGroup mutation
     const [addUserToGroup, { error }] = useMutation(ADD_USER_TO_GROUP);
@@ -70,6 +70,8 @@ const MemberForm = ({ userData }) => {
             // //clear set member state but leave groupId the same
             // setMember({...member, userId: '', username: '' });
         }
+        // retech DB query to display added member.
+        refetch({data});
     };
 
     if (loading) {

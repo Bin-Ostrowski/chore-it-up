@@ -15,7 +15,7 @@ const MemeberList = ({ userData }) => {
     // add cache to update page
 
     // Query group data
-    const { loading, error, data } = useQuery(QUERY_GROUP, {
+    const { loading, error, data, refetch } = useQuery(QUERY_GROUP, {
         variables: { groupName: userData.group.groupName },
     });
     // if data exists define usersData or return empty objecty
@@ -32,6 +32,9 @@ const MemeberList = ({ userData }) => {
         } catch (e) {
             console.log(e);
         }
+
+        // refresh query
+        refetch({data})
     };
 
     if (loading) {
