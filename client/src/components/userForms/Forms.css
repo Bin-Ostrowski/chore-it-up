@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-around;
     background-image: url(../../assets/annie-spratt-nK4GVqwCNMM-unsplash.jpg);
-    height: 90vh;
+    height: 95vh;
     width: 100vw;
     background-position: center;
     background-size: cover;
@@ -17,7 +17,7 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    height: 90vh;
+    height: 95vh;
     width: 100vw;
 }
 
