@@ -34,31 +34,27 @@ const MemberForm = ({ refetch, groupData }) => {
     // input onChange handler
     const handleOnInput = (event) => {
         setIsError(false);
-        
+
         const { value } = event.target;
         // setMember({
         //     ...member,
         //     [name]: value,
         // });
-        
+
         // console.log('onUPdate member', member)
 
         // Filter users in DB to match input
-        const result = data.users.filter(
-            (user) => user.username === value
-        );
-        
+        const result = data.users.filter((user) => user.username === value);
 
         // if input value is empty or if username is not in database return errorMessage
         if (result.length == 0) {
             setIsError(true);
-            setMember(null)
+            setMember(null);
         } else {
             // const { _id, username } = result[0];
             // deconstruct result
             setIsError(false);
             setMember(result[0]);
-
         }
     };
 
@@ -81,11 +77,15 @@ const MemberForm = ({ refetch, groupData }) => {
         //     setMember({ ...member, userId: _id, username: username });
 
         // addUserToGroup mutation
-        console.log('member', member.userId)
-        console.log('groupdata', groupData)
+        console.log('member', member.userId);
+        console.log('groupdata', groupData);
         try {
             await addUserToGroup({
-                variables: { userId:member._id, groupId: groupData.group._id, username: member.username},
+                variables: {
+                    userId: member._id,
+                    groupId: groupData.group._id,
+                    username: member.username,
+                },
             });
             console.log('added', member);
 
@@ -129,8 +129,9 @@ const MemberForm = ({ refetch, groupData }) => {
             </div>
 
             <div className="form-btn">
-                <Button disabled={!member}
-                onClick={handleFormSubmit}>Add Member</Button>
+                <Button disabled={!member} onClick={handleFormSubmit}>
+                    Add Member
+                </Button>
             </div>
         </FormControl>
     );
