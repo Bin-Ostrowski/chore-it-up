@@ -7,8 +7,8 @@ import MemberForm from '../../components/MemberForm';
 import './home.css';
 
 import { useMutation, useQuery } from '@apollo/client';
-import { QUERY_USER } from '../../utils/queries';
-import { QUERY_ME } from '../../utils/queries';
+import { QUERY_USER, QUERY_ME, QUERY_GROUP } from '../../utils/queries';
+import {} from '../../utils/queries';
 import auth from '../../utils/auth';
 
 const Home = () => {
@@ -32,7 +32,7 @@ const Home = () => {
             return <GroupForm />;
         }
 
-        console.log(data.me);
+        console.log(data.me.group.groupName);
         if (data.me.group) {
             const groupName = data.me.group.groupName;
             return (
@@ -44,7 +44,9 @@ const Home = () => {
                                 <h2>{groupName}</h2>
                                 <MemberForm />
                                 <ChoreForm />
-                               . {/* <ChoreList chores={data.me.chores}/> */}
+                                <ChoreList
+                                    groupName={data.me.group.groupName}
+                                />
                             </div>
                         </div>
                     )}

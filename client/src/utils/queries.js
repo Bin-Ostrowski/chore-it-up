@@ -38,3 +38,18 @@ export const QUERY_ME = gql`
         }
     }
 `;
+
+export const QUERY_GROUP = gql`
+    query group($groupName: String!) {
+        group(groupName: $groupName) {
+            _id
+            groupName
+            chores {
+                _id
+                choreName
+                choreBody
+                dueDate
+            }
+        }
+    }
+`;
