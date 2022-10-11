@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import ChoreList from '../ChoreList';
 import { useMutation, useQuery } from '@apollo/client';
 import { ADD_CHORE } from '../../utils/mutations';
 import { QUERY_ME } from '../../utils/queries';
@@ -16,7 +15,7 @@ import {
 
 import './choreForm.css';
 
-const ChoreForm = () => {
+const ChoreForm = ({ refetch, groupData }) => {
     // declare query_ME
     const { loading, data } = useQuery(QUERY_ME);
 
@@ -59,12 +58,13 @@ const ChoreForm = () => {
 
     // form submit handler -
     const handleFormSubmit = async (event) => {
+        console.log('handleFormSubmit');
         event.preventDefault();
         if (choreData.choreName === '') {
             setIsError(true);
         } else {
             setIsError(false);
-            setChoreData({ ...choreData });
+            // setChoreData({ ...choreData });
             console.log({ ...choreData });
 
             // addChore mutation
@@ -73,14 +73,16 @@ const ChoreForm = () => {
                     variables: { ...choreData },
                 });
 
+                console.log(groupData);
                 //clear form values
-
                 setChoreData({
                     choreName: '',
                     dueDate: '',
                     assignedTo: '',
                     choreBody: '',
                 });
+
+                refetch();
                 console.log(choreData);
             } catch (e) {
                 console.error(e);
