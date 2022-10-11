@@ -111,17 +111,12 @@ const resolvers = {
             if (context.user) {
                 const chore = await Chore.create({
                     ...args,
+                    group: args.groupId,
                     username: context.user.username,
                 });
 
                 await Group.findByIdAndUpdate(
-                    { _id: args.group },
-                    { $push: { chores: chore._id } },
-                    { new: true }
-                );
-
-                await User.findByIdAndUpdate(
-                    { _id: args.userId },
+                    { _id: args.groupId },
                     { $push: { chores: chore._id } },
                     { new: true }
                 );

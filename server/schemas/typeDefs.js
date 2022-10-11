@@ -51,7 +51,7 @@ const typeDefs = gql`
         addUserToGroup(userId: ID!, groupId: ID!): Group
         removeUserToGroup(username: String!): Group
         addChore(
-            group: ID!
+            groupId: ID!
             userId: ID!
             choreName: String!
             choreBody: String
