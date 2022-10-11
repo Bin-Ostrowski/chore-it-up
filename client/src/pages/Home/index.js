@@ -62,8 +62,14 @@ const Home = () => {
                             {/* //map over group id */}
                             <div className="group-container">
                                 <h2>{groupName}</h2>
-                                <MemberForm userData={data.me} />
-                                <MemberList userData={data.me} />
+                                <MemberForm
+                                    groupData={groupData}
+                                    refetch={refetch}
+                                />
+                                <MemberList
+                                    groupData={groupData}
+                                    // loading={groupLoading}
+                                />
                                 <ChoreForm
                                     groupData={groupData}
                                     refetch={refetch}

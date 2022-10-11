@@ -6,7 +6,7 @@ import { ListItem, UnorderedList, Button } from '@chakra-ui/react';
 
 import '../MemberForm/memberForm.css';
 
-const MemeberList = ({ userData }) => {
+const MemeberList = ({ groupData }) => {
     //the declare REMOVE_CHORE mutation
     const [removeUserFromGroup, { removeError }] = useMutation(
         REMOVE_USER_FROM_GROUP
@@ -16,14 +16,14 @@ const MemeberList = ({ userData }) => {
 
     // Query group data
     const { loading, error, data, refetch } = useQuery(QUERY_GROUP, {
-        variables: { groupName: userData.group.groupName },
+        variables: { groupName: groupData.group.groupName },
     });
     // if data exists define usersData or return empty objecty
     const usersData = data?.group || {};
 
     // remove member from group
     const handlerRemoveUser = async (removeUserId) => {
-        const removeGroupId = userData.group._id;
+        const removeGroupId = groupData.group._id;
 
         try {
             await removeUserFromGroup({
@@ -34,7 +34,7 @@ const MemeberList = ({ userData }) => {
         }
 
         // refresh query
-        refetch({data})
+        refetch({ data });
     };
 
     if (loading) {
