@@ -50,29 +50,35 @@ export const QUERY_ME = gql`
                     _id
                     username
                 }
-                chores {
-                    _id
-                    choreName
-                    choreBody
-                    createdAt
-                    username
-                    dueDate
-                    status
-                }
+            }
+            chores {
+                _id
+                choreName
+                choreBody
+                createdAt
+                username
+                dueDate
+                status
             }
         }
     }
 `;
 
 export const QUERY_GROUP = gql`
-query group($groupName: String!) {
-  group(groupName: $groupName) {
-    _id
-    groupName
-    users {
-      _id
-      username
+    query group($groupName: String!) {
+        group(groupName: $groupName) {
+            _id
+            groupName
+            chores {
+                _id
+                choreName
+                choreBody
+                dueDate
+            }
+            users {
+                _id
+                username
+            }
+        }
     }
-  }
-}
 `;
