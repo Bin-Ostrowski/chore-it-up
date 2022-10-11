@@ -36,7 +36,7 @@ const Header = () => {
                 h="50px"
                 bgColor="green.400"
             >
-                <Box sx={navBoxStyles} _hover={hoverStyles}>
+                <Box sx={navBoxStyles}>
                     {/* <Link to="/">
                         <h1>Chore It Up</h1>
                     </Link> */}
@@ -53,7 +53,7 @@ const Header = () => {
                                 <Link to="/chores">Your Chores</Link>
                             </Box>
                             {loggedIn && (
-                                <Box paddingLeft={'20px'}>
+                                <Box paddingLeft={'20px'} _hover={hoverStyles}>
                                     <a href="/" onClick={logout}>
                                         Logout
                                     </a>

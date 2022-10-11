@@ -52,26 +52,19 @@ export default function App() {
             <ChakraProvider>
                 {/* // wrap all in ApolloProvider */}
                 <Router>
-                    <div>
-                        {isLoggedin && <Header />}
+                    {isLoggedin && <Header />}
+                    <Routes>
+                        <Route path="/" element={<Login />} />
+                        <Route path="/home" element={<Home />}></Route>
+                        <Route path="/chores">
+                            <Route path=":username" element={<YourChores />} />
+                            <Route path="" element={<YourChores />} />
+                        </Route>
+                        {/* <Route path="/login" element={<Login />} /> */}
+                        {/* <Route path="/signup" element={<Signup />} /> */}
+                    </Routes>
 
-                        <div>
-                            <Routes>
-                                <Route path="/" element={<Login />} />
-                                <Route path="/home" element={<Home />}></Route>
-                                <Route path="/chores">
-                                    <Route
-                                        path=":username"
-                                        element={<YourChores />}
-                                    />
-                                    <Route path="" element={<YourChores />} />
-                                </Route>
-                                {/* <Route path="/login" element={<Login />} /> */}
-                                {/* <Route path="/signup" element={<Signup />} /> */}
-                            </Routes>
-                        </div>
-                        <Footer />
-                    </div>
+                    <Footer />
                 </Router>
             </ChakraProvider>
         </ApolloProvider>
