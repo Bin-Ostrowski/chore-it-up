@@ -94,7 +94,7 @@ const resolvers = {
                     { _id: groupId },
                     { $addToSet: { users: userId } },
                     { new: true }
-                ) .populate('users');
+                ).populate('users');
 
                 await User.findByIdAndUpdate(
                     { _id: userId },
@@ -111,12 +111,11 @@ const resolvers = {
             if (context.user) {
                 const chore = await Chore.create({
                     ...args,
-                    group: args.groupId,
                     username: context.user.username,
                 });
 
                 await Group.findByIdAndUpdate(
-                    { _id: args.groupId },
+                    { _id: args.group },
                     { $push: { chores: chore._id } },
                     { new: true }
                 );
@@ -176,7 +175,7 @@ const resolvers = {
                     { _id: choreId },
                     { assignedTo: assignedId },
                     { new: true }
-                ) .populate('assignedTo');
+                ).populate('assignedTo');
 
                 await User.findByIdAndUpdate(
                     { _id: assignedId },
