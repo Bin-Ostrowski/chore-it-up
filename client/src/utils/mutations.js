@@ -78,3 +78,11 @@ export const ADD_USER_TO_GROUP = gql`
         }
     }
 `;
+
+export const REMOVE_USER_FROM_GROUP = gql`
+    mutation removeUserFromGroup($userId: ID!, $groupId: ID!) {
+        removeUserFromGroup(userId: $userId, groupId: $groupId) {
+            _id
+        }
+    }
+`;
