@@ -181,6 +181,7 @@ const resolvers = {
                     { _id: choreId },
                     { assignedTo: assignedId },
                     { new: true }
+                    .populate(assignedTo)
                 );
 
                 await User.findByIdAndUpdate(
