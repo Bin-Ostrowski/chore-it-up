@@ -4,7 +4,7 @@ import GroupForm from '../../components/GroupForm';
 import ChoreForm from '../../components/ChoreForm';
 import ChoreList from '../../components/ChoreList';
 import MemberForm from '../../components/MemberForm';
-import MemberList from '../../components/MemberList';
+import MemberList from '../../components/memberList';
 import './home.css';
 
 import { useMutation, useQuery } from '@apollo/client';
