@@ -29,8 +29,6 @@ const MemberForm = ({ userData }) => {
     // Set error State for FormController
     const [isError, setIsError] = useState(false);
 
-    // const [input, setInput] = useState('');
-
     // input onChange handler
     const handleChange = (event) => {
         setIsError(false);
@@ -39,7 +37,6 @@ const MemberForm = ({ userData }) => {
             ...member,
             [name]: value,
         });
-        //     setInput(event.target.value);
     };
 
     // form submit handler
@@ -50,27 +47,28 @@ const MemberForm = ({ userData }) => {
         const result = data.users.filter(
             (user) => user.username === member.username
         );
+
         // if input value is empty or if username is not in database return errorMessage
         if (member.username === '' || result.length == 0) {
             setIsError(true);
         } else {
-            // deconstruct result
             const { _id, username } = result[0];
+            // deconstruct result
             setIsError(false);
-            // setMember({ ...member, userId: _id, username: username });
+            setMember({ ...member, userId: _id, username: username });
 
             // addUserToGroup mutation
             try {
                 await addUserToGroup({
                     variables: { ...member },
                 });
-                console.log(member);
-                console.log(data.users)
             } catch (e) {
                 console.error(e);
             }
+            console.log('added');
 
-            // // setMember('');
+            // //clear set member state but leave groupId the same
+            // setMember({...member, userId: '', username: '' });
         }
     };
 
