@@ -77,6 +77,8 @@ const Home = () => {
                                 <ChoreList
                                     choresData={groupData.group.chores}
                                     loading={groupLoading}
+                                    data={groupData}
+                                    refetch={refetch}
                                 />
                             </div>
                         </div>
