@@ -20,7 +20,12 @@ const Home = () => {
 
     // If logged in, Auth.LogginIn() will be true
 
-    const { loading, error, data } = useQuery(QUERY_ME);
+    const {
+        loading,
+        error,
+        data,
+        refetch: meQueryRefetch,
+    } = useQuery(QUERY_ME);
 
     console.log(data);
     const groupName = data?.me?.group?.groupName;
@@ -43,9 +48,9 @@ const Home = () => {
         if (error) {
             console.log(error);
         }
-
-        if (!data.me) {
-            return <GroupForm />;
+        console.log(data.me);
+        if (!data.me.group) {
+            return <GroupForm refetch={meQueryRefetch} />;
         }
 
         // console.log(data.me.group.groupName);
@@ -64,7 +69,6 @@ const Home = () => {
                                     refetch={refetch}
                                 />
                                 <ChoreList
-                                    whatever={'someValue'}
                                     choresData={groupData.group.chores}
                                     loading={groupLoading}
                                 />

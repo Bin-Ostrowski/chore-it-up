@@ -11,23 +11,10 @@ import { QUERY_GROUP } from '../../utils/queries';
 // pass in props for chores array, group array for that user
 // pass chores so can pass to modal
 
-const ChoreList = ({ choresData, loading, data, whatever }) => {
-    const choreSet = {};
-
-    for (let chore of choresData) {
-        choreSet[chore._id] = chore;
-    }
-
-    const deduplicatedChores = Object.entries(choreSet).map(
-        ([_, chore]) => chore
-    );
-
-    console.log({ whatever });
-    console.log('group name: ', deduplicatedChores);
-
+const ChoreList = ({ choresData, loading, data }) => {
     // if data define chore data or empty object
     // const choresData = data?.group || {};
-    console.log('chores data', deduplicatedChores);
+    console.log('chores data', choresData);
     console.log(data);
 
     // remove Chore
@@ -40,15 +27,15 @@ const ChoreList = ({ choresData, loading, data, whatever }) => {
 
     if (loading) {
         return <h1>loading...</h1>;
-    } else if (!deduplicatedChores.length) {
+    } else if (!choresData.length) {
         // if no choes return this:
         console.log('no chores yet');
         return <h3>No Chores Yet</h3>;
     } else {
-        console.log(deduplicatedChores);
+        console.log(choresData);
         return (
             <ul>
-                {deduplicatedChores.map((chore, i) => (
+                {choresData.map((chore, i) => (
                     <li key={chore._id} className="list">
                         <div className="list-text">
                             <div>

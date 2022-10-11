@@ -14,7 +14,7 @@ import Auth from '../../utils/auth';
 
 import './groupForm.css';
 
-const GroupForm = () => {
+const GroupForm = ({ refetch }) => {
     const [groupInput, setGroupInput] = useState();
     const [groupState, setGroups] = useState([
         {
@@ -47,12 +47,13 @@ const GroupForm = () => {
                 });
 
                 setGroupInput('');
+
                 console.log(groupState);
             } catch (e) {
                 console.error(e);
             }
         }
-        window.location.reload();
+        refetch();
     };
     return (
         <div id="form-helper-container">
