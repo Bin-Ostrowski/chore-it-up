@@ -7,7 +7,7 @@ import { ListItem, UnorderedList, Button } from '@chakra-ui/react';
 import '../MemberForm/memberForm.css';
 
 const MemeberList = ({ groupData }) => {
-    //the declare REMOVE_uSER mutation
+    //the declare REMOVE_USER mutation
     const [removeUserFromGroup, { removeError }] = useMutation(
         REMOVE_USER_FROM_GROUP
     );
