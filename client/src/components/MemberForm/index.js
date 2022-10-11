@@ -13,65 +13,90 @@ import {
 
 import './memberForm.css';
 
-const MemberForm = ({ userData }) => {
+const MemberForm = ({ refetch, groupData }) => {
     // query users
-    const { loading, data, refetch } = useQuery(QUERY_USERS);
+    const { loading, data } = useQuery(QUERY_USERS);
 
     // define addUserToGroup mutation
     const [addUserToGroup, { error }] = useMutation(ADD_USER_TO_GROUP);
 
     // set State for inputs
-    const [member, setMember] = useState({
-        userId: userData._id,
-        groupId: userData.group._id,
-        username: userData.username,
-    });
+    const [member, setMember] = useState(
+        null
+
+        // userId: groupData._id,
+        // groupId: groupData.group._id,
+        // username: groupData.username,
+    );
     // Set error State for FormController
     const [isError, setIsError] = useState(false);
 
     // input onChange handler
-    const handleChange = (event) => {
+    const handleOnInput = (event) => {
         setIsError(false);
-        const { name, value } = event.target;
-        setMember({
-            ...member,
-            [name]: value,
-        });
+        
+        const { value } = event.target;
+        // setMember({
+        //     ...member,
+        //     [name]: value,
+        // });
+        
+        // console.log('onUPdate member', member)
+
+        // Filter users in DB to match input
+        const result = data.users.filter(
+            (user) => user.username === value
+        );
+        
+
+        // if input value is empty or if username is not in database return errorMessage
+        if (result.length == 0) {
+            setIsError(true);
+            setMember(null)
+        } else {
+            // const { _id, username } = result[0];
+            // deconstruct result
+            setIsError(false);
+            setMember(result[0]);
+
+        }
     };
 
     // form submit handler
     const handleFormSubmit = async (event) => {
         event.preventDefault();
 
-        // Filter users in DB to match input
-        const result = data.users.filter(
-            (user) => user.username === member.username
-        );
+        // // Filter users in DB to match input
+        // const result = data.users.filter(
+        //     (user) => user.username === member.username
+        // );
 
-        // if input value is empty or if username is not in database return errorMessage
-        if (member.username === '' || result.length == 0) {
-            setIsError(true);
-        } else {
-            const { _id, username } = result[0];
-            // deconstruct result
-            setIsError(false);
-            setMember({ ...member, userId: _id, username: username });
+        // // if input value is empty or if username is not in database return errorMessage
+        // if (member.username === '' || result.length == 0) {
+        //     setIsError(true);
+        // } else {
+        //     const { _id, username } = result[0];
+        //     // deconstruct result
+        //     setIsError(false);
+        //     setMember({ ...member, userId: _id, username: username });
 
-            // addUserToGroup mutation
-            try {
-                await addUserToGroup({
-                    variables: { ...member },
-                });
-            } catch (e) {
-                console.error(e);
-            }
-            console.log('added');
+        // addUserToGroup mutation
+        console.log('member', member.userId)
+        console.log('groupdata', groupData)
+        try {
+            await addUserToGroup({
+                variables: { userId:member._id, groupId: groupData.group._id, username: member.username},
+            });
+            console.log('added', member);
 
-            // //clear set member state but leave groupId the same
-            // setMember({...member, userId: '', username: '' });
+            // retech DB query to display added member.
+            refetch();
+        } catch (e) {
+            console.error(e);
         }
-        // retech DB query to display added member.
-        refetch({data});
+
+        // //clear set member state but leave groupId the same
+        // setMember({...member, userId: '', username: '' });
     };
 
     if (loading) {
@@ -91,10 +116,10 @@ const MemberForm = ({ userData }) => {
                     focusBorderColor="black"
                     variant="filled"
                     placeholder="username"
-                    value={member.username}
+                    // value={value}
                     name="username"
                     size="sm"
-                    onChange={handleChange}
+                    onInput={handleOnInput}
                 />
                 {isError && (
                     <FormErrorMessage className="error">
@@ -104,7 +129,8 @@ const MemberForm = ({ userData }) => {
             </div>
 
             <div className="form-btn">
-                <Button onClick={handleFormSubmit}>Add Member</Button>
+                <Button disabled={!member}
+                onClick={handleFormSubmit}>Add Member</Button>
             </div>
         </FormControl>
     );
