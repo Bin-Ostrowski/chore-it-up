@@ -10,8 +10,8 @@ const resolvers = {
                     _id: context.user._id,
                 })
                     .select('-_v -password')
-                    .populate('group')
-                    .populate('chores');
+                    // .populate('chores')
+                    .populate('group');
 
                 return userData;
             }

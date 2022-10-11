@@ -50,15 +50,15 @@ export const QUERY_ME = gql`
                     _id
                     username
                 }
-                chores {
-                    _id
-                    choreName
-                    choreBody
-                    createdAt
-                    username
-                    dueDate
-                    status
-                }
+            }
+            chores {
+                _id
+                choreName
+                choreBody
+                createdAt
+                username
+                dueDate
+                status
             }
         }
     }

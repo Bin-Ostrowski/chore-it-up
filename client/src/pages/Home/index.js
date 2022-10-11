@@ -9,7 +9,7 @@ import './home.css';
 
 import { useMutation, useQuery } from '@apollo/client';
 // import { QUERY_USER } from '../../utils/queries';
-import { QUERY_ME } from '../../utils/queries';
+import { QUERY_ME, QUERY_GROUP } from '../../utils/queries';
 import auth from '../../utils/auth';
 
 const Home = () => {
@@ -22,9 +22,24 @@ const Home = () => {
 
     const { loading, error, data } = useQuery(QUERY_ME);
 
-    // const [isGroup, setisGroup] = useState(false);
+    console.log(data);
+    const groupName = data?.me?.group?.groupName;
 
-    if (!loading) {
+    const {
+        loading: groupLoading,
+        error: groupError,
+        data: groupData,
+        refetch,
+    } = useQuery(QUERY_GROUP, {
+        variables: { groupName },
+        skip: loading,
+    });
+
+    console.log('home groupData', groupData);
+
+    const [isGroup, setisGroup] = useState(false);
+
+    if (!(loading || groupLoading)) {
         if (error) {
             console.log(error);
         }
@@ -33,9 +48,8 @@ const Home = () => {
             return <GroupForm />;
         }
 
-        console.log(data.me.group.groupName);
+        // console.log(data.me.group.groupName);
         if (data.me.group) {
-            const groupName = data.me.group.groupName;
             return (
                 <main style={{ backgroundColor: '#284B63' }}>
                     {data.me.group && (
@@ -45,9 +59,14 @@ const Home = () => {
                                 <h2>{groupName}</h2>
                                 <MemberForm userData={data.me} />
                                 <MemberList userData={data.me} />
-                                <ChoreForm />
+                                <ChoreForm
+                                    groupData={groupData}
+                                    refetch={refetch}
+                                />
                                 <ChoreList
-                                    groupName={data.me.group.groupName}
+                                    whatever={'someValue'}
+                                    choresData={groupData.group.chores}
+                                    loading={groupLoading}
                                 />
                             </div>
                         </div>
