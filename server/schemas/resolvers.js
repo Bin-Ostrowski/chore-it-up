@@ -94,9 +94,9 @@ const resolvers = {
                     { _id: groupId },
                     { $addToSet: { users: userId } },
                     { new: true }
-                );
+                ) .populate('users');
 
-                const user = await User.findByIdAndUpdate(
+                await User.findByIdAndUpdate(
                     { _id: userId },
                     { group: groupId },
                     { new: true }
@@ -111,17 +111,12 @@ const resolvers = {
             if (context.user) {
                 const chore = await Chore.create({
                     ...args,
+                    group: args.groupId,
                     username: context.user.username,
                 });
 
                 await Group.findByIdAndUpdate(
-                    { _id: args.group },
-                    { $push: { chores: chore._id } },
-                    { new: true }
-                );
-
-                await User.findByIdAndUpdate(
-                    { _id: args.userId },
+                    { _id: args.groupId },
                     { $push: { chores: chore._id } },
                     { new: true }
                 );
@@ -132,7 +127,7 @@ const resolvers = {
         },
         removeUserFromGroup: async (parent, { userId, groupId }, context) => {
             if (context.user) {
-                const updateGroup = await Group.findByIdAndUpdate(
+                const group = await Group.findByIdAndUpdate(
                     { _id: groupId },
                     { $pull: { users: userId } },
                     { new: true }
@@ -177,19 +172,19 @@ const resolvers = {
         },
         assignedChore: async (parent, { choreId, assignedId }, context) => {
             if (context.user) {
-                const assignChore = await Chore.findByIdAndUpdate(
+                const chore = await Chore.findByIdAndUpdate(
                     { _id: choreId },
                     { assignedTo: assignedId },
                     { new: true }
-                );
+                ) .populate('assignedTo');
 
-                const assignUser = await User.findByIdAndUpdate(
+                await User.findByIdAndUpdate(
                     { _id: assignedId },
                     { chores: choreId },
                     { new: true }
                 );
 
-                return { assignChore, assignUser };
+                return chore;
             }
 
             throw new AuthenticationError('You need to be logged in!');
