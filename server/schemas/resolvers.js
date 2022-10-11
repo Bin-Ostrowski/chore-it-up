@@ -94,9 +94,9 @@ const resolvers = {
                     { _id: groupId },
                     { $addToSet: { users: userId } },
                     { new: true }
-                );
+                ) .populate('users');
 
-                const user = await User.findByIdAndUpdate(
+                await User.findByIdAndUpdate(
                     { _id: userId },
                     { group: groupId },
                     { new: true }
@@ -114,11 +114,11 @@ const resolvers = {
                     username: context.user.username,
                 });
 
-                // await Group.findByIdAndUpdate(
-                //     { _id: args.group },
-                //     { $push: { chores: chore._id } },
-                //     { new: true }
-                // );
+                await Group.findByIdAndUpdate(
+                    { _id: args.group },
+                    { $push: { chores: chore._id } },
+                    { new: true }
+                );
 
                 await User.findByIdAndUpdate(
                     { _id: args.userId },
@@ -132,7 +132,7 @@ const resolvers = {
         },
         removeUserFromGroup: async (parent, { userId, groupId }, context) => {
             if (context.user) {
-                const updateGroup = await Group.findByIdAndUpdate(
+                const group = await Group.findByIdAndUpdate(
                     { _id: groupId },
                     { $pull: { users: userId } },
                     { new: true }
@@ -181,8 +181,7 @@ const resolvers = {
                     { _id: choreId },
                     { assignedTo: assignedId },
                     { new: true }
-                    .populate(assignedTo)
-                );
+                ) .populate('assignedTo');
 
                 await User.findByIdAndUpdate(
                     { _id: assignedId },
