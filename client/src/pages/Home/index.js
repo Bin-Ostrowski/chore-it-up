@@ -46,7 +46,7 @@ const Home = () => {
                                 <MemberForm userData={data.me} />
                                 <MemberList userData={data.me} />
                                 <ChoreForm />
-                                <ChoreList />
+                               . {/* <ChoreList chores={data.me.chores}/> */}
                             </div>
                         </div>
                     )}

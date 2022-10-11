@@ -38,12 +38,34 @@ export const ADD_GROUP = gql`
     }
 `;
 
-// will need to fix - username is null when queried
-export const ADD_USER_TO_GROUP = gql`
-    mutation addUserToGroup($userId: ID!, $groupId: ID!) {
-        addUserToGroup(userId: $userId, groupId: $groupId) {
+export const ADD_CHORE = gql`
+    mutation addChore(
+        $group: ID!
+        $userId: ID!
+        $choreName: String!
+        $choreBody: String
+        $dueDate: String
+    ) {
+        addChore(
+            group: $group
+            userId: $userId
+            choreName: $choreName
+            choreBody: $choreBody
+            dueDate: $dueDate
+        ) {
             _id
-            groupName
+            choreName
+            choreBody
+            createdAt
+            dueDate
+        }
+    }
+`;
+
+export const REMOVE_CHORE = gql`
+    mutation removeChore($choreId: ID!, $groupId: ID!) {
+        removeChore(choreId: $choreId, groupId: $groupId) {
+            _id
         }
     }
 `;

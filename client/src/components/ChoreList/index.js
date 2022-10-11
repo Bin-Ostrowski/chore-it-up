@@ -1,5 +1,6 @@
 import React from 'react';
 import UpdateChoreModal from '../UpdateChoreModal';
+import ChoreForm from '../ChoreForm';
 import './choreList.css';
 
 // do we ant to link the group to view SingleGroup page?
@@ -7,49 +8,47 @@ import './choreList.css';
 
 // pass in props for chores array, group array for that user
 // pass chores so can pass to modal
-const ChoreList = () => {
-    // conditionaly render chores
+const ChoreList = ({ chores }) => {
+    console.log('choreList', chores);
 
     // remove Chore
     const removeChore = (chore) => {
-        console.log('chore removed');
+        console.log('chore removed', chore);
         // add mutation to updatechore to running tally.
     };
+
+    // conditionaly render chores
+    if (!chores.length) {
+        // if no choes return this:
+        return <h3>No Chores Yet</h3>;
+    }
 
     // else return map of list of chores
     return (
         <ul>
-            {/* // map thought chores */}
-            <li className="list">
-                <div className="list-text">
-                    <div>Take Out The Trash dueDate</div>
-                    <div>
-                        Place at end of the driveway every wednesday night
-                    </div>
-                </div>
-                <div className="list-btns">
-                    {/* pass in chores to modal to render in fields */}
-                    <UpdateChoreModal />
+            {chores &&
+                chores.map((chore) => {
+                    <li className="list">
+                        <div key={chore._id} className="list-text">
+                            <div>
+                                Chore Name: {chore.choreName} Finish By:{' '}
+                                {chore.dueDate} Assinged To: {chore.assignedTo}
+                            </div>
+                            <div>Chore Description: {chore.choreBody}</div>
+                        </div>
+                        <div className="list-btns">
+                            {/* pass in chores to modal to render in fields */}
+                            <UpdateChoreModal chore={chore} />
 
-                    <button className="btn" onClick={removeChore}>
-                        finish chore
-                    </button>
-                    <button className="btn">add to google calendar</button>
-                </div>
-            </li>
-            <li className="list">
-                <div className="list-text">
-                    <div>Take Out The Trash dueDate</div>
-                    <div>
-                        Place at end of the driveway every wednesday night
-                    </div>
-                </div>
-                <div className="list-btns">
-                    <button className="btn">update chore</button>
-                    <button className="btn">finish chore</button>
-                    <button className="btn">add to google calendar</button>
-                </div>
-            </li>
+                            <button className="btn" onClick={removeChore}>
+                                finish chore
+                            </button>
+                            <button className="btn">
+                                add to google calendar
+                            </button>
+                        </div>
+                    </li>;
+                })}
         </ul>
     );
 };
