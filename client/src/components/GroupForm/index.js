@@ -99,16 +99,16 @@ const GroupForm = ({ refetch }) => {
                     <h1>Directions:</h1>
                     <li>Have all of your group members create an account.</li>
                     <li>
-                        Once a few of the members have accounts created have one
-                        member create the group.
+                        Once a few of the members have accounts created have ONE
+                        member create the group. They are then the group Admin
                     </li>
                     <li>
-                        After the group has been created you can then add group
-                        members by their usernames.
+                        After the group has been created the admin can then add
+                        group members by their usernames.
                     </li>
                     <li>
-                        If you add a member next time they login they will
-                        automatically see the group loaded to the page.
+                        Once a member has been added, next time they login they
+                        will automatically see the group loaded to their page.
                     </li>
                 </ol>
             </div>
