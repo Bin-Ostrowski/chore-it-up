@@ -4,10 +4,11 @@ import GroupForm from '../../components/GroupForm';
 import ChoreForm from '../../components/ChoreForm';
 import ChoreList from '../../components/ChoreList';
 import MemberForm from '../../components/MemberForm';
+import MemberList from '../../components/memberList';
 import './home.css';
 
 import { useMutation, useQuery } from '@apollo/client';
-import { QUERY_USER } from '../../utils/queries';
+// import { QUERY_USER } from '../../utils/queries';
 import { QUERY_ME } from '../../utils/queries';
 import auth from '../../utils/auth';
 
@@ -21,7 +22,7 @@ const Home = () => {
 
     const { loading, error, data } = useQuery(QUERY_ME);
 
-    const [isGroup, setisGroup] = useState(false);
+    // const [isGroup, setisGroup] = useState(false);
 
     if (!loading) {
         if (error) {
@@ -42,7 +43,8 @@ const Home = () => {
                             {/* //map over group id */}
                             <div className="group-container">
                                 <h2>{groupName}</h2>
-                                <MemberForm />
+                                <MemberForm userData={data.me} />
+                                <MemberList userData={data.me} />
                                 <ChoreForm />
                                . {/* <ChoreList chores={data.me.chores}/> */}
                             </div>
