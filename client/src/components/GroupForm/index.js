@@ -80,6 +80,7 @@ const GroupForm = ({ refetch }) => {
                             value={groupInput}
                             onChange={handleChange}
                             className="group-input"
+                            placeholder="admins only"
                         />
                         <FormErrorMessage
                             style={{
@@ -94,10 +95,22 @@ const GroupForm = ({ refetch }) => {
                 </FormControl>
             </div>
             <div id="helper-container">
-                <p id="helper-text">
-                    Looks like you aren't part of a chore group yet! To get
-                    started create a group above!
-                </p>
+                <ol id="helper-text">
+                    <h1>Directions:</h1>
+                    <li>Have all of your group members create an account.</li>
+                    <li>
+                        Once a few of the members have accounts created have one
+                        member create the group.
+                    </li>
+                    <li>
+                        After the group has been created you can then add group
+                        members by their usernames.
+                    </li>
+                    <li>
+                        If you add a member next time they login they will
+                        automatically see the group loaded to the page.
+                    </li>
+                </ol>
             </div>
         </div>
     );
