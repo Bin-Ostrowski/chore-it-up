@@ -53,7 +53,19 @@ const YourChores = () => {
     }
 
     if (!yourChores.length) {
-        return <h2>You don't currently have any chores! Nice Job!</h2>;
+        return (
+            <main
+                className="your-chores-container"
+                style={{ backgroundColor: '#284B63' }}
+            >
+                <div className="list-container">
+                    <h2 className="title">
+                        Your chores are complete! Nice Job!
+                    </h2>
+                    
+                </div>
+            </main>
+        );
     }
     // loading variable used to briefly show a loading <div> element
     return (
