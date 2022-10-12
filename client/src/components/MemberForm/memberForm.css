@@ -9,11 +9,13 @@
 .members {
     padding: 15px;
     display: flex;
-    justify-content: space-evenly;
     font-size: 18px;
     font-weight: 500;
 }
 
 .username-list {
-    display: flex;
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: baseline;
+    padding-right: 7px;
 }
