@@ -126,6 +126,7 @@ const ChoreForm = ({ refetch, groupData }) => {
                             required
                             focusBorderColor="lime"
                             placeholder="Chore Name"
+                            _placeholder={{ color: 'inherit' }}
                             value={choreData.choreName}
                             variant="filled"
                             name="choreName"
@@ -171,6 +172,7 @@ const ChoreForm = ({ refetch, groupData }) => {
                         <Input
                             focusBorderColor="lime"
                             placeholder="Describe Chore"
+                            _placeholder={{ color: 'inherit' }}
                             value={choreData.choreBody}
                             name="choreBody"
                             variant="filled"

@@ -42,13 +42,18 @@ const ChoreList = ({ choresData, loading, data, refetch }) => {
             <ul>
                 {choresData.map((chore, i) => (
                     <li key={chore._id} className="list">
-                        <div className="list-text">
-                            <div>
-                                Chore Name: {chore.choreName} Finish By:{' '}
-                                {dateFormat(chore.dueDate)} Assinged To:{' '}
-                                {chore.assignedTo}
-                            </div>
-                            <div>Chore Description: {chore.choreBody}</div>
+                        <div className="list-title">
+                            <div className="title-to-right">CHORE: </div>
+                            <div className="title-to-right">FINISH BY: </div>
+                            <div className="title-to-right">ASSIGNED: </div>{' '}
+                            <div className="title-to-right">DESCRIPTION: </div>
+                        </div>
+
+                        <div className="list-input">
+                            <div>{chore.choreName}</div>
+                            <div>{dateFormat(chore.dueDate)}</div>
+                            <div>{chore.assignedTo}</div>
+                            <div>{chore.choreBody}</div>
                         </div>
                         <div className="list-btns">
                             {/* pass in chores to modal to render in fields */}
@@ -63,9 +68,9 @@ const ChoreList = ({ choresData, loading, data, refetch }) => {
                             >
                                 Chore Completed
                             </button>
-                            <button className="btn">
-                                add to google calendar
-                            </button>
+                            {/* <button className="btn">
+                                Add to Google Calendar
+                            </button> */}
                         </div>
                     </li>
                 ))}

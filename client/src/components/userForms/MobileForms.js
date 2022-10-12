@@ -120,7 +120,7 @@ const MobileForms = () => {
     }
 
     return (
-        <div className="login-container-mobile">
+        <main className="login-container-mobile">
             {!isLoginHidden && (
                 <div className="login-mobile">
                     <div
@@ -233,7 +233,7 @@ const MobileForms = () => {
             <div className="toggle" onClick={toggleLogin}>
                 Login
             </div>
-        </div>
+        </main>
     );
 };
 
