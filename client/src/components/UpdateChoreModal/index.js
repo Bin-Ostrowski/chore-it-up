@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useMutation, useQuery } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import { UPDATE_CHORE } from '../../utils/mutations';
 
 import {
@@ -20,13 +20,10 @@ import {
 } from '@chakra-ui/react';
 
 const UpdateChoreModal = ({ refetch, chore, groupData }) => {
-    console.log('choreModal', chore);
-    console.log('groupData', groupData);
-
     // set useDisclosure for updateChore modal
     const { isOpen, onOpen, onClose } = useDisclosure();
 
-    // set State for inputs - start with original chore info
+    // input state - start with original chore info
     const [updateChoreData, setUpdateChoreData] = useState({
         choreId: chore._id,
         choreName: chore.choreName,
@@ -34,15 +31,16 @@ const UpdateChoreModal = ({ refetch, chore, groupData }) => {
         assignedTo: chore.assignedTo,
         choreBody: chore.choreBody,
     });
-    console.log('updated chore', updateChoreData);
 
-    // error state
+    // error state 
     const [isError, setIsError] = useState(false);
+    // error message state
+    const [errorMessage, setErrorMessage] = useState('');
 
-     // declare updateChore() and error variable for mutation
-     const [updateChore, { error }] = useMutation(UPDATE_CHORE, {
-        varibles: {choreId: chore._id}
-     });
+    // declare updateChore() and error variable for mutation
+    const [updateChore, { error }] = useMutation(UPDATE_CHORE, {
+        varibles: { choreId: chore._id },
+    });
 
     // input onChange hangler
     const handleChange = (event) => {
@@ -57,25 +55,32 @@ const UpdateChoreModal = ({ refetch, chore, groupData }) => {
     // form submit handler -
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        if (chore.choreName === '') {
+
+        // chore name is requried send error if empty
+        if (updateChoreData.choreName === ''){
+            setErrorMessage('Chore Name is required!');
+            setIsError(true);
+        }
+        else if (updateChoreData.assignedTo === ''){
+            setErrorMessage('Please assign Chore!');
             setIsError(true);
         } else {
-            console.log(updateChoreData);
             setIsError(false);
             setUpdateChoreData({ ...updateChoreData });
 
             // updateChore mutation
             try {
                 await updateChore({
-                    variables: {...updateChoreData}
-                })
-                console.log('successful chore update', updateChoreData)
+                    variables: { ...updateChoreData },
+                });
+
+                // refetch chores data to update chore list
                 refetch();
             } catch (e) {
                 console.error(e);
             }
 
-            
+            // close modal when update completes
             onClose();
         }
     };
@@ -111,11 +116,6 @@ const UpdateChoreModal = ({ refetch, chore, groupData }) => {
                                             size="sm"
                                             onChange={handleChange}
                                         />
-                                        {isError && (
-                                            <FormErrorMessage className="error">
-                                                Chore name is required.
-                                            </FormErrorMessage>
-                                        )}
                                     </div>
                                     <div className="form-input">
                                         <FormLabel requiredIndicator>
@@ -134,7 +134,7 @@ const UpdateChoreModal = ({ refetch, chore, groupData }) => {
                                         />
                                     </div>
                                     <div className="form-input">
-                                        <FormLabel requiredIndicator>
+                                        <FormLabel>
                                             Assigned To:
                                         </FormLabel>
                                         <Select
@@ -144,8 +144,6 @@ const UpdateChoreModal = ({ refetch, chore, groupData }) => {
                                             name="assignedTo"
                                             size="sm"
                                             onChange={handleChange}
-                                            isInvalid
-                                            errorBorderColor="null"
                                         >
                                             {/* Map over users in group */}
                                             {groupData.group.users.map(
@@ -172,6 +170,11 @@ const UpdateChoreModal = ({ refetch, chore, groupData }) => {
                                             errorBorderColor="null"
                                         />
                                     </div>
+                                {isError && (
+                                    <FormErrorMessage className="error">
+                                        {errorMessage}
+                                    </FormErrorMessage>
+                                )}
                                 </div>
                             </FormControl>
                         </div>
