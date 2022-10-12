@@ -32,6 +32,7 @@ export const QUERY_USERS = gql`
                 choreBody
                 createdAt
                 username
+                assignedTo
                 dueDate
             }
         }
@@ -58,6 +59,7 @@ export const QUERY_ME = gql`
                 createdAt
                 username
                 dueDate
+                assignedTo
                 status
             }
         }
@@ -74,6 +76,7 @@ export const QUERY_GROUP = gql`
                 choreName
                 choreBody
                 dueDate
+                assignedTo
             }
             users {
                 _id
@@ -81,4 +84,18 @@ export const QUERY_GROUP = gql`
             }
         }
     }
+`;
+
+export const QUERY_CHORES = gql`
+query chores {
+  chores {
+    _id
+    choreName
+    choreBody
+    createdAt
+    username
+    assignedTo
+    dueDate
+  }
+}
 `;
