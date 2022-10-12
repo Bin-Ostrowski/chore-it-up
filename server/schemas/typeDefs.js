@@ -65,6 +65,7 @@ const typeDefs = gql`
             choreName: String
             choreBody: String
             dueDate: String
+            assignedTo: String
         ): Chore
         assignedChore(choreId: ID!, assignedId: ID!): Chore
     }

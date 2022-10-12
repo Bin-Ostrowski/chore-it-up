@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { useMutation, useQuery } from '@apollo/client';
+import { UPDATE_CHORE } from '../../utils/mutations';
+
 import {
     Modal,
     ModalOverlay,
@@ -16,32 +19,37 @@ import {
     FormErrorMessage,
 } from '@chakra-ui/react';
 
-const UpdateChoreModal = ({ chore }) => {
+const UpdateChoreModal = ({ refetch, chore, groupData }) => {
     console.log('choreModal', chore);
+    console.log('groupData', groupData);
 
     // set useDisclosure for updateChore modal
     const { isOpen, onOpen, onClose } = useDisclosure();
 
     // set State for inputs - start with original chore info
-    const [choreData, setChoreData] = useState({
+    const [updateChoreData, setUpdateChoreData] = useState({
+        choreId: chore._id,
         choreName: chore.choreName,
         dueDate: chore.dueDate,
         assignedTo: chore.assignedTo,
         choreBody: chore.choreBody,
     });
-    console.log('updated chore', choreData);
+    console.log('updated chore', updateChoreData);
 
     // error state
     const [isError, setIsError] = useState(false);
 
-    // will need to grap username and group ids so addChore will be created by that user.
+     // declare updateChore() and error variable for mutation
+     const [updateChore, { error }] = useMutation(UPDATE_CHORE, {
+        varibles: {choreId: chore._id}
+     });
 
     // input onChange hangler
     const handleChange = (event) => {
         const { name, value } = event.target;
 
-        setChoreData({
-            ...choreData,
+        setUpdateChoreData({
+            ...updateChoreData,
             [name]: value,
         });
     };
@@ -52,17 +60,22 @@ const UpdateChoreModal = ({ chore }) => {
         if (chore.choreName === '') {
             setIsError(true);
         } else {
-            console.log(choreData);
+            console.log(updateChoreData);
             setIsError(false);
-            setChoreData({ ...choreData });
+            setUpdateChoreData({ ...updateChoreData });
 
-            // update mutation
+            // updateChore mutation
+            try {
+                await updateChore({
+                    variables: {...updateChoreData}
+                })
+                console.log('successful chore update', updateChoreData)
+                refetch();
+            } catch (e) {
+                console.error(e);
+            }
 
-            // setChoreName('');
-            // setDueDate('');
-            // setAssignedTo('');
-            // setChoreBody('');
-
+            
             onClose();
         }
     };
@@ -93,7 +106,7 @@ const UpdateChoreModal = ({ chore }) => {
                                         <Input
                                             focusBorderColor="lime"
                                             placeholder="Chore Name"
-                                            value={choreData.choreName}
+                                            value={updateChoreData.choreName}
                                             name="choreName"
                                             size="sm"
                                             onChange={handleChange}
@@ -113,7 +126,7 @@ const UpdateChoreModal = ({ chore }) => {
                                             placeholder="Select Date"
                                             size="sm"
                                             type="datetime-local"
-                                            value={choreData.dueDate}
+                                            value={updateChoreData.dueDate}
                                             name="dueDate"
                                             onChange={handleChange}
                                             isInvalid
@@ -127,7 +140,7 @@ const UpdateChoreModal = ({ chore }) => {
                                         <Select
                                             focusBorderColor="lime"
                                             placeholder="Select Username"
-                                            value={choreData.assignedTo}
+                                            value={updateChoreData.assignedTo}
                                             name="assignedTo"
                                             size="sm"
                                             onChange={handleChange}
@@ -135,11 +148,13 @@ const UpdateChoreModal = ({ chore }) => {
                                             errorBorderColor="null"
                                         >
                                             {/* Map over users in group */}
-                                            <option>Luffy</option>
-                                            <option>Nami</option>
-                                            <option>Chopper</option>
-                                            <option>Zoro</option>
-                                            <option>None</option>
+                                            {groupData.group.users.map(
+                                                (user, i) => (
+                                                    <option key={user._id}>
+                                                        {user.username}
+                                                    </option>
+                                                )
+                                            )}
                                         </Select>
                                     </div>
                                     <div className="form-input">
@@ -149,7 +164,7 @@ const UpdateChoreModal = ({ chore }) => {
                                         <Input
                                             focusBorderColor="lime"
                                             placeholder="Describe Chore"
-                                            value={choreData.choreBody}
+                                            value={updateChoreData.choreBody}
                                             name="choreBody"
                                             size="sm"
                                             onChange={handleChange}

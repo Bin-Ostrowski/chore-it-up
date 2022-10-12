@@ -89,3 +89,28 @@ export const REMOVE_USER_FROM_GROUP = gql`
         }
     }
 `;
+
+export const UPDATE_CHORE = gql`
+    mutation updateChore(
+        $choreId: ID!
+        $choreName: String
+        $choreBody: String
+        $dueDate: String
+        $assignedTo: String
+    ) {
+        updateChore(
+            choreId: $choreId
+            choreName: $choreName
+            choreBody: $choreBody
+            dueDate: $dueDate
+            assignedTo: $assignedTo
+        ) {
+            _id
+            choreName
+            choreBody
+            createdAt
+            assignedTo
+            dueDate
+        }
+    }
+`;
