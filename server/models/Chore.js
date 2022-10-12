@@ -23,9 +23,9 @@ const choreSchema = new Schema({
         required: true,
     },
     assignedTo: {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
-        required: false,
+        type: String,
+        // ref: 'User',
+        required: true,
     },
     status: {
         type: String,
