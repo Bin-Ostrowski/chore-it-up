@@ -32,7 +32,7 @@ const UpdateChoreModal = ({ refetch, chore, groupData }) => {
         choreBody: chore.choreBody,
     });
 
-    // error state 
+    // error state
     const [isError, setIsError] = useState(false);
     // error message state
     const [errorMessage, setErrorMessage] = useState('');
@@ -57,11 +57,10 @@ const UpdateChoreModal = ({ refetch, chore, groupData }) => {
         event.preventDefault();
 
         // chore name is requried send error if empty
-        if (updateChoreData.choreName === ''){
+        if (updateChoreData.choreName === '') {
             setErrorMessage('Chore Name is required!');
             setIsError(true);
-        }
-        else if (updateChoreData.assignedTo === ''){
+        } else if (updateChoreData.assignedTo === '') {
             setErrorMessage('Please assign Chore!');
             setIsError(true);
         } else {
@@ -134,9 +133,7 @@ const UpdateChoreModal = ({ refetch, chore, groupData }) => {
                                         />
                                     </div>
                                     <div className="form-input">
-                                        <FormLabel>
-                                            Assigned To:
-                                        </FormLabel>
+                                        <FormLabel>Assigned To:</FormLabel>
                                         <Select
                                             focusBorderColor="lime"
                                             placeholder="Select Username"
@@ -170,11 +167,11 @@ const UpdateChoreModal = ({ refetch, chore, groupData }) => {
                                             errorBorderColor="null"
                                         />
                                     </div>
-                                {isError && (
-                                    <FormErrorMessage className="error">
-                                        {errorMessage}
-                                    </FormErrorMessage>
-                                )}
+                                    {isError && (
+                                        <FormErrorMessage className="error">
+                                            {errorMessage}
+                                        </FormErrorMessage>
+                                    )}
                                 </div>
                             </FormControl>
                         </div>
