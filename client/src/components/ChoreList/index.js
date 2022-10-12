@@ -52,10 +52,11 @@ const ChoreList = ({ choresData, loading, data, refetch }) => {
                                 {dateFormat(chore.dueDate)}
                             </div>
                             <div>
-                            <b className="list-text">ASSIGNED TO: </b> {chore.assignedTo}
+                                <b className="list-text">ASSIGNED TO: </b>{' '}
+                                {chore.assignedTo}
                             </div>
                             <div>
-                            <b className="list-text">CHORE DESCRIPTION: </b>
+                                <b className="list-text">CHORE DESCRIPTION: </b>
                                 {chore.choreBody}
                             </div>
                         </div>

@@ -103,6 +103,7 @@ const MemberForm = ({ refetch, groupData }) => {
                         focusBorderColor="black"
                         variant="filled"
                         placeholder="username"
+                        _placeholder={{ color: 'inherit' }}
                         // value={value}
                         name="username"
                         size="sm"

@@ -62,7 +62,6 @@ const YourChores = () => {
                     <h2 className="title">
                         Your chores are complete! Nice Job!
                     </h2>
-                    
                 </div>
             </main>
         );
