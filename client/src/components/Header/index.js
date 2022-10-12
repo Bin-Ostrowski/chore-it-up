@@ -2,8 +2,12 @@ import React from 'react';
 import Auth from '../../utils/auth';
 import { Link } from 'react-router-dom';
 import { Box } from '@chakra-ui/react';
+import { useQuery } from '@apollo/client';
+import { QUERY_GROUP } from '../../utils/queries';
 
 const Header = () => {
+    const { loading, error, data, refetch } = useQuery(QUERY_GROUP);
+
     // define logout
     const logout = (event) => {
         event.preventDefault();
@@ -47,7 +51,9 @@ const Header = () => {
                     <Box sx={navBoxStyles}>
                         <>
                             <Box _hover={hoverStyles}>
-                                <Link to="/home">Home</Link>
+                                <Link to="/home" onClick={refetch}>
+                                    Home
+                                </Link>
                             </Box>
                             <Box paddingLeft="20px" _hover={hoverStyles}>
                                 <Link to="/chores">Your Chores</Link>
