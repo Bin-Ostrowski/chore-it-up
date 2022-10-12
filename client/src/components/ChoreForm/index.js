@@ -115,101 +115,89 @@ const ChoreForm = ({ refetch, groupData }) => {
         <div>LOADING ... </div>;
     }
     return (
-        <div className="form-container">
-            <form onSubmit={handleFormSubmit}>
-                <FormControl
-                    className="flex-row"
-                    isInvalid={isError}
-                    isRequired
-                >
-                    <div className="input-container">
-                        <div className="form-input">
-                            <FormLabel className="form-lable">
-                                Chore Name:
-                            </FormLabel>
-                            <Input
-                                required
-                                focusBorderColor="lime"
-                                placeholder="Chore Name"
-                                value={choreData.choreName}
-                                variant="filled"
-                                name="choreName"
-                                size="sm"
-                                onChange={handleChange}
-                            />
-                        </div>
-                        <div className="form-input">
-                            <FormLabel requiredIndicator>
-                                Finish By Date:
-                            </FormLabel>
-                            <Input
-                                focusBorderColor="lime"
-                                placeholder="Select Date"
-                                size="sm"
-                                type="datetime-local"
-                                variant="filled"
-                                value={choreData.dueDate}
-                                name="dueDate"
-                                onChange={handleChange}
-                                isInvalid
-                                errorBorderColor="null"
-                            />
-                        </div>
-                        <div className="form-input">
-                            <FormLabel>Assigned To:</FormLabel>
-                            <Select
-                                required
-                                focusBorderColor="lime"
-                                placeholder="Select Username"
-                                value={choreData.assignedTo}
-                                name="assignedTo"
-                                variant="filled"
-                                size="sm"
-                                onChange={handleChange}
-                            >
-                                {/* Map over users in group */}
-                                {groupData.group.users.map((user, i) => (
-                                    <option key={user._id}>
-                                        {user.username}
-                                    </option>
-                                ))}
-                            </Select>
-                        </div>
-                        <div className="form-input">
-                            <FormLabel requiredIndicator>
-                                Chore Notes:
-                            </FormLabel>
-                            <Input
-                                focusBorderColor="lime"
-                                placeholder="Describe Chore"
-                                value={choreData.choreBody}
-                                name="choreBody"
-                                variant="filled"
-                                size="sm"
-                                onChange={handleChange}
-                                isInvalid
-                                errorBorderColor="null"
-                            />
-                        </div>
+        <form onSubmit={handleFormSubmit} className="form-container">
+            <FormControl className="flex-row" isInvalid={isError} isRequired>
+                <div className="input-container">
+                    <div className="form-input">
+                        <FormLabel className="form-lable">
+                            Chore Name:
+                        </FormLabel>
+                        <Input
+                            required
+                            focusBorderColor="lime"
+                            placeholder="Chore Name"
+                            value={choreData.choreName}
+                            variant="filled"
+                            name="choreName"
+                            size="sm"
+                            onChange={handleChange}
+                        />
                     </div>
-                    <div className="form-btn">
-                        <Button
-                            colorScheme="green"
-                            type="click"
-                            disabled={buttonError}
-                            // onClick={handleFormSubmit}
+                    <div className="form-input">
+                        <FormLabel requiredIndicator>Finish By Date:</FormLabel>
+                        <Input
+                            focusBorderColor="lime"
+                            placeholder="Select Date"
+                            size="sm"
+                            type="datetime-local"
+                            variant="filled"
+                            value={choreData.dueDate}
+                            name="dueDate"
+                            onChange={handleChange}
+                            isInvalid
+                            errorBorderColor="null"
+                        />
+                    </div>
+                    <div className="form-input">
+                        <FormLabel>Assigned To:</FormLabel>
+                        <Select
+                            required
+                            focusBorderColor="lime"
+                            placeholder="Select Username"
+                            value={choreData.assignedTo}
+                            name="assignedTo"
+                            variant="filled"
+                            size="sm"
+                            onChange={handleChange}
                         >
-                            Add This Chore
-                        </Button>
+                            {/* Map over users in group */}
+                            {groupData.group.users.map((user, i) => (
+                                <option key={user._id}>{user.username}</option>
+                            ))}
+                        </Select>
                     </div>
-                    {isError && (
-                        <FormErrorMessage className="error">
-                            {errorMessage}
-                        </FormErrorMessage>
-                    )}
-                </FormControl>
-            </form>
-        </div>
+                    <div className="form-input">
+                        <FormLabel requiredIndicator>Chore Notes:</FormLabel>
+                        <Input
+                            focusBorderColor="lime"
+                            placeholder="Describe Chore"
+                            value={choreData.choreBody}
+                            name="choreBody"
+                            variant="filled"
+                            size="sm"
+                            onChange={handleChange}
+                            isInvalid
+                            errorBorderColor="null"
+                        />
+                    </div>
+                </div>
+                <div className="form-btn">
+                    <Button
+                        colorScheme="green"
+                        type="click"
+                        disabled={buttonError}
+                        // onClick={handleFormSubmit}
+                    >
+                        Add This Chore
+                    </Button>
+                </div>
+                {isError && (
+                    <FormErrorMessage className="error">
+                        {errorMessage}
+                    </FormErrorMessage>
+                )}
+            </FormControl>
+        </form>
     );
 };
 
