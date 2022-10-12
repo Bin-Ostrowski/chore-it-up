@@ -1,4 +1,6 @@
 .list {
+    display: flex;
+    justify-content: space-between;
     background-color: rgb(60, 22, 66, 0.3);
     border-radius: 0 40px 0 40px;
     display: flex;
@@ -19,9 +21,10 @@
 .btn {
     background-color: rgb(169, 223, 223, 0.5);
     border: 1px solid black;
-    padding: 5px;
+    padding: 8px;
     margin: 2px;
     border-radius: 15px;
+    width: 100%;
 }
 
 .btn:hover {

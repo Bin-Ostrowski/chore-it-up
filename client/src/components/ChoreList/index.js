@@ -43,12 +43,11 @@ const ChoreList = ({ choresData, loading, data, refetch }) => {
                 {choresData.map((chore, i) => (
                     <li key={chore._id} className="list">
                         <div className="list-text">
-                            <div>
-                                Chore Name: {chore.choreName} Finish By:{' '}
-                                {dateFormat(chore.dueDate)} Assinged To:{' '}
-                                {chore.assignedTo}
-                            </div>
-                            <div>Chore Description: {chore.choreBody}</div>
+                            <div>CHORE:  {chore.choreName}</div>
+                            <div>FINISH BY:  {dateFormat(chore.dueDate)}</div>
+                            <div>ASSIGNED TO:  {chore.assignedTo}</div>
+
+                            <div>CHORE DESCRIPTION:  {chore.choreBody}</div>
                         </div>
                         <div className="list-btns">
                             {/* pass in chores to modal to render in fields */}
@@ -63,9 +62,9 @@ const ChoreList = ({ choresData, loading, data, refetch }) => {
                             >
                                 Chore Completed
                             </button>
-                            <button className="btn">
-                                add to google calendar
-                            </button>
+                            {/* <button className="btn">
+                                Add to Google Calendar
+                            </button> */}
                         </div>
                     </li>
                 ))}
