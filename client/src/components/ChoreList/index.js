@@ -3,6 +3,7 @@ import { useMutation, useQuery } from '@apollo/client';
 import UpdateChoreModal from '../UpdateChoreModal';
 import './choreList.css';
 import { REMOVE_CHORE } from '../../utils/mutations';
+import dateFormat from '../../utils/dateFormat';
 
 // pass in props for chores array for that group
 const ChoreList = ({ choresData, loading, data, refetch }) => {
@@ -44,7 +45,8 @@ const ChoreList = ({ choresData, loading, data, refetch }) => {
                         <div className="list-text">
                             <div>
                                 Chore Name: {chore.choreName} Finish By:{' '}
-                                {chore.dueDate} Assinged To: {chore.assignedTo}
+                                {dateFormat(chore.dueDate)} Assinged To:{' '}
+                                {chore.assignedTo}
                             </div>
                             <div>Chore Description: {chore.choreBody}</div>
                         </div>
