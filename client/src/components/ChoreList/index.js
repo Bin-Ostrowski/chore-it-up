@@ -50,8 +50,7 @@ const ChoreList = ({ choresData, loading, data, refetch }) => {
                         </div>
                         <div className="list-btns">
                             {/* pass in chores to modal to render in fields */}
-                            {/* <UpdateChoreModal chore={chore} /> */}
-
+                            <UpdateChoreModal chore={chore} groupData={data} refetch={refetch} />
                             <button
                                 className="btn"
                                 onClick={() => handleRemoveChore(chore._id)}

@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { useMutation } from '@apollo/client';
+import { UPDATE_CHORE } from '../../utils/mutations';
+
 import {
     Modal,
     ModalOverlay,
@@ -16,32 +19,35 @@ import {
     FormErrorMessage,
 } from '@chakra-ui/react';
 
-const UpdateChoreModal = ({ chore }) => {
-    console.log('choreModal', chore);
-
+const UpdateChoreModal = ({ refetch, chore, groupData }) => {
     // set useDisclosure for updateChore modal
     const { isOpen, onOpen, onClose } = useDisclosure();
 
-    // set State for inputs - start with original chore info
-    const [choreData, setChoreData] = useState({
+    // input state - start with original chore info
+    const [updateChoreData, setUpdateChoreData] = useState({
+        choreId: chore._id,
         choreName: chore.choreName,
         dueDate: chore.dueDate,
         assignedTo: chore.assignedTo,
         choreBody: chore.choreBody,
     });
-    console.log('updated chore', choreData);
 
     // error state
     const [isError, setIsError] = useState(false);
+    // error message state
+    const [errorMessage, setErrorMessage] = useState('');
 
-    // will need to grap username and group ids so addChore will be created by that user.
+    // declare updateChore() and error variable for mutation
+    const [updateChore, { error }] = useMutation(UPDATE_CHORE, {
+        varibles: { choreId: chore._id },
+    });
 
     // input onChange hangler
     const handleChange = (event) => {
         const { name, value } = event.target;
 
-        setChoreData({
-            ...choreData,
+        setUpdateChoreData({
+            ...updateChoreData,
             [name]: value,
         });
     };
@@ -49,20 +55,31 @@ const UpdateChoreModal = ({ chore }) => {
     // form submit handler -
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        if (chore.choreName === '') {
+
+        // chore name is requried send error if empty
+        if (updateChoreData.choreName === '') {
+            setErrorMessage('Chore Name is required!');
+            setIsError(true);
+        } else if (updateChoreData.assignedTo === '') {
+            setErrorMessage('Please assign Chore!');
             setIsError(true);
         } else {
-            console.log(choreData);
             setIsError(false);
-            setChoreData({ ...choreData });
+            setUpdateChoreData({ ...updateChoreData });
 
-            // update mutation
+            // updateChore mutation
+            try {
+                await updateChore({
+                    variables: { ...updateChoreData },
+                });
 
-            // setChoreName('');
-            // setDueDate('');
-            // setAssignedTo('');
-            // setChoreBody('');
+                // refetch chores data to update chore list
+                refetch();
+            } catch (e) {
+                console.error(e);
+            }
 
+            // close modal when update completes
             onClose();
         }
     };
@@ -93,16 +110,11 @@ const UpdateChoreModal = ({ chore }) => {
                                         <Input
                                             focusBorderColor="lime"
                                             placeholder="Chore Name"
-                                            value={choreData.choreName}
+                                            value={updateChoreData.choreName}
                                             name="choreName"
                                             size="sm"
                                             onChange={handleChange}
                                         />
-                                        {isError && (
-                                            <FormErrorMessage className="error">
-                                                Chore name is required.
-                                            </FormErrorMessage>
-                                        )}
                                     </div>
                                     <div className="form-input">
                                         <FormLabel requiredIndicator>
@@ -113,7 +125,7 @@ const UpdateChoreModal = ({ chore }) => {
                                             placeholder="Select Date"
                                             size="sm"
                                             type="datetime-local"
-                                            value={choreData.dueDate}
+                                            value={updateChoreData.dueDate}
                                             name="dueDate"
                                             onChange={handleChange}
                                             isInvalid
@@ -121,25 +133,23 @@ const UpdateChoreModal = ({ chore }) => {
                                         />
                                     </div>
                                     <div className="form-input">
-                                        <FormLabel requiredIndicator>
-                                            Assigned To:
-                                        </FormLabel>
+                                        <FormLabel>Assigned To:</FormLabel>
                                         <Select
                                             focusBorderColor="lime"
                                             placeholder="Select Username"
-                                            value={choreData.assignedTo}
+                                            value={updateChoreData.assignedTo}
                                             name="assignedTo"
                                             size="sm"
                                             onChange={handleChange}
-                                            isInvalid
-                                            errorBorderColor="null"
                                         >
                                             {/* Map over users in group */}
-                                            <option>Luffy</option>
-                                            <option>Nami</option>
-                                            <option>Chopper</option>
-                                            <option>Zoro</option>
-                                            <option>None</option>
+                                            {groupData.group.users.map(
+                                                (user, i) => (
+                                                    <option key={user._id}>
+                                                        {user.username}
+                                                    </option>
+                                                )
+                                            )}
                                         </Select>
                                     </div>
                                     <div className="form-input">
@@ -149,7 +159,7 @@ const UpdateChoreModal = ({ chore }) => {
                                         <Input
                                             focusBorderColor="lime"
                                             placeholder="Describe Chore"
-                                            value={choreData.choreBody}
+                                            value={updateChoreData.choreBody}
                                             name="choreBody"
                                             size="sm"
                                             onChange={handleChange}
@@ -157,6 +167,11 @@ const UpdateChoreModal = ({ chore }) => {
                                             errorBorderColor="null"
                                         />
                                     </div>
+                                    {isError && (
+                                        <FormErrorMessage className="error">
+                                            {errorMessage}
+                                        </FormErrorMessage>
+                                    )}
                                 </div>
                             </FormControl>
                         </div>
