@@ -34,7 +34,7 @@ const ChoreList = ({ choresData, loading, data, refetch }) => {
     } else if (!choresData?.length) {
         // if no choes return this:
         console.log('no chores yet');
-        return <h3>No Chores Yet</h3>;
+        return <p className="chore-placeholder">No Chores Yet</p>;
     } else {
         console.log(choresData);
         return (
@@ -50,12 +50,16 @@ const ChoreList = ({ choresData, loading, data, refetch }) => {
                         </div>
                         <div className="list-btns">
                             {/* pass in chores to modal to render in fields */}
-                            <UpdateChoreModal chore={chore} groupData={data} refetch={refetch} />
+                            <UpdateChoreModal
+                                chore={chore}
+                                groupData={data}
+                                refetch={refetch}
+                            />
                             <button
                                 className="btn"
                                 onClick={() => handleRemoveChore(chore._id)}
                             >
-                                Chore Comleted
+                                Chore Completed
                             </button>
                             <button className="btn">
                                 add to google calendar
