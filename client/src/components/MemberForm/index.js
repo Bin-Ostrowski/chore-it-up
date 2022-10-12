@@ -115,7 +115,7 @@ const MemberForm = ({ refetch, groupData }) => {
             </div>
 
             <div className="form-btn">
-                <Button disabled={!member} onClick={handleFormSubmit}>
+                <Button mt={8} disabled={!member} onClick={handleFormSubmit}>
                     Add Member
                 </Button>
             </div>

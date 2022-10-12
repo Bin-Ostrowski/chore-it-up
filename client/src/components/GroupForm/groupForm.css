@@ -6,11 +6,13 @@
 }
 .group-container {
     display: flex;
+    border-radius: 10px;
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: center;
     background-color: rgb(169, 223, 223);
     margin: 5px;
+    margin-top: 65px;
     padding: 10px;
 }
 
