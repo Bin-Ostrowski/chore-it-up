@@ -27,12 +27,20 @@ Chore it up was created with non-traditional living situations in mind. Users ar
 
 ## Contributing
 
-[Brandon Geertsen](https://github.com/bgeertsen)
-[Matthew Potwora](https://github.com/potworam)
-[Lorreina Guyett](https://github.com/slorreina369)
-[Robin Ostrowski](https://github.com/Bin-Ostrowski)
-[Sean Maddox](https://github.com/stmaddox)
+[Brandon Geertsen](https://www.linkedin.com/in/brandon-geertsen/)
+[Matthew Potwora](https://www.linkedin.com/in/matthew-potwora-989b86232/)
+[Lorreina Guyett](https://www.linkedin.com/in/lorreina-guyett-261babb2/)
+[Robin Ostrowski](https://www.linkedin.com/in/robinostrowski/)
+[Sean Maddow](https://www.linkedin.com/in/sean-maddox-b34487109/)
 
 ## Questions
 
-If you have additional questions, please reach out using the links above.
+If you have additional questions, please reach out using the contact information below.
+
+**Contacts**
+
+-   Brandon Geertsen - [Github](https://github.com/bgeertsen) - [Email](mailto:brandon.geertsen@gmail.com)
+-   Matthew Potwora - [Github](https://github.com/potworam) - [Email](mailto:Matthewpotwora@yahoo.com)
+-   Lorreina Guyett - [Github](https://github.com/slorreina369) - [Email](mailto:slorreina369@gmail.com)
+-   Robin Ostrowski - [Github](https://github.com/Bin-Ostrowski) - [Email](mailto:Bin.ostrowski@gmail.com)
+-   Sean Maddox - [Github](https://github.com/stmaddox) - [Email](mailto:sean.maddox89@yahoo.com)
