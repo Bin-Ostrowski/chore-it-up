@@ -26,7 +26,7 @@ const isLoggedin = auth.loggedIn();
 
 // establish new link to GraphQL
 const httpLink = createHttpLink({
-    uri: process.env.GRAPHQL_URI || 'http://localhost:3001/graphql',
+    uri: '/graphql',
 });
 
 // define authLink
