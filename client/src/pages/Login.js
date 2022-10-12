@@ -28,10 +28,10 @@ const Login = () => {
             `width: ${windowDimensions.width} height: ${windowDimensions.height}`
         );
     });
-    // const loggedIn = Auth.loggedIn();
-    // if (loggedIn) {
-
-    // }
+    const loggedIn = Auth.loggedIn();
+    if (loggedIn) {
+        window.location.assign('/home');
+    }
 
     if (windowDimensions.width > 768) {
         return <DesktopContainer />;
