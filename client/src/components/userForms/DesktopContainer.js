@@ -6,10 +6,10 @@ import './Forms.css';
 
 const DesktopContainer = () => {
     return (
-        <div className="login-container">
+        <main className="login-container">
             <DesktopLogin />
             <DesktopSignup />
-        </div>
+        </main>
     );
 };
 

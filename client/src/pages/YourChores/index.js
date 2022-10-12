@@ -37,6 +37,8 @@ const YourChores = () => {
         console.log(dataMe);
     }
 
+    console.log('data me', dataMe);
+
     const yourChores = [];
     // console.log(data.chores);
     if (!(loading || loadingMe)) {
@@ -55,11 +57,13 @@ const YourChores = () => {
     }
     // loading variable used to briefly show a loading <div> element
     return (
-        <div className="your-chores-container">
-            <div className="title-container">
-                <h2 className="title">UserName's Chores</h2>
-            </div>
+        <main
+            className="your-chores-container"
+            style={{ backgroundColor: '#284B63' }}
+        >
             <div className="list-container">
+                <h2 className="title">{dataMe.me.username}'s chores</h2>
+
                 <ChoreList
                     choresData={yourChores}
                     loading={loadingMe}
@@ -69,7 +73,7 @@ const YourChores = () => {
                     // chores={chores}
                 />
             </div>
-        </div>
+        </main>
     );
 };
 
