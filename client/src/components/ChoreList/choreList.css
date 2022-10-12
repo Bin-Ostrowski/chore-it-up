@@ -7,12 +7,22 @@
     margin: 10px 0 10px 0;
 }
 
-.list-text {
-    padding: 20px;
+.list-title {
+    padding: 20px 0 20px 20px;
+    font-weight: bold;
+}
+
+.title-to-right {
+    display: flex;
+justify-content: right;
+}
+
+.list-input {
+    padding: 20px 60px 20px 10px;
 }
 
 .list-btns {
-    padding: 20px;
+    padding: 20px 20px 20px 10px;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
