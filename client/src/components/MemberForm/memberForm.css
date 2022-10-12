@@ -15,6 +15,7 @@
 
 .username-list {
     display: inline-flex;
+    flex-wrap: nowrap;
     flex-direction: row;
     justify-content: baseline;
     padding-right: 7px;
