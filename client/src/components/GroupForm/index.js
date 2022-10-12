@@ -57,7 +57,7 @@ const GroupForm = ({ refetch }) => {
     };
     return (
         <div id="form-helper-container">
-            <div className="add-group-container">
+            <form className="add-group-container">
                 <FormControl
                     isInvalid={isError}
                     isRequired
@@ -93,7 +93,8 @@ const GroupForm = ({ refetch }) => {
                         </FormErrorMessage>
                     </div>
                 </FormControl>
-            </div>
+            </form>
+
             <div id="helper-container">
                 <ol id="helper-text">
                     <h1>Directions:</h1>

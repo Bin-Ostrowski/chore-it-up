@@ -108,32 +108,34 @@ const MemberForm = ({ refetch, groupData }) => {
     }
 
     return (
-        <FormControl className="flex-row" isInvalid={isError} isRequired>
-            <div className="input-container">
-                <FormLabel className="form-label">Username:</FormLabel>
-                <Input
-                    type="text"
-                    focusBorderColor="black"
-                    variant="filled"
-                    placeholder="username"
-                    // value={value}
-                    name="username"
-                    size="sm"
-                    onInput={handleOnInput}
-                />
-                {isError && (
-                    <FormErrorMessage className="error">
-                        That username does not exist!
-                    </FormErrorMessage>
-                )}
-            </div>
+        <form>
+            <FormControl className="flex-row" isInvalid={isError} isRequired>
+                <div className="input-container">
+                    <FormLabel className="form-label">Username:</FormLabel>
+                    <Input
+                        type="text"
+                        focusBorderColor="black"
+                        variant="filled"
+                        placeholder="username"
+                        // value={value}
+                        name="username"
+                        size="sm"
+                        onInput={handleOnInput}
+                    />
+                    {isError && (
+                        <FormErrorMessage className="error">
+                            That username does not exist!
+                        </FormErrorMessage>
+                    )}
+                </div>
 
-            <div className="form-btn">
-                <Button disabled={!member} onClick={handleFormSubmit}>
-                    Add Member
-                </Button>
-            </div>
-        </FormControl>
+                <div className="form-btn">
+                    <Button disabled={!member} onClick={handleFormSubmit}>
+                        Add Member
+                    </Button>
+                </div>
+            </FormControl>
+        </form>
     );
 };
 
