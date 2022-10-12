@@ -62,20 +62,6 @@ const MemberForm = ({ refetch, groupData }) => {
     const handleFormSubmit = async (event) => {
         event.preventDefault();
 
-        // // Filter users in DB to match input
-        // const result = data.users.filter(
-        //     (user) => user.username === member.username
-        // );
-
-        // // if input value is empty or if username is not in database return errorMessage
-        // if (member.username === '' || result.length == 0) {
-        //     setIsError(true);
-        // } else {
-        //     const { _id, username } = result[0];
-        //     // deconstruct result
-        //     setIsError(false);
-        //     setMember({ ...member, userId: _id, username: username });
-
         // addUserToGroup mutation
         console.log('member', member.userId);
         console.log('groupdata', groupData);
