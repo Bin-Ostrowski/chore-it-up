@@ -13,6 +13,10 @@ import './youChores.css';
 // import query
 
 const YourChores = () => {
+    const loggedIn = auth.loggedIn();
+    if (!loggedIn) {
+        window.location.assign('/');
+    }
     if (auth.isTokenExpired(auth.getToken())) {
         window.location.replace('/');
     }

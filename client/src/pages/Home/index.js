@@ -13,6 +13,10 @@ import { QUERY_ME, QUERY_GROUP } from '../../utils/queries';
 import auth from '../../utils/auth';
 
 const Home = () => {
+    const loggedIn = auth.loggedIn();
+    if (!loggedIn) {
+        window.location.assign('/');
+    }
     if (auth.isTokenExpired(auth.getToken())) {
         window.location.replace('/');
     }
