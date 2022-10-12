@@ -25,12 +25,13 @@ const ChoreList = ({ choresData, loading, data, refetch }) => {
         }
 
         // add mutation to updatechore to running tally.
+        refetch();
     };
 
     // conditionaly render chores
     if (loading) {
         return <h1>loading...</h1>;
-    } else if (!choresData.length) {
+    } else if (!choresData?.length) {
         // if no choes return this:
         console.log('no chores yet');
         return <h3>No Chores Yet</h3>;

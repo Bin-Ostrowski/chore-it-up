@@ -39,6 +39,10 @@ const Home = () => {
         variables: { groupName },
         skip: loading,
     });
+    // refeches on page load so you can transition between home and youChores
+    // if (!(groupLoading && loading)) {
+    //     refetch();
+    // }
 
     console.log('home groupData', groupData);
 
