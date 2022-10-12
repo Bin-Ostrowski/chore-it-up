@@ -23,6 +23,7 @@ const DesktopLogin = () => {
     });
     const [login, { error }] = useMutation(LOGIN_USER);
     const [isError, setIsError] = useState();
+    const [errorMessage, setErrorMessage] = useState();
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -36,10 +37,13 @@ const DesktopLogin = () => {
     const handleFormSubmit = async (event) => {
         event.preventDefault();
         if (!formState.email.match(emailRegex)) {
+            setErrorMessage('invalid email');
             setIsError(true);
         } else if (formState.password.length < 5) {
+            setErrorMessage('invalid password');
             setIsError(true);
         } else {
+            setErrorMessage('');
             setIsError(false);
         }
 
@@ -78,7 +82,7 @@ const DesktopLogin = () => {
                 />
                 {isError && (
                     <FormErrorMessage className="error">
-                        invalid form info!
+                        {errorMessage}
                     </FormErrorMessage>
                 )}
                 <Button

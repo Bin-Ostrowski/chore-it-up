@@ -22,6 +22,8 @@ const DesktopSignup = () => {
     });
     const [isError, setIsError] = useState();
 
+    const [errorMessage, setErrorMessage] = useState();
+
     const [addUser, { error }] = useMutation(ADD_USER);
     const [login, { loginError }] = useMutation(LOGIN_USER);
 
@@ -37,12 +39,16 @@ const DesktopSignup = () => {
     const handleFormSubmit = async (event) => {
         event.preventDefault();
         if (formState.username === '') {
+            setErrorMessage('username required');
             setIsError(true);
         } else if (formState.password.length < 5) {
+            setErrorMessage('password must be longer than 5 characters');
             setIsError(true);
         } else if (!formState.email.match(emailRegex)) {
+            setErrorMessage('please enter a valid email address');
             setIsError(true);
         } else {
+            setErrorMessage('');
             setIsError(false);
         }
 
@@ -89,7 +95,7 @@ const DesktopSignup = () => {
                 />
                 {isError && (
                     <FormErrorMessage className="error">
-                        invalid form info!
+                        {errorMessage}
                     </FormErrorMessage>
                 )}
                 <Button

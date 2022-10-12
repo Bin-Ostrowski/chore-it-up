@@ -43,7 +43,7 @@
 
 #helper-container {
     width: 900px;
-    height: 81vh;
+    height: 95vh;
     margin-left: auto;
     margin-right: auto;
     background-color: rgb(169, 223, 223);
@@ -53,8 +53,9 @@
 }
 
 #helper-text {
-    font-size: 52px;
-    text-align: center;
+    width: 800px;
+    font-size: 34px;
+    text-align: left;
 }
 
 @media (max-width: 768px) {
@@ -97,17 +98,28 @@
     #add-group-btn {
         width: 200px;
     }
+
+    #helper-text {
+        font-size: 28px;
+        width: 668px;
+    }
 }
 
 @media (max-width: 425px) {
     #helper-container {
         display: block;
-        height: 70vh;
+        height: 100vh;
     }
     #helper-text {
+        width: 350px;
         padding-top: 50px;
-        padding-left: 5px;
-        padding-right: 5px;
-        font-size: 38px;
+        padding-left: 50px;
+        font-size: 26px;
+    }
+}
+
+@media (max-width: 320px) {
+    #helper-text {
+        width: 300px;
     }
 }

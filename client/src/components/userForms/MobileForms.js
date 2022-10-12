@@ -32,6 +32,7 @@ const MobileForms = () => {
     const [login, { loginError }] = useMutation(LOGIN_USER);
     const [addUser, { signupError }] = useMutation(ADD_USER);
     const [isError, setIsError] = useState();
+    const [errorMessage, setErrorMessage] = useState();
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -54,8 +55,10 @@ const MobileForms = () => {
     const handleLoginFormSubmit = async (event) => {
         event.preventDefault();
         if (!loginFormState.email.match(emailRegex)) {
+            setErrorMessage('invalid email');
             setIsError(true);
         } else if (loginFormState.password.length < 5) {
+            setErrorMessage('invalid password');
             setIsError(true);
         } else {
             setIsError(false);
@@ -77,12 +80,16 @@ const MobileForms = () => {
     const handleSignupFormSubmit = async (event) => {
         event.preventDefault();
         if (signupFormState.username === '') {
+            setErrorMessage('username required');
             setIsError(true);
         } else if (signupFormState.password.length < 5) {
+            setErrorMessage('password must be at least 5 characters');
             setIsError(true);
         } else if (!signupFormState.email.match(emailRegex)) {
+            setErrorMessage('invalid email');
             setIsError(true);
         } else {
+            setErrorMessage('');
             setIsError(false);
         }
 
@@ -143,7 +150,7 @@ const MobileForms = () => {
                         />
                         {isError && (
                             <FormErrorMessage className="error">
-                                invalid login info!
+                                {errorMessage}
                             </FormErrorMessage>
                         )}
 
@@ -197,7 +204,7 @@ const MobileForms = () => {
                         />
                         {isError && (
                             <FormErrorMessage className="error">
-                                invalid signup info!
+                                {errorMessage}
                             </FormErrorMessage>
                         )}
                         <Button
