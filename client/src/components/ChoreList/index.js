@@ -1,30 +1,33 @@
 import React, { useState, useEffect } from 'react';
-import { useQuery } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import UpdateChoreModal from '../UpdateChoreModal';
-import ChoreForm from '../ChoreForm';
 import './choreList.css';
-import { QUERY_GROUP } from '../../utils/queries';
+import { REMOVE_CHORE } from '../../utils/mutations';
 
-// do we ant to link the group to view SingleGroup page?
-// import { Link } from "react-router-dom";
-
-// pass in props for chores array, group array for that user
-// pass chores so can pass to modal
-
-const ChoreList = ({ choresData, loading, data }) => {
-    // if data define chore data or empty object
-    // const choresData = data?.group || {};
+// pass in props for chores array for that group
+const ChoreList = ({ choresData, loading, data, refetch }) => {
     console.log('chores data', choresData);
-    console.log(data);
+    console.log('data', data);
+
+    // declare REMOVE_CHORE mutation
+    const [removeChore, { error }] = useMutation(REMOVE_CHORE);
 
     // remove Chore
-    // const removeChore = (chore) => {
-    //     console.log('chore removed', chore);
-    //     // add mutation to updatechore to running tally.
-    // };
+    const handleRemoveChore = async (removeChoreId) => {
+        try {
+            await removeChore({
+                variables: { choreId: removeChoreId, groupId: data.group._id },
+            });
+            // refetch group query to update chorelist
+            refetch();
+        } catch (e) {
+            console.error(e);
+        }
+
+        // add mutation to updatechore to running tally.
+    };
 
     // conditionaly render chores
-
     if (loading) {
         return <h1>loading...</h1>;
     } else if (!choresData.length) {
@@ -50,9 +53,12 @@ const ChoreList = ({ choresData, loading, data }) => {
                             {/* pass in chores to modal to render in fields */}
                             {/* <UpdateChoreModal chore={chore} /> */}
 
-                            {/* <button className="btn" onClick={removeChore}>
-                                        finish chore
-                                    </button> */}
+                            <button
+                                className="btn"
+                                onClick={() => handleRemoveChore(chore._id)}
+                            >
+                                Chore Comleted
+                            </button>
                             <button className="btn">
                                 add to google calendar
                             </button>
