@@ -17,6 +17,7 @@ import './choreForm.css';
 
 const ChoreForm = ({ refetch, groupData }) => {
     // declare query_ME
+    console.log('groupData', groupData)
     const { loading, data } = useQuery(QUERY_ME);
 
     // set user and group id's
@@ -143,7 +144,13 @@ const ChoreForm = ({ refetch, groupData }) => {
                             onChange={handleChange}
                             isInvalid
                             errorBorderColor="null"
-                        />
+                        >
+                             {/* Map over users in group */}
+                             {groupData.group.users.map((user, i)=> (
+                                <option>{user.username}</option>
+                             ))}
+
+                        </Select>
                     </div>
                     <div className="form-input">
                         <FormLabel requiredIndicator>Chore Notes:</FormLabel>

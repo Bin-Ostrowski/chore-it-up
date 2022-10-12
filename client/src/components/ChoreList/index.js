@@ -40,8 +40,8 @@ const ChoreList = ({ choresData, loading, data }) => {
                         <div className="list-text">
                             <div>
                                 Chore Name: {chore.choreName} Finish By:{' '}
-                                {chore.dueDate}
-                                {/* Assinged To:{' '} */}
+                                {chore.dueDate}{' '}
+                                Assinged To: {chore.assignedTo}
                                 {/* {chore.assignedTo} */}
                             </div>
                             <div>Chore Description: {chore.choreBody}</div>
