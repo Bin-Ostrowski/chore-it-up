@@ -53,7 +53,7 @@ const MemeberList = ({ groupData }) => {
                         {user.username}
                         <Button
                             size="xs"
-                            className=""
+                            className="delete-member-btn"
                             onClick={() => handlerRemoveUser(user._id)}
                         >
                             X

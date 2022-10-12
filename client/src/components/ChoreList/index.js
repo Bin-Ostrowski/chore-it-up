@@ -43,11 +43,21 @@ const ChoreList = ({ choresData, loading, data, refetch }) => {
                 {choresData.map((chore, i) => (
                     <li key={chore._id} className="list">
                         <div className="list-text">
-                            <div>CHORE:  {chore.choreName}</div>
-                            <div>FINISH BY:  {dateFormat(chore.dueDate)}</div>
-                            <div>ASSIGNED TO:  {chore.assignedTo}</div>
-
-                            <div>CHORE DESCRIPTION:  {chore.choreBody}</div>
+                            <div>
+                                <b className="list-text">CHORE: </b>
+                                {chore.choreName}
+                            </div>
+                            <div>
+                                <b className="list-text">FINISH BY: </b>
+                                {dateFormat(chore.dueDate)}
+                            </div>
+                            <div>
+                            <b className="list-text">ASSIGNED TO: </b> {chore.assignedTo}
+                            </div>
+                            <div>
+                            <b className="list-text">CHORE DESCRIPTION: </b>
+                                {chore.choreBody}
+                            </div>
                         </div>
                         <div className="list-btns">
                             {/* pass in chores to modal to render in fields */}
