@@ -45,6 +45,7 @@ export const ADD_CHORE = gql`
         $choreName: String!
         $choreBody: String
         $dueDate: String
+        $assignedTo: String!
     ) {
         addChore(
             group: $group
@@ -52,12 +53,14 @@ export const ADD_CHORE = gql`
             choreName: $choreName
             choreBody: $choreBody
             dueDate: $dueDate
+            assignedTo: $assignedTo
         ) {
             _id
             choreName
             choreBody
             createdAt
             dueDate
+            assignedTo
         }
     }
 `;
