@@ -95,7 +95,7 @@ const ChoreForm = ({ refetch, groupData }) => {
         <div>LOADING ... </div>;
     }
     return (
-        <div className="form-container">
+        <form className="form-container">
             <FormControl className="flex-row" isInvalid={isError} isRequired>
                 <div className="input-container">
                     <div className="form-input">
@@ -176,7 +176,7 @@ const ChoreForm = ({ refetch, groupData }) => {
                     </Button>
                 </div>
             </FormControl>
-        </div>
+        </form>
     );
 };
 
