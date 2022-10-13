@@ -57,7 +57,7 @@ const DesktopSignup = () => {
                 const { data } = await addUser({
                     variables: { ...formState },
                 });
-                console.log(data.addUser);
+ 
                 Auth.login(data.addUser.token);
             } catch (e) {
                 console.error(e);

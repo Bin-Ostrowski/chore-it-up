@@ -31,7 +31,7 @@ const Home = () => {
         refetch: meQueryRefetch,
     } = useQuery(QUERY_ME);
 
-    console.log(data);
+
     const groupName = data?.me?.group?.groupName;
 
     const {
@@ -48,7 +48,7 @@ const Home = () => {
     //     refetch();
     // }
 
-    console.log('home groupData', groupData);
+
 
     const [isGroup, setisGroup] = useState(false);
 
@@ -56,7 +56,7 @@ const Home = () => {
         if (error) {
             console.log(error);
         }
-        console.log(data.me);
+   
         if (!data.me.group) {
             return <GroupForm refetch={meQueryRefetch} />;
         }
@@ -69,7 +69,7 @@ const Home = () => {
                         <div className="groups-display">
                             {/* //map over group id */}
                             <div className="group-container">
-                                <p class="group-title">{groupName}</p>
+                                <p className="group-title">{groupName}</p>
                                 <MemberForm
                                     groupData={groupData}
                                     refetch={refetch}

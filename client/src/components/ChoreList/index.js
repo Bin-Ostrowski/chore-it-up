@@ -7,9 +7,6 @@ import dateFormat from '../../utils/dateFormat';
 
 // pass in props for chores array for that group
 const ChoreList = ({ choresData, loading, data, refetch }) => {
-    console.log('chores data', choresData);
-    console.log('data', data);
-
     // declare REMOVE_CHORE mutation
     const [removeChore, { error }] = useMutation(REMOVE_CHORE);
 
@@ -37,7 +34,6 @@ const ChoreList = ({ choresData, loading, data, refetch }) => {
         console.log('no chores yet');
         return <p className="chore-placeholder">No Chores Yet</p>;
     } else {
-        console.log(choresData);
         return (
             <ul>
                 {choresData.map((chore, i) => (
@@ -45,7 +41,9 @@ const ChoreList = ({ choresData, loading, data, refetch }) => {
                         <div className="list-title">
                             <div className="title-to-right">CHORE: </div>
                             <div className="title-to-right">FINISH BY: </div>
-                            <div className="title-to-right">ASSIGNED: </div>{' '}
+                            <div className="title-to-right">
+                                ASSIGNED:{' '}
+                            </div>{' '}
                             <div className="title-to-right">DESCRIPTION: </div>
                         </div>
 
@@ -77,8 +75,6 @@ const ChoreList = ({ choresData, loading, data, refetch }) => {
             </ul>
         );
     }
-
-    // else return map of list of chores
 };
 
 export default ChoreList;

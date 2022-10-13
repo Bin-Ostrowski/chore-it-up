@@ -17,19 +17,14 @@ import './choreForm.css';
 
 const ChoreForm = ({ refetch, groupData }) => {
     // declare query_ME
-    console.log('groupData', groupData);
     const { loading, data } = useQuery(QUERY_ME);
 
     // set user and group id's
-
     const groupId = data.me.group._id;
-    console.log(groupId);
-
     const userId = data.me._id;
-    console.log(userId);
+
     // set State for inputs
     const [choreData, setChoreData] = useState({});
-    console.log('choreForm', choreData);
 
     // Set error State
     const [isError, setIsError] = useState(false);
@@ -55,23 +50,11 @@ const ChoreForm = ({ refetch, groupData }) => {
             [name]: value,
         });
 
-        // if (choreData.choreName === '') {
-        //     setErrorMessage('Chore Name is required!');
-        //     setIsError(true);
-        //     setbuttonError(true);
-        // } else if (choreData.assignedTo === '') {
-        //     setErrorMessage('Please assign chore to a member!');
-        //     setIsError(true);
-        //     setbuttonError(true);
-        // } else {
-        //     setIsError(false);
         setbuttonError(false);
-        // }
     };
 
     // form submit handler -
     const handleFormSubmit = async (event) => {
-        console.log('handleFormSubmit');
         event.preventDefault();
 
         if (choreData.choreName === '') {
@@ -85,8 +68,6 @@ const ChoreForm = ({ refetch, groupData }) => {
         } else {
             setbuttonError(false);
             setIsError(false);
-            // setChoreData({ ...choreData });
-            console.log({ ...choreData });
 
             // addChore mutation
             try {
@@ -94,7 +75,6 @@ const ChoreForm = ({ refetch, groupData }) => {
                     variables: { ...choreData },
                 });
 
-                console.log(groupData);
                 //clear form values
                 setChoreData({
                     choreName: '',
@@ -104,7 +84,6 @@ const ChoreForm = ({ refetch, groupData }) => {
                 });
 
                 refetch();
-                console.log(choreData);
             } catch (e) {
                 console.error(e);
             }

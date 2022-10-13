@@ -25,6 +25,10 @@ Run server with `npm start`
 
 Chore it up was created with non-traditional living situations in mind. Users are able to create an account and a house group or be added to an already existing group. All users are able to create chores and assign the chores to other house members. If needed, a member can be removed from said group and a chore can be deleted upon completion. All chores are viewable to other housemembers and house members alone.
 
+## Screenshots
+
+![Screenshot](./client/src/assets/screenshot.PNG)
+
 ## Contributing
 
 [Brandon Geertsen](https://www.linkedin.com/in/brandon-geertsen/)

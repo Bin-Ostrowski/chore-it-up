@@ -65,9 +65,6 @@ const Header = () => {
                                     </a>
                                 </Box>
                             )}
-
-                            {/* <Link to="/login">Login</Link>
-                        <Link to="/signup">Signup</Link> */}
                         </>
                     </Box>
                 </nav>
