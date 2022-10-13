@@ -36,12 +36,6 @@ const MemberForm = ({ refetch, groupData }) => {
         setIsError(false);
 
         const { value } = event.target;
-        // setMember({
-        //     ...member,
-        //     [name]: value,
-        // });
-
-        // console.log('onUPdate member', member)
 
         // Filter users in DB to match input
         const result = data.users.filter((user) => user.username === value);
@@ -51,7 +45,6 @@ const MemberForm = ({ refetch, groupData }) => {
             setIsError(true);
             setMember(null);
         } else {
-            // const { _id, username } = result[0];
             // deconstruct result
             setIsError(false);
             setMember(result[0]);
@@ -63,8 +56,6 @@ const MemberForm = ({ refetch, groupData }) => {
         event.preventDefault();
 
         // addUserToGroup mutation
-        console.log('member', member.userId);
-        console.log('groupdata', groupData);
         try {
             await addUserToGroup({
                 variables: {
@@ -73,7 +64,6 @@ const MemberForm = ({ refetch, groupData }) => {
                     username: member.username,
                 },
             });
-            console.log('added', member);
 
             // retech DB query to display added member.
             refetch();
@@ -104,7 +94,6 @@ const MemberForm = ({ refetch, groupData }) => {
                         variant="filled"
                         placeholder="username"
                         _placeholder={{ color: 'inherit' }}
-                        // value={value}
                         name="username"
                         size="sm"
                         onInput={handleOnInput}

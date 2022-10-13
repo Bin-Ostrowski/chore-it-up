@@ -1,8 +1,5 @@
 import { React, useEffect, useState } from 'react';
-import { useMutation } from '@apollo/client';
-import { LOGIN_USER, ADD_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
-
 import { DesktopContainer, MobileForms } from '../components/userForms';
 
 const Login = () => {
@@ -23,10 +20,6 @@ const Login = () => {
         }
 
         window.addEventListener('resize', handleResize);
-
-        console.log(
-            `width: ${windowDimensions.width} height: ${windowDimensions.height}`
-        );
     });
     const loggedIn = Auth.loggedIn();
     if (loggedIn) {

@@ -3,14 +3,11 @@ import {
     FormControl,
     FormLabel,
     FormErrorMessage,
-    FormHelperText,
     Input,
     Button,
-    ButtonGroup,
 } from '@chakra-ui/react';
 import { useMutation } from '@apollo/client';
 import { ADD_GROUP } from '../../utils/mutations';
-import Auth from '../../utils/auth';
 
 import './groupForm.css';
 
@@ -36,7 +33,6 @@ const GroupForm = ({ refetch }) => {
     };
 
     const handleGroupSubmit = async (event) => {
-        console.log(isError);
         if (!groupState.groupName) {
             setIsError(true);
         }
@@ -47,8 +43,6 @@ const GroupForm = ({ refetch }) => {
                 });
 
                 setGroupInput('');
-
-                console.log(groupState);
             } catch (e) {
                 console.error(e);
             }
