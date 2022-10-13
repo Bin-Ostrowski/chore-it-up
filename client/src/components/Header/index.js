@@ -6,6 +6,7 @@ import { useQuery } from '@apollo/client';
 import { QUERY_GROUP } from '../../utils/queries';
 
 const Header = () => {
+    // used to refetch QUERY_GROUP when user goes to the home page
     const { loading, error, data, refetch } = useQuery(QUERY_GROUP);
 
     // define logout
@@ -41,16 +42,13 @@ const Header = () => {
                 bgColor="green.400"
             >
                 <Box sx={navBoxStyles}>
-                    {/* <Link to="/">
-                        <h1>Chore It Up</h1>
-                    </Link> */}
                     <h1>Chore It Up</h1>
                 </Box>
                 <nav>
-                    {/* add Auth.login() ? () */}
                     <Box sx={navBoxStyles}>
                         <>
                             <Box _hover={hoverStyles}>
+                                {/* refetch QUERY_GROUP to update data in the home page */}
                                 <Link to="/home" onClick={refetch}>
                                     Home
                                 </Link>

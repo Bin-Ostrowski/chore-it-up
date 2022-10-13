@@ -20,6 +20,7 @@ const DesktopSignup = () => {
         email: '',
         password: '',
     });
+    // used for chakra error handling
     const [isError, setIsError] = useState();
 
     const [errorMessage, setErrorMessage] = useState();
@@ -38,6 +39,7 @@ const DesktopSignup = () => {
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
+        // error handling for sign up form
         if (formState.username === '') {
             setErrorMessage('username required');
             setIsError(true);
@@ -54,10 +56,11 @@ const DesktopSignup = () => {
 
         if (!isError) {
             try {
+                // sends data to addUser mutation
                 const { data } = await addUser({
                     variables: { ...formState },
                 });
- 
+
                 Auth.login(data.addUser.token);
             } catch (e) {
                 console.error(e);
