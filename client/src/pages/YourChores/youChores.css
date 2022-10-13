@@ -1,0 +1,31 @@
+.your-chores-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    position: relative;
+    background-color: #ffff;
+    padding: 20px 0 20px 0;
+}
+
+.title {
+    font-size: 30px;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    
+}
+
+.list-container {
+        border-radius: 10px;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
+        background-color: rgb(169, 223, 223, 0.5);
+        margin: 5px;
+        margin-top: 65px;
+        margin-bottom: 45px;
+        padding: 80px;
+        align-items: center;
+
+}

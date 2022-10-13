@@ -1,0 +1,50 @@
+.list {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(60, 22, 66, 0.3);
+    border-radius: 0 40px 0 40px;
+    display: flex;
+    margin: 10px 0 10px 0;
+}
+
+.list-title {
+    padding: 20px 0 20px 20px;
+    font-weight: bold;
+}
+
+.title-to-right {
+    display: flex;
+justify-content: right;
+}
+
+.list-input {
+    flex-grow: 4;
+    padding: 20px 60px 20px 10px;
+}
+
+.list-btns {
+    padding: 20px 20px 20px 10px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.btn {
+    background-color: rgb(169, 223, 223, 0.5);
+    border: 1px solid black;
+    padding: 8px;
+    margin: 2px;
+    border-radius: 15px;
+    width: 100%;
+}
+
+.btn:hover {
+    background-color: #a3e5e5;
+}
+
+.chore-placeholder {
+    font-size: 18px;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+}

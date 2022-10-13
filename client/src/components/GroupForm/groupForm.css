@@ -1,0 +1,127 @@
+.groups-display {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.group-container {
+    display: flex;
+    border-radius: 10px;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: rgb(169, 223, 223);
+    margin: 5px;
+    margin-top: 65px;
+    padding: 10px;
+}
+
+.add-group-container {
+    width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgb(169, 223, 223);
+    padding: 15px;
+}
+
+.add-group-form {
+    display: flex;
+    justify-content: space-around;
+}
+
+.group-input {
+    display: flex;
+    align-items: center;
+}
+
+#groupName {
+    width: 300px;
+    border: 1px solid black;
+}
+
+#form-helper-container {
+    background-color: #284b63;
+}
+
+#helper-container {
+    width: 900px;
+    height: 95vh;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgb(169, 223, 223);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#helper-text {
+    width: 800px;
+    font-size: 34px;
+    text-align: left;
+}
+
+@media (max-width: 768px) {
+    .add-group-form {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        margin-right: 0;
+    }
+
+    #helper-container {
+        width: 100%;
+    }
+
+    .add-group-container {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    #form-helper-container {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    #groupName {
+        width: 200px;
+    }
+
+    .group-input {
+        flex-direction: column;
+        padding-top: 5px;
+    }
+
+    #add-group-btn {
+        width: 200px;
+    }
+
+    #helper-text {
+        font-size: 28px;
+        width: 668px;
+    }
+}
+
+@media (max-width: 425px) {
+    #helper-container {
+        display: block;
+        height: 100vh;
+    }
+    #helper-text {
+        width: 350px;
+        padding-top: 50px;
+        padding-left: 50px;
+        font-size: 26px;
+    }
+}
+
+@media (max-width: 320px) {
+    #helper-text {
+        width: 300px;
+    }
+}
