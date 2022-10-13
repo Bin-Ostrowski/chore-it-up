@@ -63,6 +63,7 @@ const YourChores = () => {
                 <h2 className="title">{dataMe.me.username}'s chores</h2>
 
                 <ChoreList
+                    // sends only the users chores to the ChoreList component
                     choresData={yourChores}
                     loading={loadingMe}
                     refetch={refetch}
