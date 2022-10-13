@@ -14,21 +14,23 @@ const YourChores = () => {
         window.location.replace('/');
     }
 
-    // deconstruct variables loading and data from userQuery Hook for Query_me?
+    // query to get all the chores
     const { loading, error, data, refetch } = useQuery(QUERY_CHORES);
+    // meQuery for getting the logged in user's username
     const {
         loading: loadingMe,
         error: errorMe,
         data: dataMe,
     } = useQuery(QUERY_ME, {
+        // allows QUERY_CHORES  to finish before running QUERY_ME
         skip: loading,
     });
+
+    // refreshes chore data so newly added chores from the homepage will show up
     refetch();
-    if (!loadingMe) {
-    }
 
     const yourChores = [];
-
+    // maps over all the chores and only sends the user's chores to the youChores array
     if (!(loading || loadingMe)) {
         data?.chores?.map((chore) => {
             if (chore.assignedTo === dataMe.me.username) {
@@ -51,7 +53,7 @@ const YourChores = () => {
             </main>
         );
     }
-    // loading variable used to briefly show a loading <div> element
+
     return (
         <main
             className="your-chores-container"
@@ -61,6 +63,7 @@ const YourChores = () => {
                 <h2 className="title">{dataMe.me.username}'s chores</h2>
 
                 <ChoreList
+                    // sends only the users chores to the ChoreList component
                     choresData={yourChores}
                     loading={loadingMe}
                     refetch={refetch}

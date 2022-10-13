@@ -22,6 +22,7 @@ const DesktopLogin = () => {
         password: '',
     });
     const [login, { error }] = useMutation(LOGIN_USER);
+    // used for chakra error handling in the login form
     const [isError, setIsError] = useState();
     const [errorMessage, setErrorMessage] = useState();
 
@@ -36,6 +37,7 @@ const DesktopLogin = () => {
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
+        // error handling
         if (!formState.email.match(emailRegex)) {
             setErrorMessage('invalid email');
             setIsError(true);
@@ -49,6 +51,7 @@ const DesktopLogin = () => {
 
         if (!isError) {
             try {
+                // sends state data to login mutation
                 const { data } = await login({
                     variables: { ...formState },
                 });

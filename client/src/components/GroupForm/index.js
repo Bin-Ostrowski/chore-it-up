@@ -38,6 +38,7 @@ const GroupForm = ({ refetch }) => {
         }
         if (!isError) {
             try {
+                // runs the addGroup mutation if it passes the error handling
                 await addGroup({
                     variables: { ...groupState },
                 });

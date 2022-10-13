@@ -16,7 +16,9 @@ import { LOGIN_USER, ADD_USER } from '../../utils/mutations';
 import Auth from '../../utils/auth';
 
 const MobileForms = () => {
+    // email regex for validation
     const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+    // states used to toggle whether the login or sign up forms show on mobile view
     const [isLoginHidden, setIsLoginHidden] = useState(true);
     const [isSignUpHidden, setIsSignUpHidden] = useState(true);
     const [loginFormState, setLoginFormState] = useState({
@@ -36,7 +38,7 @@ const MobileForms = () => {
 
     const handleChange = (event) => {
         const { name, value } = event.target;
-
+        // sets the form state to send login data
         setLoginFormState({
             ...loginFormState,
             [name]: value,
@@ -45,7 +47,7 @@ const MobileForms = () => {
 
     const handleSignupChange = (event) => {
         const { name, value } = event.target;
-
+        // sets the form state to send sign up data
         setSignupFormState({
             ...signupFormState,
             [name]: value,
@@ -54,6 +56,7 @@ const MobileForms = () => {
 
     const handleLoginFormSubmit = async (event) => {
         event.preventDefault();
+        // error handling for login form
         if (!loginFormState.email.match(emailRegex)) {
             setErrorMessage('invalid email');
             setIsError(true);
@@ -66,6 +69,7 @@ const MobileForms = () => {
 
         if (!isError) {
             try {
+                // sends state data to login mutation
                 const { data } = await login({
                     variables: { ...loginFormState },
                 });
@@ -79,6 +83,7 @@ const MobileForms = () => {
 
     const handleSignupFormSubmit = async (event) => {
         event.preventDefault();
+        // error handling for sign up form
         if (signupFormState.username === '') {
             setErrorMessage('username required');
             setIsError(true);
@@ -95,6 +100,7 @@ const MobileForms = () => {
 
         if (!isError) {
             try {
+                // sends the state data to addUser mutation
                 const { data } = await addUser({
                     variables: { ...signupFormState },
                 });
@@ -105,6 +111,7 @@ const MobileForms = () => {
         }
     };
 
+    // functions used to set toggle state to decide which form to show
     function toggleLogin() {
         if (!isSignUpHidden) {
             setIsSignUpHidden((current) => !current);
