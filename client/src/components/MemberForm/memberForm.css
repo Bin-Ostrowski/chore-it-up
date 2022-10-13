@@ -3,16 +3,26 @@
     justify-content: center; */
     background-color: #a3e5e5;
     margin: 10px;
-    color: rgb(8,99,117);
+    color: rgb(8, 99, 117);
 }
 
 .members {
     padding: 15px;
     display: flex;
-    justify-content:space-evenly
+    font-size: 18px;
+    font-weight: 500;
 }
 
 .username-list {
-    display: flex;
+    display: inline-flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: baseline;
+    padding-right: 7px;
+
 }
 
+.delete-member-btn {
+max-height: 15px;
+margin: 7px 15px 5px 7px;
+}

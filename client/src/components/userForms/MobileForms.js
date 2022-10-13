@@ -120,7 +120,7 @@ const MobileForms = () => {
     }
 
     return (
-        <div className="login-container-mobile">
+        <main className="login-container-mobile">
             {!isLoginHidden && (
                 <div className="login-mobile">
                     <div
@@ -133,38 +133,40 @@ const MobileForms = () => {
                     >
                         <h2>Login</h2>
                     </div>
-                    <FormControl isInvalid={isError} isRequired>
-                        <FormLabel fontSize="2xl">Email</FormLabel>
-                        <Input
-                            name="email"
-                            id="email"
-                            onChange={handleChange}
-                            type="email"
-                        />
-                        <FormLabel fontSize="2xl">Password</FormLabel>
-                        <Input
-                            name="password"
-                            id="password"
-                            onChange={handleChange}
-                            type="password"
-                        />
-                        {isError && (
-                            <FormErrorMessage className="error">
-                                {errorMessage}
-                            </FormErrorMessage>
-                        )}
+                    <form>
+                        <FormControl isInvalid={isError} isRequired>
+                            <FormLabel fontSize="2xl">Email</FormLabel>
+                            <Input
+                                name="email"
+                                id="email"
+                                onChange={handleChange}
+                                type="email"
+                            />
+                            <FormLabel fontSize="2xl">Password</FormLabel>
+                            <Input
+                                name="password"
+                                id="password"
+                                onChange={handleChange}
+                                type="password"
+                            />
+                            {isError && (
+                                <FormErrorMessage className="error">
+                                    {errorMessage}
+                                </FormErrorMessage>
+                            )}
 
-                        <Button
-                            onClick={handleLoginFormSubmit}
-                            className="button"
-                            colorScheme="green.400"
-                            variant="solid"
-                            size="lg"
-                            style={{ 'background-color': '#48bb78' }}
-                        >
-                            Login
-                        </Button>
-                    </FormControl>
+                            <Button
+                                onClick={handleLoginFormSubmit}
+                                className="button"
+                                colorScheme="green.400"
+                                variant="solid"
+                                size="lg"
+                                style={{ 'background-color': '#48bb78' }}
+                            >
+                                Login
+                            </Button>
+                        </FormControl>
+                    </form>
                 </div>
             )}
 
@@ -231,7 +233,7 @@ const MobileForms = () => {
             <div className="toggle" onClick={toggleLogin}>
                 Login
             </div>
-        </div>
+        </main>
     );
 };
 

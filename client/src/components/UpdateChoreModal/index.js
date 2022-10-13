@@ -61,7 +61,7 @@ const UpdateChoreModal = ({ refetch, chore, groupData }) => {
             setErrorMessage('Chore Name is required!');
             setIsError(true);
         } else if (updateChoreData.assignedTo === '') {
-            setErrorMessage('Please assign Chore!');
+            setErrorMessage('Please assign chore to a member!');
             setIsError(true);
         } else {
             setIsError(false);

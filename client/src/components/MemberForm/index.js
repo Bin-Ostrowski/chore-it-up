@@ -62,20 +62,6 @@ const MemberForm = ({ refetch, groupData }) => {
     const handleFormSubmit = async (event) => {
         event.preventDefault();
 
-        // // Filter users in DB to match input
-        // const result = data.users.filter(
-        //     (user) => user.username === member.username
-        // );
-
-        // // if input value is empty or if username is not in database return errorMessage
-        // if (member.username === '' || result.length == 0) {
-        //     setIsError(true);
-        // } else {
-        //     const { _id, username } = result[0];
-        //     // deconstruct result
-        //     setIsError(false);
-        //     setMember({ ...member, userId: _id, username: username });
-
         // addUserToGroup mutation
         console.log('member', member.userId);
         console.log('groupdata', groupData);
@@ -108,32 +94,39 @@ const MemberForm = ({ refetch, groupData }) => {
     }
 
     return (
-        <FormControl className="flex-row" isInvalid={isError} isRequired>
-            <div className="input-container">
-                <FormLabel className="form-label">Username:</FormLabel>
-                <Input
-                    type="text"
-                    focusBorderColor="black"
-                    variant="filled"
-                    placeholder="username"
-                    // value={value}
-                    name="username"
-                    size="sm"
-                    onInput={handleOnInput}
-                />
-                {isError && (
-                    <FormErrorMessage className="error">
-                        That username does not exist!
-                    </FormErrorMessage>
-                )}
-            </div>
+        <form>
+            <FormControl className="flex-row" isInvalid={isError} isRequired>
+                <div className="input-container">
+                    <FormLabel className="form-label">Username:</FormLabel>
+                    <Input
+                        type="text"
+                        focusBorderColor="black"
+                        variant="filled"
+                        placeholder="username"
+                        _placeholder={{ color: 'inherit' }}
+                        // value={value}
+                        name="username"
+                        size="sm"
+                        onInput={handleOnInput}
+                    />
+                    {isError && (
+                        <FormErrorMessage className="error">
+                            That username does not exist!
+                        </FormErrorMessage>
+                    )}
+                </div>
 
-            <div className="form-btn">
-                <Button disabled={!member} onClick={handleFormSubmit}>
-                    Add Member
-                </Button>
-            </div>
-        </FormControl>
+                <div className="form-btn">
+                    <Button
+                        mt={8}
+                        disabled={!member}
+                        onClick={handleFormSubmit}
+                    >
+                        Add Member
+                    </Button>
+                </div>
+            </FormControl>
+        </form>
     );
 };
 

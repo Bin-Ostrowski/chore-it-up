@@ -28,18 +28,17 @@ const ChoreForm = ({ refetch, groupData }) => {
     const userId = data.me._id;
     console.log(userId);
     // set State for inputs
-    const [choreData, setChoreData] = useState({
-        // group: groupId,
-        // userId: userId,
-        // choreName: 'testName',
-        // dueDate: '2022-10-11T23:11',
-        // // assignedTo: 'Nami',
-        // choreBody: 'testBody',
-    });
+    const [choreData, setChoreData] = useState({});
     console.log('choreForm', choreData);
 
     // Set error State
     const [isError, setIsError] = useState(false);
+
+    // error message state
+    const [errorMessage, setErrorMessage] = useState('');
+
+    // set button error
+    const [buttonError, setbuttonError] = useState(true);
 
     // declare addChore() and error variable for mutation
     const [addChore, { error }] = useMutation(ADD_CHORE);
@@ -55,15 +54,36 @@ const ChoreForm = ({ refetch, groupData }) => {
 
             [name]: value,
         });
+
+        // if (choreData.choreName === '') {
+        //     setErrorMessage('Chore Name is required!');
+        //     setIsError(true);
+        //     setbuttonError(true);
+        // } else if (choreData.assignedTo === '') {
+        //     setErrorMessage('Please assign chore to a member!');
+        //     setIsError(true);
+        //     setbuttonError(true);
+        // } else {
+        //     setIsError(false);
+        setbuttonError(false);
+        // }
     };
 
     // form submit handler -
     const handleFormSubmit = async (event) => {
         console.log('handleFormSubmit');
         event.preventDefault();
+
         if (choreData.choreName === '') {
+            setErrorMessage('Chore Name is required!');
             setIsError(true);
+            setbuttonError(true);
+        } else if (choreData.assignedTo === '') {
+            setErrorMessage('Please assign chore to a member!');
+            setIsError(true);
+            setbuttonError(true);
         } else {
+            setbuttonError(false);
             setIsError(false);
             // setChoreData({ ...choreData });
             console.log({ ...choreData });
@@ -95,7 +115,7 @@ const ChoreForm = ({ refetch, groupData }) => {
         <div>LOADING ... </div>;
     }
     return (
-        <div className="form-container">
+        <form onSubmit={handleFormSubmit} className="form-container">
             <FormControl className="flex-row" isInvalid={isError} isRequired>
                 <div className="input-container">
                     <div className="form-input">
@@ -103,19 +123,16 @@ const ChoreForm = ({ refetch, groupData }) => {
                             Chore Name:
                         </FormLabel>
                         <Input
+                            required
                             focusBorderColor="lime"
                             placeholder="Chore Name"
+                            _placeholder={{ color: 'inherit' }}
                             value={choreData.choreName}
                             variant="filled"
                             name="choreName"
                             size="sm"
                             onChange={handleChange}
                         />
-                        {isError && (
-                            <FormErrorMessage className="error">
-                                Chore name is required.
-                            </FormErrorMessage>
-                        )}
                     </div>
                     <div className="form-input">
                         <FormLabel requiredIndicator>Finish By Date:</FormLabel>
@@ -133,8 +150,9 @@ const ChoreForm = ({ refetch, groupData }) => {
                         />
                     </div>
                     <div className="form-input">
-                        <FormLabel requiredIndicator>Assigned To:</FormLabel>
+                        <FormLabel>Assigned To:</FormLabel>
                         <Select
+                            required
                             focusBorderColor="lime"
                             placeholder="Select Username"
                             value={choreData.assignedTo}
@@ -142,8 +160,6 @@ const ChoreForm = ({ refetch, groupData }) => {
                             variant="filled"
                             size="sm"
                             onChange={handleChange}
-                            isInvalid
-                            errorBorderColor="null"
                         >
                             {/* Map over users in group */}
                             {groupData.group.users.map((user, i) => (
@@ -156,6 +172,7 @@ const ChoreForm = ({ refetch, groupData }) => {
                         <Input
                             focusBorderColor="lime"
                             placeholder="Describe Chore"
+                            _placeholder={{ color: 'inherit' }}
                             value={choreData.choreBody}
                             name="choreBody"
                             variant="filled"
@@ -170,13 +187,19 @@ const ChoreForm = ({ refetch, groupData }) => {
                     <Button
                         colorScheme="green"
                         type="click"
-                        onClick={handleFormSubmit}
+                        disabled={buttonError}
+                        // onClick={handleFormSubmit}
                     >
                         Add This Chore
                     </Button>
                 </div>
+                {isError && (
+                    <FormErrorMessage className="error">
+                        {errorMessage}
+                    </FormErrorMessage>
+                )}
             </FormControl>
-        </div>
+        </form>
     );
 };
 

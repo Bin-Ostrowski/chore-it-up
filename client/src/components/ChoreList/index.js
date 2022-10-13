@@ -3,6 +3,7 @@ import { useMutation, useQuery } from '@apollo/client';
 import UpdateChoreModal from '../UpdateChoreModal';
 import './choreList.css';
 import { REMOVE_CHORE } from '../../utils/mutations';
+import dateFormat from '../../utils/dateFormat';
 
 // pass in props for chores array for that group
 const ChoreList = ({ choresData, loading, data, refetch }) => {
@@ -34,32 +35,42 @@ const ChoreList = ({ choresData, loading, data, refetch }) => {
     } else if (!choresData?.length) {
         // if no choes return this:
         console.log('no chores yet');
-        return <h3>No Chores Yet</h3>;
+        return <p className="chore-placeholder">No Chores Yet</p>;
     } else {
         console.log(choresData);
         return (
             <ul>
                 {choresData.map((chore, i) => (
                     <li key={chore._id} className="list">
-                        <div className="list-text">
-                            <div>
-                                Chore Name: {chore.choreName} Finish By:{' '}
-                                {chore.dueDate} Assinged To: {chore.assignedTo}
-                            </div>
-                            <div>Chore Description: {chore.choreBody}</div>
+                        <div className="list-title">
+                            <div className="title-to-right">CHORE: </div>
+                            <div className="title-to-right">FINISH BY: </div>
+                            <div className="title-to-right">ASSIGNED: </div>{' '}
+                            <div className="title-to-right">DESCRIPTION: </div>
+                        </div>
+
+                        <div className="list-input">
+                            <div>{chore.choreName}</div>
+                            <div>{dateFormat(chore.dueDate)}</div>
+                            <div>{chore.assignedTo}</div>
+                            <div>{chore.choreBody}</div>
                         </div>
                         <div className="list-btns">
                             {/* pass in chores to modal to render in fields */}
-                            <UpdateChoreModal chore={chore} groupData={data} refetch={refetch} />
+                            <UpdateChoreModal
+                                chore={chore}
+                                groupData={data}
+                                refetch={refetch}
+                            />
                             <button
                                 className="btn"
                                 onClick={() => handleRemoveChore(chore._id)}
                             >
-                                Chore Comleted
+                                Chore Completed
                             </button>
-                            <button className="btn">
-                                add to google calendar
-                            </button>
+                            {/* <button className="btn">
+                                Add to Google Calendar
+                            </button> */}
                         </div>
                     </li>
                 ))}

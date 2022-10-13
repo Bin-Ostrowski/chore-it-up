@@ -69,7 +69,7 @@ const Home = () => {
                         <div className="groups-display">
                             {/* //map over group id */}
                             <div className="group-container">
-                                <h2>{groupName}</h2>
+                                <p class="group-title">{groupName}</p>
                                 <MemberForm
                                     groupData={groupData}
                                     refetch={refetch}
